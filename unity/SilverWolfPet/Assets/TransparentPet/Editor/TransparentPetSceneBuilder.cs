@@ -626,8 +626,8 @@ public static class TransparentPetSceneBuilder
         sceneFaceTracker.cameraDepthShiftMeters = 0.06f;
         sceneFaceTracker.cameraHeightFollowMeters = 0.55f;
         sceneFaceTracker.globalTrackingLateralMeters = 0.50625f;
-        sceneFaceTracker.globalTrackingHeightMeters = 0.45f;
-        sceneFaceTracker.globalTrackingDepthMeters = 0.275f;
+        sceneFaceTracker.globalTrackingHeightMeters = 0.225f;
+        sceneFaceTracker.globalTrackingDepthMeters = 0.1375f;
         sceneFaceTracker.globalTrackingOffsetSmoothTime = 0.2f;
         sceneFaceTracker.globalTrackingDepthSmoothTime = 0.22f;
         sceneFaceTracker.cameraOrbitDeadZoneDegrees = 5f;

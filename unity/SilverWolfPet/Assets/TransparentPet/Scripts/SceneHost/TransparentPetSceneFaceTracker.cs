@@ -40,9 +40,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 11;
+    private const int CurrentSettingsVersion = 12;
     private const int StableTrackingDefaultsSettingsVersion = 7;
-    private const int GlobalTrackingSensitivitySettingsVersion = 11;
+    private const int GlobalTrackingSensitivitySettingsVersion = 12;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -53,14 +53,15 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableCameraOrbitDeadZoneDegrees = 5f;
     private const float StableCameraOrbitSmoothTime = 0.32f;
     private const float StableGlobalTrackingLateralMeters = 0.50625f;
-    private const float StableGlobalTrackingHeightMeters = 0.45f;
-    private const float StableGlobalTrackingDepthMeters = 0.275f;
+    private const float StableGlobalTrackingHeightMeters = 0.225f;
+    private const float StableGlobalTrackingDepthMeters = 0.1375f;
     private const float StableGlobalTrackingOffsetSmoothTime = 0.2f;
     private const float StableGlobalTrackingDepthSmoothTime = 0.22f;
     private const float GlobalTrackingV8LateralMigrationScale = 0.375f;
     private const float GlobalTrackingV8HeightDepthMigrationScale = 0.25f;
     private const float GlobalTrackingV9LateralMigrationScale = 0.75f;
     private const float GlobalTrackingV9HeightDepthMigrationScale = 0.5f;
+    private const float GlobalTrackingV11HeightDepthMigrationScale = 0.5f;
     private const float ExternalJumpOffsetThreshold = 0.45f;
     private const float ExternalJumpDepthThreshold = 0.28f;
     private const float ExternalJumpOffsetConfirmTolerance = 0.18f;
@@ -2473,6 +2474,11 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
                 globalTrackingDepthMeters *= heightDepthScale;
                 globalTrackingOffsetSmoothTime = StableGlobalTrackingOffsetSmoothTime;
                 globalTrackingDepthSmoothTime = StableGlobalTrackingDepthSmoothTime;
+            }
+            if (settings.settingsVersion >= 10 && settings.settingsVersion < 12)
+            {
+                globalTrackingHeightMeters *= GlobalTrackingV11HeightDepthMigrationScale;
+                globalTrackingDepthMeters *= GlobalTrackingV11HeightDepthMigrationScale;
             }
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
