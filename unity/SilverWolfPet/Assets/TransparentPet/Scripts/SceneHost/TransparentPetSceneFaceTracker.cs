@@ -40,12 +40,13 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 14;
+    private const int CurrentSettingsVersion = 16;
     private const int StableTrackingDefaultsSettingsVersion = 7;
     private const int GlobalTrackingSensitivitySettingsVersion = 10;
     private const int GlobalTrackingHeightDepthSettingsVersion = 12;
     private const int GlobalTrackingAxisFixSettingsVersion = 13;
     private const int GlobalTrackingLateralRangeSettingsVersion = 14;
+    private const int GlobalTrackingLateralBalanceSettingsVersion = 16;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -55,7 +56,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableCameraHeightFollowMeters = 0.55f;
     private const float StableCameraOrbitDeadZoneDegrees = 5f;
     private const float StableCameraOrbitSmoothTime = 0.32f;
-    private const float StableGlobalTrackingLateralMeters = 0.65f;
+    private const float StableGlobalTrackingLateralMeters = 0.4f;
+    private const float StableCameraYawOrbitStrength = 1.15f;
     private const float StableGlobalTrackingHeightMeters = 0.225f;
     private const float StableGlobalTrackingDepthMeters = 0.1375f;
     private const float StableGlobalTrackingOffsetSmoothTime = 0.2f;
@@ -128,7 +130,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     [Range(0f, 0.2f)]
     public float cameraDepthShiftMeters = StableCameraDepthShiftMeters;
     [Range(-1.5f, 1.5f)]
-    public float cameraYawOrbitStrength = 1f;
+    public float cameraYawOrbitStrength = StableCameraYawOrbitStrength;
     [Range(-1.5f, 1.5f)]
     public float cameraPitchOrbitStrength = 0.35f;
     [Range(0f, 60f)]
@@ -2499,6 +2501,11 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             {
                 globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
             }
+            if (settings.settingsVersion >= 14 && settings.settingsVersion < GlobalTrackingLateralBalanceSettingsVersion)
+            {
+                globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
+                cameraYawOrbitStrength = StableCameraYawOrbitStrength;
+            }
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
             cameraOrbitDeadZoneDegrees = settings.cameraOrbitDeadZoneDegrees > 0f ? settings.cameraOrbitDeadZoneDegrees : cameraOrbitDeadZoneDegrees;
@@ -2662,7 +2669,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         public float globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
         public float globalTrackingOffsetSmoothTime = StableGlobalTrackingOffsetSmoothTime;
         public float globalTrackingDepthSmoothTime = StableGlobalTrackingDepthSmoothTime;
-        public float cameraYawOrbitStrength = 1f;
+        public float cameraYawOrbitStrength = StableCameraYawOrbitStrength;
         public float cameraPitchOrbitStrength = 0.35f;
         public float cameraOrbitDeadZoneDegrees = StableCameraOrbitDeadZoneDegrees;
         public float cameraOrbitSmoothTime = StableCameraOrbitSmoothTime;
