@@ -611,6 +611,7 @@ public static class TransparentPetSceneBuilder
         sceneFaceTracker.headFollowEnabled = true;
         sceneFaceTracker.cameraParallaxEnabled = true;
         sceneFaceTracker.cameraOrbitEnabled = true;
+        sceneFaceTracker.globalTrackingEnabled = false;
         sceneFaceTracker.mirrorHorizontal = true;
         sceneFaceTracker.mirrorVertical = true;
         sceneFaceTracker.launchExternalProcess = true;
@@ -624,6 +625,9 @@ public static class TransparentPetSceneBuilder
         sceneFaceTracker.cameraTargetShiftMeters = 0.08f;
         sceneFaceTracker.cameraDepthShiftMeters = 0.06f;
         sceneFaceTracker.cameraHeightFollowMeters = 0.55f;
+        sceneFaceTracker.globalTrackingLateralMeters = 1.35f;
+        sceneFaceTracker.globalTrackingHeightMeters = 1.8f;
+        sceneFaceTracker.globalTrackingDepthMeters = 1.1f;
         sceneFaceTracker.cameraOrbitDeadZoneDegrees = 5f;
         sceneFaceTracker.cameraOrbitSmoothTime = 0.32f;
         sceneFaceTracker.cameraYawOrbitStrength = 1f;

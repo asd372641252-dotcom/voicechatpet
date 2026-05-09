@@ -15,6 +15,7 @@ CONTEXT_MENU = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetContext
 PLACEMENT_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetPlacementController.cs"
 FREE_CAMERA = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetFreeCamera.cs"
 FACE_TRACKER = UNITY_ROOT / "Assets/TransparentPet/Scripts/SceneHost/TransparentPetSceneFaceTracker.cs"
+PET_STATE_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/PetStateController.cs"
 HEAD_LOOK_AT = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetHeadLookAt.cs"
 EXPRESSION_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/PetExpressionController.cs"
 BLINK_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/PetBlinkController.cs"
@@ -194,7 +195,8 @@ class UnityProductConfigTests(unittest.TestCase):
 
     def test_scene_face_tracking_uses_stable_jitter_defaults(self):
         tracker = FACE_TRACKER.read_text(encoding="utf-8")
-        self.assertIn("CurrentSettingsVersion = 7", tracker)
+        self.assertIn("CurrentSettingsVersion = 8", tracker)
+        self.assertIn("StableTrackingDefaultsSettingsVersion = 7", tracker)
         self.assertIn("StableNormalizedDeadZone = 0.07f", tracker)
         self.assertIn("StableNormalizedDepthDeadZone = 0.05f", tracker)
         self.assertIn("StableOffsetSmoothTime = 0.3f", tracker)
@@ -204,10 +206,13 @@ class UnityProductConfigTests(unittest.TestCase):
         self.assertIn("StableCameraHeightFollowMeters = 0.55f", tracker)
         self.assertIn("StableCameraOrbitDeadZoneDegrees = 5f", tracker)
         self.assertIn("StableCameraOrbitSmoothTime = 0.32f", tracker)
+        self.assertIn("StableGlobalTrackingLateralMeters = 1.35f", tracker)
+        self.assertIn("StableGlobalTrackingHeightMeters = 1.8f", tracker)
+        self.assertIn("StableGlobalTrackingDepthMeters = 1.1f", tracker)
         self.assertIn("StableHeadYawPoseWeight = 0.22f", tracker)
         self.assertIn("StableHeadPitchPoseWeight = 0.18f", tracker)
         self.assertIn("ApplyStableTrackingDefaults", tracker)
-        self.assertIn("settings.settingsVersion < CurrentSettingsVersion", tracker)
+        self.assertIn("settings.settingsVersion < StableTrackingDefaultsSettingsVersion", tracker)
         self.assertIn("cameraOrbitDeadZoneDegrees = cameraOrbitDeadZoneDegrees", tracker)
         self.assertIn("cameraHeightFollowMeters = cameraHeightFollowMeters", tracker)
         self.assertIn("-Vector3.up * (_smoothOffset.y * cameraHeightFollowMeters)", tracker)
@@ -228,6 +233,44 @@ class UnityProductConfigTests(unittest.TestCase):
         self.assertIn('parser.add_argument("--cutoff-hz", type=float, default=4.0)', head_tracker)
         self.assertIn('parser.add_argument("--deadzone-xy", type=float, default=0.04)', head_tracker)
         self.assertIn('parser.add_argument("--deadzone-z", type=float, default=0.035)', head_tracker)
+
+    def test_scene_face_tracking_has_optional_global_tracking_mode(self):
+        tracker = FACE_TRACKER.read_text(encoding="utf-8")
+        self.assertIn("public bool globalTrackingEnabled", tracker)
+        self.assertIn("public bool GlobalTrackingEnabled => globalTrackingEnabled", tracker)
+        self.assertIn("SetGlobalTrackingEnabled", tracker)
+        self.assertIn("BuildGlobalTrackingCameraOffset", tracker)
+        self.assertIn("(!cameraParallaxEnabled && !globalTrackingEnabled)", tracker)
+        self.assertIn("-Vector3.up * (_smoothOffset.y * globalTrackingHeightMeters)", tracker)
+        self.assertIn("globalTrackingEnabled = settings.settingsVersion >= 8 && settings.globalTrackingEnabled", tracker)
+        self.assertIn("globalTrackingEnabled = globalTrackingEnabled", tracker)
+
+        menu = CONTEXT_MENU.read_text(encoding="utf-8")
+        self.assertIn("SetGlobalTrackingEnabled", menu)
+        self.assertIn("SetGlobalTrackingLateralMeters", menu)
+        self.assertIn("SetGlobalTrackingHeightMeters", menu)
+        self.assertIn("SetGlobalTrackingDepthMeters", menu)
+
+        builder = SCENE_BUILDER.read_text(encoding="utf-8")
+        self.assertIn("sceneFaceTracker.globalTrackingEnabled = false", builder)
+        self.assertIn("sceneFaceTracker.globalTrackingLateralMeters = 1.35f", builder)
+        self.assertIn("sceneFaceTracker.globalTrackingHeightMeters = 1.8f", builder)
+        self.assertIn("sceneFaceTracker.globalTrackingDepthMeters = 1.1f", builder)
+
+        scene = (UNITY_ROOT / "Assets/Scenes/BlenderIndoorScene.unity").read_text(encoding="utf-8")
+        self.assertIn("globalTrackingEnabled: 0", scene)
+        self.assertIn("globalTrackingLateralMeters: 1.35", scene)
+        self.assertIn("globalTrackingHeightMeters: 1.8", scene)
+        self.assertIn("globalTrackingDepthMeters: 1.1", scene)
+
+    def test_speech_display_strips_parenthesized_stage_directions(self):
+        controller = PET_STATE_CONTROLLER.read_text(encoding="utf-8")
+        self.assertIn("SanitizeSpeechDisplayText(rawBubbleText)", controller)
+        self.assertIn("StripBracketedSpeechHints", controller)
+        self.assertIn("case '(':", controller)
+        self.assertIn("case '\\uFF08':", controller)
+        self.assertIn("mouthController.QueueMouthText(bubbleText)", controller)
+        self.assertIn("screenSubtitleController.ShowSubtitle(bubbleText, visibleSeconds)", controller)
 
     def test_product_preflight_checks_mouth_expression_map(self):
         source = PRODUCT_PREFLIGHT.read_text(encoding="utf-8")

@@ -978,6 +978,7 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         DrawToggle("\u5934\u90e8\u8ddf\u968f\u4eba\u8138", sceneFaceTracker.HeadFollowEnabled, value => sceneFaceTracker.SetHeadFollowEnabled(value));
         DrawToggle("\u955c\u5934\u8f7b\u5fae\u8ddf\u968f", sceneFaceTracker.CameraParallaxEnabled, value => sceneFaceTracker.SetCameraParallaxEnabled(value));
         DrawToggle("\u955c\u5934\u59ff\u6001\u8ddf\u968f", sceneFaceTracker.CameraOrbitEnabled, value => sceneFaceTracker.SetCameraOrbitEnabled(value));
+        DrawToggle("\u5168\u5c40\u8ddf\u8e2a", sceneFaceTracker.GlobalTrackingEnabled, value => sceneFaceTracker.SetGlobalTrackingEnabled(value));
         DrawToggle("\u6c34\u5e73\u955c\u50cf", sceneFaceTracker.MirrorHorizontal, value => sceneFaceTracker.SetMirrorHorizontal(value));
         DrawToggle("\u5782\u76f4\u955c\u50cf", sceneFaceTracker.MirrorVertical, value => sceneFaceTracker.SetMirrorVertical(value));
         DrawRadio("\u89c6\u7ebf\u8f74\u5fc3\uff1a\u4eba\u7269\u6a21\u578b", sceneFaceTracker.CameraSightMode == TransparentPetCameraSightMode.ModelAxis,
@@ -1051,6 +1052,15 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         DrawSlider("\u8fd1\u8fdc\u89c6\u5dee", sceneFaceTracker.CameraDepthShiftMeters, 0f, 0.2f,
             value => sceneFaceTracker.SetCameraDepthShiftMeters(value),
             Mathf.RoundToInt(sceneFaceTracker.CameraDepthShiftMeters * 1000f).ToString() + "mm");
+        DrawSlider("\u5168\u5c40\u5de6\u53f3\u8303\u56f4", sceneFaceTracker.GlobalTrackingLateralMeters, 0.1f, 3f,
+            value => sceneFaceTracker.SetGlobalTrackingLateralMeters(value),
+            sceneFaceTracker.GlobalTrackingLateralMeters.ToString("0.0") + "m");
+        DrawSlider("\u5168\u5c40\u9ad8\u5ea6\u8303\u56f4", sceneFaceTracker.GlobalTrackingHeightMeters, 0.1f, 3f,
+            value => sceneFaceTracker.SetGlobalTrackingHeightMeters(value),
+            sceneFaceTracker.GlobalTrackingHeightMeters.ToString("0.0") + "m");
+        DrawSlider("\u5168\u5c40\u8fd1\u8fdc\u8303\u56f4", sceneFaceTracker.GlobalTrackingDepthMeters, 0.1f, 3f,
+            value => sceneFaceTracker.SetGlobalTrackingDepthMeters(value),
+            sceneFaceTracker.GlobalTrackingDepthMeters.ToString("0.0") + "m");
         DrawSlider("\u955c\u5934\u5de6\u53f3\u65cb\u8f6c", sceneFaceTracker.CameraYawOrbitStrength, -1.5f, 1.5f,
             value => sceneFaceTracker.SetCameraYawOrbitStrength(value),
             Mathf.RoundToInt(sceneFaceTracker.CameraYawOrbitStrength * 100f).ToString() + "%");

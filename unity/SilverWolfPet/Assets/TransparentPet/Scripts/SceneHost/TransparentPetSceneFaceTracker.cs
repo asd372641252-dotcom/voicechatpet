@@ -40,7 +40,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 7;
+    private const int CurrentSettingsVersion = 8;
+    private const int StableTrackingDefaultsSettingsVersion = 7;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -50,6 +51,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableCameraHeightFollowMeters = 0.55f;
     private const float StableCameraOrbitDeadZoneDegrees = 5f;
     private const float StableCameraOrbitSmoothTime = 0.32f;
+    private const float StableGlobalTrackingLateralMeters = 1.35f;
+    private const float StableGlobalTrackingHeightMeters = 1.8f;
+    private const float StableGlobalTrackingDepthMeters = 1.1f;
     private const float StableHeadYawPoseWeight = 0.22f;
     private const float StableHeadPitchPoseWeight = 0.18f;
     private static TransparentPetSceneFaceTracker _activeSceneTracker;
@@ -63,6 +67,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public bool headFollowEnabled = true;
     public bool cameraParallaxEnabled = true;
     public bool cameraOrbitEnabled = true;
+    public bool globalTrackingEnabled;
     public bool mirrorHorizontal = true;
     public bool mirrorVertical = true;
     public bool startCameraOnEnable = true;
@@ -142,6 +147,12 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public float cameraTargetShiftMeters = StableCameraTargetShiftMeters;
     [Range(0f, 1.5f)]
     public float cameraHeightFollowMeters = StableCameraHeightFollowMeters;
+    [Range(0.1f, 3f)]
+    public float globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
+    [Range(0.1f, 3f)]
+    public float globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
+    [Range(0.1f, 3f)]
+    public float globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
 
     private WebCamTexture _webCamTexture;
     private Process _externalProcess;
@@ -241,6 +252,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public bool HeadFollowEnabled => headFollowEnabled;
     public bool CameraParallaxEnabled => cameraParallaxEnabled;
     public bool CameraOrbitEnabled => cameraOrbitEnabled;
+    public bool GlobalTrackingEnabled => globalTrackingEnabled;
     public bool MirrorHorizontal => mirrorHorizontal;
     public bool MirrorVertical => mirrorVertical;
     public TransparentPetFaceTrackingBackend TrackingBackend => trackingBackend;
@@ -269,6 +281,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public float CameraTargetShiftMeters => cameraTargetShiftMeters;
     public float CameraDepthShiftMeters => cameraDepthShiftMeters;
     public float CameraHeightFollowMeters => cameraHeightFollowMeters;
+    public float GlobalTrackingLateralMeters => globalTrackingLateralMeters;
+    public float GlobalTrackingHeightMeters => globalTrackingHeightMeters;
+    public float GlobalTrackingDepthMeters => globalTrackingDepthMeters;
     public float CameraYawOrbitStrength => cameraYawOrbitStrength;
     public float CameraPitchOrbitStrength => cameraPitchOrbitStrength;
     public float CameraOrbitSmoothTime => cameraOrbitSmoothTime;
@@ -759,6 +774,17 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         SaveSettings();
     }
 
+    public void SetGlobalTrackingEnabled(bool value)
+    {
+        globalTrackingEnabled = value;
+        if (!globalTrackingEnabled)
+        {
+            RestoreCameraParallaxBase();
+        }
+
+        SaveSettings();
+    }
+
     public void SetMirrorHorizontal(bool value)
     {
         mirrorHorizontal = value;
@@ -839,6 +865,24 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public void SetCameraHeightFollowMeters(float value)
     {
         cameraHeightFollowMeters = Mathf.Clamp(value, 0f, 1.5f);
+        SaveSettings();
+    }
+
+    public void SetGlobalTrackingLateralMeters(float value)
+    {
+        globalTrackingLateralMeters = Mathf.Clamp(value, 0.1f, 3f);
+        SaveSettings();
+    }
+
+    public void SetGlobalTrackingHeightMeters(float value)
+    {
+        globalTrackingHeightMeters = Mathf.Clamp(value, 0.1f, 3f);
+        SaveSettings();
+    }
+
+    public void SetGlobalTrackingDepthMeters(float value)
+    {
+        globalTrackingDepthMeters = Mathf.Clamp(value, 0.1f, 3f);
         SaveSettings();
     }
 
@@ -2031,15 +2075,29 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 
     private void ApplyCameraParallax()
     {
-        if (!cameraParallaxEnabled || freeCamera == null || targetCamera == null)
+        if ((!cameraParallaxEnabled && !globalTrackingEnabled) || freeCamera == null || targetCamera == null)
         {
             RestoreCameraParallaxBase();
             return;
         }
 
-        Vector3 cameraOffset = targetCamera.transform.right * (_smoothOffset.x * cameraTargetShiftMeters)
+        Vector3 cameraOffset;
+        Vector3 heightTargetOffset;
+        if (globalTrackingEnabled)
+        {
+            cameraOffset = BuildGlobalTrackingCameraOffset();
+            heightTargetOffset = Vector3.zero;
+            freeCamera.ClearExternalTargetOffset();
+            freeCamera.SetExternalCameraOffset(cameraOffset);
+#if UNITY_EDITOR
+            LogEditorCameraParallax(cameraOffset, heightTargetOffset);
+#endif
+            return;
+        }
+
+        cameraOffset = targetCamera.transform.right * (_smoothOffset.x * cameraTargetShiftMeters)
             + targetCamera.transform.forward * (_smoothDepthOffset * cameraDepthShiftMeters);
-        Vector3 heightTargetOffset = -Vector3.up * (_smoothOffset.y * cameraHeightFollowMeters);
+        heightTargetOffset = -Vector3.up * (_smoothOffset.y * cameraHeightFollowMeters);
         if (cameraSightMode == TransparentPetCameraSightMode.ModelAxis)
         {
             freeCamera.SetExternalTargetOffset(heightTargetOffset);
@@ -2056,6 +2114,14 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 #if UNITY_EDITOR
         LogEditorCameraParallax(cameraOffset, heightTargetOffset);
 #endif
+    }
+
+    private Vector3 BuildGlobalTrackingCameraOffset()
+    {
+        Vector3 lateral = targetCamera.transform.right * (_smoothOffset.x * globalTrackingLateralMeters);
+        Vector3 height = -Vector3.up * (_smoothOffset.y * globalTrackingHeightMeters);
+        Vector3 depth = targetCamera.transform.forward * (_smoothDepthOffset * globalTrackingDepthMeters);
+        return lateral + height + depth;
     }
 
     private void ApplyCameraOrbit()
@@ -2188,6 +2254,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         cameraTargetShiftMeters = Mathf.Clamp(cameraTargetShiftMeters, 0f, 0.2f);
         cameraDepthShiftMeters = Mathf.Clamp(cameraDepthShiftMeters, 0f, 0.2f);
         cameraHeightFollowMeters = Mathf.Clamp(cameraHeightFollowMeters, 0f, 1.5f);
+        globalTrackingLateralMeters = Mathf.Clamp(globalTrackingLateralMeters, 0.1f, 3f);
+        globalTrackingHeightMeters = Mathf.Clamp(globalTrackingHeightMeters, 0.1f, 3f);
+        globalTrackingDepthMeters = Mathf.Clamp(globalTrackingDepthMeters, 0.1f, 3f);
         cameraYawOrbitStrength = Mathf.Clamp(cameraYawOrbitStrength, -1.5f, 1.5f);
         cameraPitchOrbitStrength = Mathf.Clamp(cameraPitchOrbitStrength, -1.5f, 1.5f);
         maxCameraYawOrbitDegrees = Mathf.Clamp(maxCameraYawOrbitDegrees, 0f, 60f);
@@ -2238,6 +2307,10 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         cameraHeightFollowMeters = StableCameraHeightFollowMeters;
         cameraOrbitDeadZoneDegrees = StableCameraOrbitDeadZoneDegrees;
         cameraOrbitSmoothTime = StableCameraOrbitSmoothTime;
+        globalTrackingEnabled = false;
+        globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
+        globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
+        globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
     }
 
     private void LoadSettings()
@@ -2261,6 +2334,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             headFollowEnabled = settings.headFollowEnabled;
             cameraParallaxEnabled = settings.cameraParallaxEnabled;
             cameraOrbitEnabled = settings.cameraOrbitEnabled;
+            globalTrackingEnabled = settings.settingsVersion >= 8 && settings.globalTrackingEnabled;
             mirrorHorizontal = settings.mirrorHorizontal;
             mirrorVertical = settings.settingsVersion <= 0 ? true : settings.mirrorVertical;
             trackingAnchor = settings.trackingAnchor == 1
@@ -2294,11 +2368,14 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             cameraTargetShiftMeters = Mathf.Max(0f, settings.cameraTargetShiftMeters);
             cameraDepthShiftMeters = Mathf.Max(0f, settings.cameraDepthShiftMeters);
             cameraHeightFollowMeters = settings.cameraHeightFollowMeters > 0f ? settings.cameraHeightFollowMeters : cameraHeightFollowMeters;
+            globalTrackingLateralMeters = settings.globalTrackingLateralMeters > 0f ? settings.globalTrackingLateralMeters : globalTrackingLateralMeters;
+            globalTrackingHeightMeters = settings.globalTrackingHeightMeters > 0f ? settings.globalTrackingHeightMeters : globalTrackingHeightMeters;
+            globalTrackingDepthMeters = settings.globalTrackingDepthMeters > 0f ? settings.globalTrackingDepthMeters : globalTrackingDepthMeters;
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
             cameraOrbitDeadZoneDegrees = settings.cameraOrbitDeadZoneDegrees > 0f ? settings.cameraOrbitDeadZoneDegrees : cameraOrbitDeadZoneDegrees;
             cameraOrbitSmoothTime = settings.cameraOrbitSmoothTime > 0f ? settings.cameraOrbitSmoothTime : cameraOrbitSmoothTime;
-            if (settings.settingsVersion < CurrentSettingsVersion)
+            if (settings.settingsVersion < StableTrackingDefaultsSettingsVersion)
             {
                 ApplyStableTrackingDefaults();
             }
@@ -2328,6 +2405,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             headFollowEnabled = headFollowEnabled,
             cameraParallaxEnabled = cameraParallaxEnabled,
             cameraOrbitEnabled = cameraOrbitEnabled,
+            globalTrackingEnabled = globalTrackingEnabled,
             mirrorHorizontal = mirrorHorizontal,
             mirrorVertical = mirrorVertical,
             trackingAnchor = trackingAnchor == TransparentPetFaceTrackingAnchor.Eyes ? 1 : 0,
@@ -2352,6 +2430,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             cameraTargetShiftMeters = cameraTargetShiftMeters,
             cameraDepthShiftMeters = cameraDepthShiftMeters,
             cameraHeightFollowMeters = cameraHeightFollowMeters,
+            globalTrackingLateralMeters = globalTrackingLateralMeters,
+            globalTrackingHeightMeters = globalTrackingHeightMeters,
+            globalTrackingDepthMeters = globalTrackingDepthMeters,
             cameraYawOrbitStrength = cameraYawOrbitStrength,
             cameraPitchOrbitStrength = cameraPitchOrbitStrength,
             cameraOrbitDeadZoneDegrees = cameraOrbitDeadZoneDegrees,
@@ -2421,6 +2502,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         public bool headFollowEnabled = true;
         public bool cameraParallaxEnabled = true;
         public bool cameraOrbitEnabled = true;
+        public bool globalTrackingEnabled;
         public bool mirrorHorizontal = true;
         public bool mirrorVertical = true;
         public int trackingAnchor;
@@ -2445,6 +2527,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         public float cameraTargetShiftMeters = StableCameraTargetShiftMeters;
         public float cameraDepthShiftMeters = StableCameraDepthShiftMeters;
         public float cameraHeightFollowMeters = StableCameraHeightFollowMeters;
+        public float globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
+        public float globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
+        public float globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
         public float cameraYawOrbitStrength = 1f;
         public float cameraPitchOrbitStrength = 0.35f;
         public float cameraOrbitDeadZoneDegrees = StableCameraOrbitDeadZoneDegrees;

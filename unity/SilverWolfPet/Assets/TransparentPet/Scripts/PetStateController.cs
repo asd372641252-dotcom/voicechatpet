@@ -149,7 +149,8 @@ public sealed class PetStateController : MonoBehaviour
             return;
         }
 
-        string bubbleText = !string.IsNullOrEmpty(command.text) ? command.text : command.bubble_text;
+        string rawBubbleText = !string.IsNullOrEmpty(command.text) ? command.text : command.bubble_text;
+        string bubbleText = SanitizeSpeechDisplayText(rawBubbleText);
 
         if (!string.IsNullOrWhiteSpace(command.state) || !string.IsNullOrWhiteSpace(command.action))
         {
@@ -301,6 +302,128 @@ public sealed class PetStateController : MonoBehaviour
         }
 
         return Mathf.Clamp(visibleChars / 6.8f + 0.65f, 1.2f, 7.5f);
+    }
+
+    private static string SanitizeSpeechDisplayText(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return "";
+        }
+
+        string stripped = StripBracketedSpeechHints(text);
+        string normalized = stripped.Replace('\r', ' ').Replace('\n', ' ').Replace('\t', ' ').Trim();
+        while (normalized.Contains("  "))
+        {
+            normalized = normalized.Replace("  ", " ");
+        }
+
+        return TrimSpacesAroundPunctuation(normalized);
+    }
+
+    private static string StripBracketedSpeechHints(string text)
+    {
+        List<char> closingStack = new List<char>();
+        char[] buffer = new char[text.Length];
+        int length = 0;
+        for (int i = 0; i < text.Length; i++)
+        {
+            char ch = text[i];
+            if (TryGetBracketClose(ch, out char close))
+            {
+                closingStack.Add(close);
+                continue;
+            }
+
+            if (closingStack.Count > 0)
+            {
+                if (ch == closingStack[closingStack.Count - 1])
+                {
+                    closingStack.RemoveAt(closingStack.Count - 1);
+                }
+                else if (IsAnyClosingBracket(ch))
+                {
+                    closingStack.RemoveAt(closingStack.Count - 1);
+                }
+
+                continue;
+            }
+
+            buffer[length] = ch;
+            length++;
+        }
+
+        return new string(buffer, 0, length);
+    }
+
+    private static bool TryGetBracketClose(char ch, out char close)
+    {
+        switch (ch)
+        {
+            case '(':
+                close = ')';
+                return true;
+            case '[':
+                close = ']';
+                return true;
+            case '{':
+                close = '}';
+                return true;
+            case '\uFF08':
+                close = '\uFF09';
+                return true;
+            case '\u3010':
+                close = '\u3011';
+                return true;
+            case '\u3014':
+                close = '\u3015';
+                return true;
+            default:
+                close = '\0';
+                return false;
+        }
+    }
+
+    private static bool IsAnyClosingBracket(char ch)
+    {
+        return ch == ')' ||
+            ch == ']' ||
+            ch == '}' ||
+            ch == '\uFF09' ||
+            ch == '\u3011' ||
+            ch == '\u3015';
+    }
+
+    private static string TrimSpacesAroundPunctuation(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return "";
+        }
+
+        string normalized = text;
+        string[] punctuation =
+        {
+            ",",
+            ".",
+            "!",
+            "?",
+            ";",
+            ":",
+            "\uFF0C",
+            "\u3002",
+            "\uFF01",
+            "\uFF1F",
+            "\uFF1B",
+            "\uFF1A",
+            "\u3001"
+        };
+        for (int i = 0; i < punctuation.Length; i++)
+        {
+            normalized = normalized.Replace(" " + punctuation[i], punctuation[i]);
+        }
+
+        return normalized.Trim();
     }
 
     private void UpdateBubbleSpeechLifetime(PetControlCommand command, string bubbleText)

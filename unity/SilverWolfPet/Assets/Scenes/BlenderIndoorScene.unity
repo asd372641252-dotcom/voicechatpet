@@ -4485,6 +4485,7 @@ MonoBehaviour:
   headFollowEnabled: 1
   cameraParallaxEnabled: 1
   cameraOrbitEnabled: 1
+  globalTrackingEnabled: 0
   mirrorHorizontal: 1
   mirrorVertical: 1
   startCameraOnEnable: 1
@@ -4533,6 +4534,9 @@ MonoBehaviour:
   headPitchStrengthDegrees: 8
   cameraTargetShiftMeters: 0.08
   cameraHeightFollowMeters: 0.55
+  globalTrackingLateralMeters: 1.35
+  globalTrackingHeightMeters: 1.8
+  globalTrackingDepthMeters: 1.1
 --- !u!114 &694790301
 MonoBehaviour:
   m_ObjectHideFlags: 0
