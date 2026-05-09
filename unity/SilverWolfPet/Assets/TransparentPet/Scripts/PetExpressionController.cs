@@ -139,13 +139,41 @@ public sealed class PetExpressionController : MonoBehaviour
             return;
         }
 
-        ResetFallbackEmotionTargets();
+        string fallbackCategory = FallbackCategoryForExpression(normalized);
+        if (fallbackCategory != "blink")
+        {
+            ResetFallbackEmotionTargets();
+        }
+
         ApplyFallback(normalized, clamped);
     }
 
     public void SetMouth(float open01)
     {
         SetExpressionWeight(string.IsNullOrWhiteSpace(_lipSyncExpression) ? "mouth_open" : _lipSyncExpression, open01);
+    }
+
+    public bool HasExpressionTargets(string expressionName)
+    {
+        EnsureReady();
+        string normalized = NormalizeExpressionName(expressionName);
+        if (_expressions.TryGetValue(normalized, out ExpressionBinding binding) && binding.Targets.Count > 0)
+        {
+            return true;
+        }
+
+        string category = FallbackCategoryForExpression(normalized);
+        return !string.IsNullOrEmpty(category) &&
+            _fallbackTargets.TryGetValue(category, out List<BlendShapeTarget> targets) &&
+            targets.Count > 0;
+    }
+
+    public void RebindScanRoot(Transform nextScanRoot)
+    {
+        scanRoot = nextScanRoot != null ? nextScanRoot : transform;
+        _hasScanned = false;
+        _hasLoadedMap = false;
+        ScanBlendShapes();
     }
 
     public string BuildBlendShapeReport()
@@ -410,6 +438,11 @@ public sealed class PetExpressionController : MonoBehaviour
             case "surprised":
             case "interrupted":
                 return "surprised";
+            case "blink":
+            case "eye_blink":
+            case "eye_close":
+            case "eyes_closed":
+                return "blink";
             case "mouth_open":
             case "mouth_small":
             case "mouth_wide":

@@ -56,6 +56,16 @@
         }
       ]
     },
+    "blink": {
+      "exclusive_group": "blink",
+      "reset_others": false,
+      "blend_shapes": [
+        {
+          "names": ["Blink", "blink", "Blink_L", "Blink_R", "EyeClose", "eyes_closed", "まばたき", "ウィンク", "ウィンク右", "ウィンク２", "ｳｨﾝｸ２右"],
+          "weight": 1.0
+        }
+      ]
+    },
     "mouth_open": {
       "exclusive_group": "mouth",
       "reset_others": true,

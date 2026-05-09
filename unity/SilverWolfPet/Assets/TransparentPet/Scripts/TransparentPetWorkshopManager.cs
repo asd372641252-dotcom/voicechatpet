@@ -37,6 +37,8 @@ public sealed class TransparentPetWorkshopManager : MonoBehaviour
     public TransparentPetKawaiiActionController actionController;
     public TransparentPetHeadLookAt headLookAt;
     public TransparentPetSkeletonHitMask skeletonHitMask;
+    public PetExpressionController expressionController;
+    public PetBlinkController blinkController;
     public TransparentWindowController windowController;
     public Camera targetCamera;
     public string[] extraWorkshopRoots = Array.Empty<string>();
@@ -229,6 +231,16 @@ public sealed class TransparentPetWorkshopManager : MonoBehaviour
         if (skeletonHitMask == null)
         {
             skeletonHitMask = GetComponentInChildren<TransparentPetSkeletonHitMask>(true);
+        }
+
+        if (expressionController == null)
+        {
+            expressionController = GetComponentInChildren<PetExpressionController>(true);
+        }
+
+        if (blinkController == null)
+        {
+            blinkController = GetComponentInChildren<PetBlinkController>(true);
         }
 
         if (windowController == null)
@@ -572,6 +584,17 @@ public sealed class TransparentPetWorkshopManager : MonoBehaviour
         if (actionController != null)
         {
             actionController.RebindModelRoot(newRoot);
+        }
+
+        if (expressionController != null)
+        {
+            expressionController.RebindScanRoot(newRoot);
+        }
+
+        if (blinkController != null)
+        {
+            blinkController.expressionController = expressionController;
+            blinkController.Rebind(newRoot);
         }
 
         if (headLookAt != null)

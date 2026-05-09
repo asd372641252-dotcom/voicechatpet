@@ -178,6 +178,10 @@ public static class TransparentPetSceneBuilder
         expressionController.expressionMapPath = "GodotFinal/config/expression_map.json";
         expressionController.logBlendShapeReport = true;
 
+        PetBlinkController blinkController = petBody.AddComponent<PetBlinkController>();
+        blinkController.scanRoot = petBody.transform;
+        blinkController.expressionController = expressionController;
+
         PetMouthController mouthController = petBody.AddComponent<PetMouthController>();
         mouthController.expressionController = expressionController;
         mouthController.driveFromAudio = false;
@@ -280,6 +284,8 @@ public static class TransparentPetSceneBuilder
         workshopManager.actionController = actionController;
         workshopManager.headLookAt = headLookAt;
         workshopManager.skeletonHitMask = skeletonHitMask;
+        workshopManager.expressionController = expressionController;
+        workshopManager.blinkController = blinkController;
         workshopManager.windowController = window;
         workshopManager.targetCamera = camera;
 
@@ -476,6 +482,10 @@ public static class TransparentPetSceneBuilder
         expressionController.expressionMapPath = "GodotFinal/config/expression_map.json";
         expressionController.logBlendShapeReport = true;
 
+        PetBlinkController blinkController = petBody.AddComponent<PetBlinkController>();
+        blinkController.scanRoot = petBody.transform;
+        blinkController.expressionController = expressionController;
+
         PetMouthController mouthController = petBody.AddComponent<PetMouthController>();
         mouthController.expressionController = expressionController;
         mouthController.driveFromAudio = false;
@@ -637,6 +647,8 @@ public static class TransparentPetSceneBuilder
         workshopManager.actionController = actionController;
         workshopManager.headLookAt = headLookAt;
         workshopManager.skeletonHitMask = skeletonHitMask;
+        workshopManager.expressionController = expressionController;
+        workshopManager.blinkController = blinkController;
         workshopManager.windowController = window;
         workshopManager.targetCamera = camera;
 

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [DisallowMultipleComponent]
 public sealed class TransparentPetFreeCamera : MonoBehaviour
 {
-    private const int CurrentCameraStateVersion = 4;
+    private const int CurrentCameraStateVersion = 5;
 
     public TransparentWindowController windowController;
     public TransparentPetContextMenu contextMenu;
@@ -86,6 +86,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
     private float _defaultFocusDistance;
     private float _defaultAperture;
     private Vector3 _lockedFocusTarget;
+    private Vector3 _manualTargetOffset;
     private Vector3 _externalTargetOffset;
     private Vector3 _externalCameraOffset;
 
@@ -210,6 +211,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
     {
         followPlacementTarget = true;
         target = _defaultTarget;
+        _manualTargetOffset = Vector3.zero;
         distance = _defaultDistance;
         yawDegrees = 0f;
         pitchDegrees = 0f;
@@ -282,6 +284,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
         cameraDirectionFromTarget.Normalize();
         followPlacementTarget = keepPlacementTargetLocked;
         target = worldTarget;
+        _manualTargetOffset = Vector3.zero;
         distance = Mathf.Clamp(preferredDistance, 0.25f, 12f);
         if (targetCamera != null)
         {
@@ -335,10 +338,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
     public void PanLocal(Vector3 localDelta)
     {
         Transform cameraTransform = ResolveCameraTransform();
-        followPlacementTarget = false;
-        target += cameraTransform.right * localDelta.x + cameraTransform.up * localDelta.y + cameraTransform.forward * localDelta.z;
-        ApplyCameraTransform();
-        MarkCameraDirty();
+        PanWorld(cameraTransform.right * localDelta.x + cameraTransform.up * localDelta.y + cameraTransform.forward * localDelta.z);
     }
 
     public void SetExternalTarget(Vector3 nextTarget)
@@ -356,7 +356,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
     {
         _hasExternalTargetOffset = true;
         _externalTargetOffset = worldOffset;
-        _lockedFocusTarget = GetEffectiveTarget();
+        _lockedFocusTarget = GetDrivenTarget();
         _hasLockedFocusTarget = true;
         _externalTargetControlsFocus = true;
         ApplyCameraTransform();
@@ -428,6 +428,12 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
 
     public void SetFollowPlacementTarget(bool enabled)
     {
+        if (!enabled && followPlacementTarget)
+        {
+            target = GetEffectiveTarget();
+            _manualTargetOffset = Vector3.zero;
+        }
+
         followPlacementTarget = enabled;
         ApplyCameraTransform();
         MarkCameraDirty();
@@ -631,9 +637,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
         {
             Vector2 delta = cursor - _lastCursorPosition;
             float panScale = panSensitivity * (targetCamera.orthographic ? targetCamera.orthographicSize : distance);
-            target += (-cameraTransform.right * delta.x + cameraTransform.up * delta.y) * panScale;
-            ApplyCameraTransform();
-            MarkCameraDirty();
+            PanWorld((-cameraTransform.right * delta.x + cameraTransform.up * delta.y) * panScale);
         }
     }
 
@@ -726,7 +730,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
 
         Transform cameraTransform = ResolveCameraTransform();
         cameraTransform.rotation = BuildCameraRotation();
-        target = cameraTransform.position + cameraTransform.forward * distance - (_hasExternalTargetOffset ? _externalTargetOffset : Vector3.zero);
+        target = cameraTransform.position + cameraTransform.forward * distance - _manualTargetOffset - (_hasExternalTargetOffset ? _externalTargetOffset : Vector3.zero);
         SyncRigTransformFromCamera();
     }
 
@@ -834,10 +838,11 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
 
     private Vector3 GetEffectiveTarget()
     {
-        return target + (_hasExternalTargetOffset ? _externalTargetOffset : Vector3.zero);
+        return target + _manualTargetOffset + (_hasExternalTargetOffset ? _externalTargetOffset : Vector3.zero);
     }
 
     public Vector3 EffectiveTarget => GetEffectiveTarget();
+    public Vector3 ManualTargetOffset => _manualTargetOffset;
     public Vector3 CameraWorldPosition => ResolveCameraTransform().position;
     public Vector3 CameraWorldForward => ResolveCameraTransform().forward;
     public float CameraYawDegrees => yawDegrees + (_hasExternalOrbitOffset ? _externalYawOffsetDegrees : 0f);
@@ -850,6 +855,26 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
     private Transform ResolveCameraTransform()
     {
         return targetCamera != null ? targetCamera.transform : transform;
+    }
+
+    private Vector3 GetDrivenTarget()
+    {
+        return target + (_hasExternalTargetOffset ? _externalTargetOffset : Vector3.zero);
+    }
+
+    private void PanWorld(Vector3 worldDelta)
+    {
+        if (followPlacementTarget)
+        {
+            _manualTargetOffset += worldDelta;
+        }
+        else
+        {
+            target += worldDelta;
+        }
+
+        ApplyCameraTransform();
+        MarkCameraDirty();
     }
 
     private void SyncRigTransformFromCamera()
@@ -950,6 +975,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
             lockDepthOfFieldToPet = lockDepthOfFieldToPet,
             focalLength = focalLength,
             depthOfFieldEnabled = depthOfFieldEnabled,
+            manualTargetOffset = _manualTargetOffset,
             followPlacementTarget = followPlacementTarget,
             allowWholeScreenCameraInput = allowWholeScreenCameraInput,
             freeSceneInput = freeSceneInput,
@@ -996,7 +1022,8 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
             }
 
             focalLength = Mathf.Clamp(state.focalLength > 0f ? state.focalLength : focalLength, minFocalLength, maxFocalLength);
-            depthOfFieldEnabled = state.version >= CurrentCameraStateVersion ? state.depthOfFieldEnabled : true;
+            depthOfFieldEnabled = state.version >= 4 ? state.depthOfFieldEnabled : true;
+            _manualTargetOffset = state.version >= 5 ? state.manualTargetOffset : Vector3.zero;
             followPlacementTarget = state.version >= 2 ? state.followPlacementTarget : true;
             if (state.version >= 2)
             {
@@ -1025,6 +1052,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
                 transform.SetPositionAndRotation(state.cameraPosition, NormalizeQuaternion(state.cameraRotation));
                 CaptureOrbitFromForward(transform.forward);
                 target = transform.position + transform.forward * distance;
+                _manualTargetOffset = Vector3.zero;
             }
 
             return true;
@@ -1181,6 +1209,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
         public bool lockDepthOfFieldToPet;
         public float focalLength;
         public bool depthOfFieldEnabled;
+        public Vector3 manualTargetOffset;
         public bool followPlacementTarget;
         public bool allowWholeScreenCameraInput;
         public bool freeSceneInput;

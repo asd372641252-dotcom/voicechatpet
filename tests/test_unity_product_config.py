@@ -16,6 +16,8 @@ PLACEMENT_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPe
 FREE_CAMERA = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetFreeCamera.cs"
 FACE_TRACKER = UNITY_ROOT / "Assets/TransparentPet/Scripts/SceneHost/TransparentPetSceneFaceTracker.cs"
 HEAD_LOOK_AT = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetHeadLookAt.cs"
+EXPRESSION_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/PetExpressionController.cs"
+BLINK_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/PetBlinkController.cs"
 WORKSHOP_MANAGER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetWorkshopManager.cs"
 FACE_TRACKING_PREFLIGHT = ROOT / "scripts/check_face_tracking_preflight.py"
 PRODUCT_PREFLIGHT = ROOT / "scripts/check_product_preflight.py"
@@ -157,9 +159,9 @@ class UnityProductConfigTests(unittest.TestCase):
 
     def test_scene_camera_locks_focus_and_depth_of_field_by_default(self):
         camera = FREE_CAMERA.read_text(encoding="utf-8")
-        self.assertIn("CurrentCameraStateVersion = 4", camera)
+        self.assertIn("CurrentCameraStateVersion = 5", camera)
         self.assertIn("public bool depthOfFieldEnabled = true", camera)
-        self.assertIn("state.version >= CurrentCameraStateVersion ? state.depthOfFieldEnabled : true", camera)
+        self.assertIn("state.version >= 4 ? state.depthOfFieldEnabled : true", camera)
         self.assertIn("bool keepPlacementTargetLocked", camera)
         self.assertIn("followPlacementTarget = keepPlacementTargetLocked", camera)
 
@@ -292,6 +294,57 @@ class UnityProductConfigTests(unittest.TestCase):
         self.assertIn("FBX is creator-source input", agents)
         self.assertIn("Runtime Workshop items should be ready-to-scan packages", agents)
         self.assertIn("The current first pass does not load `.fbx` at runtime", workshop_doc)
+
+    def test_manual_camera_offset_survives_pet_focus_lock(self):
+        camera = FREE_CAMERA.read_text(encoding="utf-8")
+        placement = PLACEMENT_CONTROLLER.read_text(encoding="utf-8")
+
+        self.assertIn("CurrentCameraStateVersion = 5", camera)
+        self.assertIn("private Vector3 _manualTargetOffset", camera)
+        self.assertIn("public Vector3 ManualTargetOffset", camera)
+        self.assertIn("manualTargetOffset = _manualTargetOffset", camera)
+        self.assertIn("state.version >= 5 ? state.manualTargetOffset : Vector3.zero", camera)
+        self.assertIn("private void PanWorld", camera)
+        self.assertIn("_manualTargetOffset += worldDelta", camera)
+        self.assertNotIn("followPlacementTarget = false;\n        target += cameraTransform.right", camera)
+
+        self.assertIn("freeCamera.SetExternalTarget(focusPoint)", placement)
+
+    def test_pet_blink_controller_is_wired_for_placeholder_and_custom_models(self):
+        blink = BLINK_CONTROLLER.read_text(encoding="utf-8")
+        expression = EXPRESSION_CONTROLLER.read_text(encoding="utf-8")
+        builder = SCENE_BUILDER.read_text(encoding="utf-8")
+        workshop = WORKSHOP_MANAGER.read_text(encoding="utf-8")
+
+        self.assertIn("public sealed class PetBlinkController", blink)
+        self.assertIn("blinkExpressionName = \"blink\"", blink)
+        self.assertIn("FindChildByName(scanRoot, \"LeftEye\")", blink)
+        self.assertIn("FindChildByName(scanRoot, \"RightEye\")", blink)
+        self.assertIn("expressionController.SetExpressionWeight(blinkExpressionName, weight)", blink)
+
+        self.assertIn("public bool HasExpressionTargets", expression)
+        self.assertIn("public void RebindScanRoot", expression)
+        self.assertIn('case "blink":', expression)
+        self.assertIn('fallbackCategory != "blink"', expression)
+
+        self.assertIn("PetBlinkController blinkController = petBody.AddComponent<PetBlinkController>()", builder)
+        self.assertIn("blinkController.expressionController = expressionController", builder)
+
+        self.assertIn("public PetBlinkController blinkController", workshop)
+        self.assertIn("blinkController.Rebind(newRoot)", workshop)
+
+        root_map = json.loads((ROOT / "config/expression_map.json").read_text(encoding="utf-8-sig"))
+        scene_map = json.loads(
+            (
+                UNITY_ROOT
+                / "Assets/StreamingAssets/GodotFinal/config/expression_map.json"
+            ).read_text(encoding="utf-8-sig")
+        )
+        self.assertEqual(root_map, scene_map)
+        blink_expression = root_map["expressions"]["blink"]
+        self.assertEqual("blink", blink_expression["exclusive_group"])
+        self.assertFalse(blink_expression["reset_others"])
+        self.assertTrue(blink_expression["blend_shapes"])
 
 
 if __name__ == "__main__":
