@@ -1,0 +1,107 @@
+ELIGIBLE_OBJECTS: 249
+INITIALLY_INVISIBLE_OBJECTS: 7
+INITIALLY_INVISIBLE: Aircraft_055
+INITIALLY_INVISIBLE: Blender Bros Emissive Pack2.1_012
+INITIALLY_INVISIBLE: Example Sheet_019
+INITIALLY_INVISIBLE: Example Sheet_052
+INITIALLY_INVISIBLE: Examples_003
+INITIALLY_INVISIBLE: Examples_003.001
+INITIALLY_INVISIBLE: Examples_036
+OK saved: .ao_curv_height.Blender Bros Emissive Pack2.1_012 -> D:\pet\场景工程\Assets\SceneExport\Textures\001_ao_curv_height.Blender Bros Emissive Pack2_17af53b590.png
+OK saved: .ao_curv_height.Example Sheet_019 -> D:\pet\场景工程\Assets\SceneExport\Textures\002_ao_curv_height_eda474d0f3.png
+OK saved: .ao_curv_height.Example Sheet_052 -> D:\pet\场景工程\Assets\SceneExport\Textures\003_ao_curv_height_fa744be175.png
+OK saved: .ao_curv_height.Examples_003 -> D:\pet\场景工程\Assets\SceneExport\Textures\004_ao_curv_height_8350f460d9.png
+OK saved: .ao_curv_height.Examples_036 -> D:\pet\场景工程\Assets\SceneExport\Textures\005_ao_curv_height_7ed2fdb5bd.png
+OK saved: .color.Aircraft_055 -> D:\pet\场景工程\Assets\SceneExport\Textures\006_color_6b3a89c154.png
+OK saved: .emission.Aircraft_055 -> D:\pet\场景工程\Assets\SceneExport\Textures\007_emission_5db2875e38.png
+OK saved: .emission.Blender Bros Emissive Pack2.1_012 -> D:\pet\场景工程\Assets\SceneExport\Textures\008_emission.Blender Bros Emissive Pack2_36a8552d38.png
+OK saved: .emission.Example Sheet_019 -> D:\pet\场景工程\Assets\SceneExport\Textures\009_emission_1a04560b17.png
+OK saved: .emission.Example Sheet_052 -> D:\pet\场景工程\Assets\SceneExport\Textures\010_emission_718a6bac73.png
+OK saved: .emission.Examples_003 -> D:\pet\场景工程\Assets\SceneExport\Textures\011_emission_890392dcb6.png
+OK saved: .emission.Examples_036 -> D:\pet\场景工程\Assets\SceneExport\Textures\012_emission_63745cbe10.png
+OK saved: .masks.Aircraft_055 -> D:\pet\场景工程\Assets\SceneExport\Textures\013_masks_ed2eed458c.png
+OK saved: .masks.Blender Bros Emissive Pack2.1_012 -> D:\pet\场景工程\Assets\SceneExport\Textures\014_masks.Blender Bros Emissive Pack2_d5d2fdf5e8.png
+OK saved: .masks.Example Sheet_019 -> D:\pet\场景工程\Assets\SceneExport\Textures\015_masks_8f62f8b09b.png
+OK saved: .masks.Example Sheet_052 -> D:\pet\场景工程\Assets\SceneExport\Textures\016_masks_952be06319.png
+OK saved: .masks.Examples_003 -> D:\pet\场景工程\Assets\SceneExport\Textures\017_masks_fc2e688179.png
+OK saved: .masks.Examples_036 -> D:\pet\场景工程\Assets\SceneExport\Textures\018_masks_f818795e1d.png
+OK saved: .normal.Blender Bros Emissive Pack2.1_012 -> D:\pet\场景工程\Assets\SceneExport\Textures\019_normal.Blender Bros Emissive Pack2_1495c928de.png
+OK saved: .normal.Example Sheet_019 -> D:\pet\场景工程\Assets\SceneExport\Textures\020_normal_ed3a265066.png
+OK saved: .normal.Example Sheet_052 -> D:\pet\场景工程\Assets\SceneExport\Textures\021_normal_a0ab4fb9a1.png
+OK saved: .normal.Examples_003 -> D:\pet\场景工程\Assets\SceneExport\Textures\022_normal_0235ac3210.png
+OK saved: .normal.Examples_036 -> D:\pet\场景工程\Assets\SceneExport\Textures\023_normal_e68c671bf6.png
+OK saved: 921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200.jpg -> D:\pet\场景工程\Assets\SceneExport\Textures\024_921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200_004fbc2914.jpg
+FAILED: AM141_035_bump (C:\Users\Administrator\Desktop\溜溜ID： 609108\3d66Model-609108-files-15.jpg) :: 错误: 图像 'AM141_035_bump' 未包含任何图像数据
+
+FAILED: AM141_035_diff5 (C:\Users\Administrator\Desktop\溜溜ID： 609108\3d66Model-609108-files-17.tif) :: 错误: 图像 'AM141_035_diff5' 未包含任何图像数据
+
+FAILED: AM141_035_refl4 (C:\Users\Administrator\Desktop\溜溜ID： 609108\3d66Model-609108-files-22.jpg) :: 错误: 图像 'AM141_035_refl4' 未包含任何图像数据
+
+OK saved: base.tga.png -> D:\pet\场景工程\Assets\SceneExport\Textures\028_base.tga_6917dd332e.png
+OK saved: cwCorrogated-1K-norm.png -> D:\pet\场景工程\Assets\SceneExport\Textures\029_cwCorrogated-1K-norm_e11ab1c3ae.png
+OK saved: cwDiamondPlate-1K.png -> D:\pet\场景工程\Assets\SceneExport\Textures\030_cwDiamondPlate-1K_684f26fba7.png
+OK saved: cwMetalScratched-2K.jpg.002 -> D:\pet\场景工程\Assets\SceneExport\Textures\031_cwMetalScratched-2K.jpg_35f316ea98.jpg
+OK saved: cwScratches-2K.jpg.002 -> D:\pet\场景工程\Assets\SceneExport\Textures\032_cwScratches-2K.jpg_fc5b638b90.jpg
+OK saved: cwScratches-2K.jpg.003 -> D:\pet\场景工程\Assets\SceneExport\Textures\033_cwScratches-2K.jpg_769b7aceda.jpg
+OK copied-fallback: Diffuse Texture.001 -> D:\pet\场景工程\Assets\SceneExport\Textures\034_Diffuse Texture_c6b1801bf9.jpg
+OK copied-fallback: Diffuse Texture -> D:\pet\场景工程\Assets\SceneExport\Textures\035_Diffuse Texture_2c2e08f990.jpg
+OK saved: face9.png -> D:\pet\场景工程\Assets\SceneExport\Textures\036_face9_b5c3d5f162.png
+FAILED: maonv 猫女.png (C:\Users\Administrator\Desktop\maonv 猫女.png) :: 错误: 图像 'maonv 猫女.png' 未包含任何图像数据
+
+OK copied-fallback: mat0_c.jpg -> D:\pet\场景工程\Assets\SceneExport\Textures\038_mat0_c_cb453112b7.jpg
+OK copied-fallback: mat1_c.jpg -> D:\pet\场景工程\Assets\SceneExport\Textures\039_mat1_c_c56f44fd44.jpg
+OK saved: mat3_c.jpg -> D:\pet\场景工程\Assets\SceneExport\Textures\040_mat3_c_7b13e1f4a5.jpg
+OK saved: QQ图片20210220165817.jpg -> D:\pet\场景工程\Assets\SceneExport\Textures\041_QQ图片20210220165817_4e73e43538.jpg
+OK saved: QQ图片20210220170413.jpg -> D:\pet\场景工程\Assets\SceneExport\Textures\042_QQ图片20210220170413_e9669fb64f.jpg
+OK saved: tears_of_steel_bridge_4k.hdr -> D:\pet\场景工程\Assets\SceneExport\Textures\044_tears_of_steel_bridge_4k_ff8f4133eb.hdr
+OK saved: 贴图 #10 -> D:\pet\场景工程\Assets\SceneExport\Textures\045_贴图 _10_f7e8382c8f.jpg
+OK saved: 贴图 #100 -> D:\pet\场景工程\Assets\SceneExport\Textures\046_贴图 _100_a26bebd4eb.jpg
+OK saved: 贴图 #101 -> D:\pet\场景工程\Assets\SceneExport\Textures\047_贴图 _101_0aa1c9f79b.jpg
+OK saved: 贴图 #102 -> D:\pet\场景工程\Assets\SceneExport\Textures\048_贴图 _102_774281c164.jpg
+OK saved: 贴图 #103 -> D:\pet\场景工程\Assets\SceneExport\Textures\049_贴图 _103_734477ac84.jpg
+OK saved: 贴图 #104 -> D:\pet\场景工程\Assets\SceneExport\Textures\050_贴图 _104_d10737a8ce.jpg
+OK saved: 贴图 #12 -> D:\pet\场景工程\Assets\SceneExport\Textures\051_贴图 _12_e4c1c2a8a8.jpg
+OK saved: 贴图 #13 -> D:\pet\场景工程\Assets\SceneExport\Textures\052_贴图 _13_18ce5e7c89.jpg
+OK saved: 贴图 #14 -> D:\pet\场景工程\Assets\SceneExport\Textures\053_贴图 _14_90bfdaaa22.jpg
+OK saved: 贴图 #17 -> D:\pet\场景工程\Assets\SceneExport\Textures\054_贴图 _17_4b388e7741.jpg
+OK saved: 贴图 #20 -> D:\pet\场景工程\Assets\SceneExport\Textures\055_贴图 _20_e8330ef2b9.jpg
+OK saved: 贴图 #22 -> D:\pet\场景工程\Assets\SceneExport\Textures\056_贴图 _22_3df9a42e70.png
+OK saved: 贴图 #37 -> D:\pet\场景工程\Assets\SceneExport\Textures\057_贴图 _37_705846a2f9.jpg
+OK saved: 贴图 #39 -> D:\pet\场景工程\Assets\SceneExport\Textures\058_贴图 _39_d35001f6fd.jpg
+OK saved: 贴图 #4 -> D:\pet\场景工程\Assets\SceneExport\Textures\059_贴图 _4_3ebe13a449.jpg
+OK saved: 贴图 #41 -> D:\pet\场景工程\Assets\SceneExport\Textures\060_贴图 _41_aca5b960e6.png
+OK saved: 贴图 #42 -> D:\pet\场景工程\Assets\SceneExport\Textures\061_贴图 _42_6130fa47ec.png
+OK saved: 贴图 #44 -> D:\pet\场景工程\Assets\SceneExport\Textures\062_贴图 _44_ce2c795b98.jpg
+OK saved: 贴图 #47 -> D:\pet\场景工程\Assets\SceneExport\Textures\063_贴图 _47_a7db654950.jpg
+OK saved: 贴图 #48 -> D:\pet\场景工程\Assets\SceneExport\Textures\064_贴图 _48_abacd6fc86.jpg
+OK saved: 贴图 #5 -> D:\pet\场景工程\Assets\SceneExport\Textures\065_贴图 _5_e43c065db5.jpg
+OK saved: 贴图 #50 -> D:\pet\场景工程\Assets\SceneExport\Textures\066_贴图 _50_4d5c19b69d.jpg
+OK saved: 贴图 #51 -> D:\pet\场景工程\Assets\SceneExport\Textures\067_贴图 _51_db9910b3cf.jpg
+OK saved: 贴图 #53 -> D:\pet\场景工程\Assets\SceneExport\Textures\068_贴图 _53_34c8749b58.jpg
+OK saved: 贴图 #54 -> D:\pet\场景工程\Assets\SceneExport\Textures\069_贴图 _54_bae3f822a5.jpg
+OK saved: 贴图 #56 -> D:\pet\场景工程\Assets\SceneExport\Textures\070_贴图 _56_68f8e71f31.jpg
+OK saved: 贴图 #57 -> D:\pet\场景工程\Assets\SceneExport\Textures\071_贴图 _57_e3d3b811e2.jpg
+OK saved: 贴图 #58 -> D:\pet\场景工程\Assets\SceneExport\Textures\072_贴图 _58_82f5ea1501.jpg
+OK saved: 贴图 #62 -> D:\pet\场景工程\Assets\SceneExport\Textures\073_贴图 _62_202cba3bea.jpg
+OK saved: 贴图 #63 -> D:\pet\场景工程\Assets\SceneExport\Textures\074_贴图 _63_4ea8b6af10.jpg
+OK saved: 贴图 #66 -> D:\pet\场景工程\Assets\SceneExport\Textures\075_贴图 _66_8b3a5c12c9.jpg
+OK saved: 贴图 #68 -> D:\pet\场景工程\Assets\SceneExport\Textures\076_贴图 _68_6e3d6af854.jpg
+OK saved: 贴图 #69 -> D:\pet\场景工程\Assets\SceneExport\Textures\077_贴图 _69_b2a0164d74.png
+OK saved: 贴图 #69.001 -> D:\pet\场景工程\Assets\SceneExport\Textures\078_贴图 _69_7e33507ef0.png
+OK saved: 贴图 #70 -> D:\pet\场景工程\Assets\SceneExport\Textures\079_贴图 _70_05ff985473.png
+OK saved: 贴图 #70.001 -> D:\pet\场景工程\Assets\SceneExport\Textures\080_贴图 _70_1d29ec649f.png
+OK saved: 贴图 #71 -> D:\pet\场景工程\Assets\SceneExport\Textures\081_贴图 _71_a489611e87.jpg
+OK saved: 贴图 #72 -> D:\pet\场景工程\Assets\SceneExport\Textures\082_贴图 _72_8e8db851d1.png
+OK saved: 贴图 #72.001 -> D:\pet\场景工程\Assets\SceneExport\Textures\083_贴图 _72_e71dab6132.png
+OK saved: 贴图 #73 -> D:\pet\场景工程\Assets\SceneExport\Textures\084_贴图 _73_ffd87f2604.jpg
+OK saved: 贴图 #74 -> D:\pet\场景工程\Assets\SceneExport\Textures\085_贴图 _74_7dca0a8ee8.png
+OK saved: 贴图 #74.001 -> D:\pet\场景工程\Assets\SceneExport\Textures\086_贴图 _74_cbb2fe1d72.png
+OK saved: 贴图 #75 -> D:\pet\场景工程\Assets\SceneExport\Textures\087_贴图 _75_4b824ef10e.jpg
+OK saved: 贴图 #76 -> D:\pet\场景工程\Assets\SceneExport\Textures\088_贴图 _76_7c74a1e400.jpg
+OK saved: 贴图 #78 -> D:\pet\场景工程\Assets\SceneExport\Textures\089_贴图 _78_9c31fa4777.jpg
+OK saved: 贴图 #8 -> D:\pet\场景工程\Assets\SceneExport\Textures\090_贴图 _8_76a75f5c70.jpg
+OK saved: 贴图 #9 -> D:\pet\场景工程\Assets\SceneExport\Textures\091_贴图 _9_686a136b22.jpg
+OK saved: 贴图 #96 -> D:\pet\场景工程\Assets\SceneExport\Textures\092_贴图 _96_ffa79e945d.jpg
+OK saved: 金属系列1_黑2.psd -> D:\pet\场景工程\Assets\SceneExport\Textures\093_金属系列1_黑2_4d265545ba.jpg
+OK saved: 集成板3_2.png -> D:\pet\场景工程\Assets\SceneExport\Textures\094_集成板3_2_ac7dda95dc.png
+SELECTED_FOR_FBX: 249

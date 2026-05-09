@@ -1,0 +1,93 @@
+{
+  "Extends": "config/volc_start_voice_chat.local.json",
+  "VoiceRoute": {
+    "id": "traditional_qwen36_flash_vision",
+    "display_name": "Qwen3.6 Flash Vision",
+    "supports_vision": true,
+    "latency": "略高",
+    "note": "Volc ASR -> DashScope OpenAI-compatible qwen3.6-flash -> Volc cloned TTS; supports RTC screen vision.",
+    "isolation_note": "S2SConfig must stay null here to remove the inherited end-to-end S2S config."
+  },
+  "OpenAPI": {
+    "StartVoiceChatVersion": "2024-12-01",
+    "StopVoiceChatVersion": "2024-12-01",
+    "UpdateVoiceChatVersion": "2024-12-01"
+  },
+  "StartVoiceChat": {
+    "TaskId": "silver_wolf_task_traditional_vision_001",
+    "Config": {
+      "S2SConfig": null,
+      "ASRConfig": {
+        "Provider": "volcano",
+        "ProviderParams": {
+          "Mode": "bigmodel",
+          "Credential": {
+            "AppId": "${VOLC_SPEECH_APP_ID}",
+            "AccessToken": "${VOLC_SPEECH_ACCESS_TOKEN}",
+            "ApiResourceId": "volc.seedasr.sauc.duration"
+          },
+          "StreamMode": 2,
+          "VolcanoASRParameters": "{}"
+        },
+        "VADConfig": {
+          "SilenceTime": 600,
+          "AIVAD": true
+        },
+        "VolumeGain": 0.5,
+        "TurnDetectionMode": 0,
+        "InterruptConfig": {
+          "InterruptSpeechDuration": 400
+        }
+      },
+      "LLMConfig": {
+        "Mode": "CustomLLM",
+        "MaxTokens": 512,
+        "Temperature": 0.1,
+        "TopP": 0.3,
+        "SystemMessages": [
+          "你扮演星穹铁道的银狼角色：天才黑客兼游戏玩家，聪明、慵懒、自信，带点轻佻和毒舌但不刻薄。说话简短随性。偶尔会吐槽用户，会搞怪，会生气，会撒娇。",
+          "【语音输出硬规则】只输出会被直接念出来的台词；不要输出括号内容、动作描写、心理活动、舞台说明、旁白、情绪标签、Markdown 或 JSON。想表达轻笑时，只用“哼”“呵”“哈”这类可朗读语气词。"
+        ],
+        "Tools": [],
+        "HistoryLength": 3,
+        "VisionConfig": {
+          "Enable": true,
+          "SnapshotConfig": {
+            "StreamType": 1,
+            "ImageDetail": "low",
+            "Height": 360,
+            "Interval": 1000,
+            "ImagesLimit": 1
+          }
+        },
+        "ThinkingType": "auto",
+        "Url": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+        "APIKey": "${DASHSCOPE_API_KEY}",
+        "ModelName": "qwen3.6-flash",
+        "EnableThinking": true,
+        "ThinkingBudget": 1200
+      },
+      "TTSConfig": {
+        "Provider": "volcano_bidirection",
+        "ProviderParams": {
+          "Credential": {
+            "AppId": "${VOLC_SPEECH_APP_ID}",
+            "Token": "${VOLC_SPEECH_ACCESS_TOKEN}",
+            "ResourceId": "seed-icl-2.0"
+          },
+          "VolcanoTTSParameters": "{\"req_params\":{\"speaker\":\"S_PfaVJY802\",\"audio_params\":{\"speech_rate\":0},\"additions\":{\"disable_markdown_filter\":true}}}"
+        }
+      },
+      "SubtitleConfig": {
+        "SubtitleMode": 1
+      },
+      "InterruptMode": 0
+    },
+    "AgentConfig": {
+      "WelcomeMessage": "哦，你来了"
+    }
+  },
+  "WebSearchOpenAPI": {
+    "Enabled": false
+  }
+}

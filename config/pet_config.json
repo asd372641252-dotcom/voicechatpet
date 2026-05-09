@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "model": {
+    "path": "res://assets/converted/user_pet_model.glb",
+    "fallback_glb_path": "res://assets/converted/user_pet_model.glb",
+    "runtime_asset_dir": "res://assets/converted",
+    "position": [0.0, -0.95, 0.0],
+    "rotation_degrees": [0.0, 0.0, 0.0],
+    "scale": [1.0, 1.0, 1.0],
+    "auto_fit_to_view": true,
+    "target_height": 1.72,
+    "target_center_y": 0.88,
+    "target_center_z": 0.0,
+    "fallback_placeholder": true
+  },
+  "accessories": [
+    {
+      "name": "pixel_sword",
+      "path": "res://assets/converted/accessories/像素劍.glb",
+      "visible": false,
+      "attach_to": "",
+      "position": [0.0, 0.0, 0.0],
+      "rotation_degrees": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    {
+      "name": "pixel_bullet",
+      "path": "res://assets/converted/accessories/像素彈.glb",
+      "visible": false,
+      "attach_to": "",
+      "position": [0.0, 0.0, 0.0],
+      "rotation_degrees": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    {
+      "name": "cassette",
+      "path": "res://assets/converted/accessories/卡帶.glb",
+      "visible": false,
+      "attach_to": "",
+      "position": [0.0, 0.0, 0.0],
+      "rotation_degrees": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    {
+      "name": "pacman",
+      "path": "res://assets/converted/accessories/吃豆人.glb",
+      "visible": false,
+      "attach_to": "",
+      "position": [0.0, 0.0, 0.0],
+      "rotation_degrees": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    {
+      "name": "box",
+      "path": "res://assets/converted/accessories/箱.glb",
+      "visible": false,
+      "attach_to": "",
+      "position": [0.0, 0.0, 0.0],
+      "rotation_degrees": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    }
+  ],
+  "window": {
+    "size": [512, 720],
+    "transparent_background": true,
+    "borderless": true,
+    "always_on_top": true,
+    "fixed_size": true,
+    "draggable": true,
+    "click_through_requested": false
+  }
+}

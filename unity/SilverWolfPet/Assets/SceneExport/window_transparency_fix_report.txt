@@ -1,0 +1,7 @@
+Window transparency fix
+Backdrop made indoor-only: 平面 normal=(0.84, 0.27, -0.46) texture=Assets/SceneExport/Textures/024_921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200_004fbc2914.jpg
+Transparent glass: Line006.002 material=Assets/SceneExport/Materials/材质.032_TransparentGlass.mat alpha=0.3529412
+Transparent glass: 对象039 material=Assets/SceneExport/Materials/01 - Default.005_TransparentGlass.mat alpha=0.2614378
+Transparent glass: 对象010 material=Assets/SceneExport/Materials/01 - Default.005_TransparentGlass.mat alpha=0.2614378
+Transparent glass: Rectangle006 material=Assets/SceneExport/Materials/材质.010_TransparentGlass.mat alpha=0.55
+Transparent glass renderer count: 4

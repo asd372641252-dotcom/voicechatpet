@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "initial_state": "idle",
+  "states": {
+    "idle": {
+      "expression": "neutral",
+      "motion": "idle",
+      "bubble_text": "",
+      "audio_lip_sync": false
+    },
+    "talking": {
+      "expression": "talk",
+      "motion": "talk",
+      "bubble_text": "",
+      "audio_lip_sync": true
+    },
+    "thinking": {
+      "expression": "thinking",
+      "motion": "think",
+      "bubble_text": "Thinking...",
+      "audio_lip_sync": false
+    },
+    "happy": {
+      "expression": "happy",
+      "motion": "happy",
+      "bubble_text": "Nice.",
+      "audio_lip_sync": false
+    },
+    "angry": {
+      "expression": "angry",
+      "motion": "angry",
+      "bubble_text": "...",
+      "audio_lip_sync": false
+    },
+    "sleeping": {
+      "expression": "sleeping",
+      "motion": "sleeping",
+      "bubble_text": "Zzz...",
+      "audio_lip_sync": false
+    }
+  }
+}
+

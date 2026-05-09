@@ -1,0 +1,12 @@
+﻿MaterialsLilToon source YAML restore
+Current folder: Assets/SceneExport/MaterialsLilToon
+Source folder: D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon
+
+Material assets scanned: 111
+Colors restored from source YAML: 111
+Base maps restored from source YAML: 53
+Normal maps restored from source YAML: 2
+Metallic maps restored from source YAML: 1
+Occlusion maps restored from source YAML: 1
+Source non-white but current still white: 0
+BaseColor mismatches after write: 0

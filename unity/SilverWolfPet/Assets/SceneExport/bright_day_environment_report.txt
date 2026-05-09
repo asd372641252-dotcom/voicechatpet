@@ -1,0 +1,7 @@
+Bright day environment applied
+Skybox: Assets/SceneExport/Lighting/Bright_Day_Procedural_Skybox.mat
+Sky tint: light blue, sun disk disabled
+Ambient sky: RGBA(0.720, 0.840, 1.000, 1.000)
+Ambient equator: RGBA(0.920, 0.950, 1.000, 1.000)
+Ambient ground: RGBA(0.700, 0.740, 0.800, 1.000)
+Ambient intensity: 1.25

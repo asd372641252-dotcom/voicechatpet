@@ -1,0 +1,244 @@
+{
+  "render_engine": "BLENDER_EEVEE",
+  "view_transform": "Filmic",
+  "look": "Medium Contrast",
+  "exposure": 0.10000000149011612,
+  "gamma": 1.0,
+  "world": {
+    "name": "World",
+    "color": [
+      0.050876,
+      0.050876,
+      0.050876
+    ],
+    "strength": 2.3999998569488525,
+    "has_nodes": true,
+    "environment_images": [
+      {
+        "node": "环境纹理",
+        "image": "tears_of_steel_bridge_4k.hdr",
+        "filepath": "F:\\Blender files\\HDR贴图\\tears_of_steel_bridge_4k.hdr",
+        "packed": true
+      }
+    ]
+  },
+  "lights": [
+    {
+      "name": "面光",
+      "type": "SUN",
+      "location": [
+        0.817276,
+        0.06819,
+        1.065415
+      ],
+      "rotation_euler": [
+        1.114584,
+        0.140706,
+        1.892317
+      ],
+      "scale": [
+        1.564005,
+        1.564005,
+        1.564005
+      ],
+      "color": [
+        1.0,
+        0.823915,
+        0.592569
+      ],
+      "energy": 100.0,
+      "shadow_soft_size": 5.0,
+      "size": 0.0,
+      "size_y": 0.0,
+      "spot_size": 0.0,
+      "spot_blend": 0.0,
+      "hide_viewport": false,
+      "hide_render": false,
+      "visible_get": true
+    },
+    {
+      "name": "面光.001",
+      "type": "AREA",
+      "location": [
+        -0.728231,
+        1.10093,
+        0.70244
+      ],
+      "rotation_euler": [
+        4.712389,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "color": [
+        0.95,
+        0.753227,
+        0.674368
+      ],
+      "energy": 11.780972,
+      "shadow_soft_size": 2.1,
+      "size": 2.1,
+      "size_y": 1.7,
+      "spot_size": 0.0,
+      "spot_blend": 0.0,
+      "hide_viewport": false,
+      "hide_render": false,
+      "visible_get": true
+    },
+    {
+      "name": "面光.002",
+      "type": "AREA",
+      "location": [
+        0.117198,
+        -0.264961,
+        0.499082
+      ],
+      "rotation_euler": [
+        -1.539653,
+        -0.795876,
+        -0.0
+      ],
+      "scale": [
+        0.16405,
+        0.084308,
+        0.239117
+      ],
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "energy": 0.392699,
+      "shadow_soft_size": 0.46,
+      "size": 0.46,
+      "size_y": 1.7,
+      "spot_size": 0.0,
+      "spot_blend": 0.0,
+      "hide_viewport": false,
+      "hide_render": false,
+      "visible_get": true
+    },
+    {
+      "name": "面光.003",
+      "type": "AREA",
+      "location": [
+        -1.036441,
+        -0.178823,
+        0.827524
+      ],
+      "rotation_euler": [
+        -3.128994,
+        3.063234,
+        0.973049
+      ],
+      "scale": [
+        0.16405,
+        0.084308,
+        0.239117
+      ],
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "energy": 0.392699,
+      "shadow_soft_size": 0.46,
+      "size": 0.46,
+      "size_y": 1.7,
+      "spot_size": 0.0,
+      "spot_blend": 0.0,
+      "hide_viewport": false,
+      "hide_render": false,
+      "visible_get": true
+    },
+    {
+      "name": "面光.004",
+      "type": "AREA",
+      "location": [
+        -0.209506,
+        -0.621806,
+        0.722197
+      ],
+      "rotation_euler": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        0.606865,
+        0.036085,
+        0.239117
+      ],
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "energy": 0.15708,
+      "shadow_soft_size": 0.46,
+      "size": 0.46,
+      "size_y": 1.7,
+      "spot_size": 0.0,
+      "spot_blend": 0.0,
+      "hide_viewport": false,
+      "hide_render": false,
+      "visible_get": true
+    },
+    {
+      "name": "面光.005",
+      "type": "AREA",
+      "location": [
+        0.113479,
+        -0.628048,
+        1.088401
+      ],
+      "rotation_euler": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        0.606865,
+        0.036085,
+        0.239117
+      ],
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "energy": 0.15708,
+      "shadow_soft_size": 0.46,
+      "size": 0.46,
+      "size_y": 1.7,
+      "spot_size": 0.0,
+      "spot_blend": 0.0,
+      "hide_viewport": false,
+      "hide_render": false,
+      "visible_get": true
+    }
+  ],
+  "cameras": [
+    {
+      "name": "Camera",
+      "location": [
+        -0.924167,
+        1.157807,
+        0.438461
+      ],
+      "rotation_euler": [
+        1.562328,
+        -0.0,
+        3.546941
+      ],
+      "lens": 16.0,
+      "angle": 1.688308,
+      "clip_start": 0.1,
+      "clip_end": 100.0
+    }
+  ]
+}

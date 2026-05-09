@@ -1,0 +1,1311 @@
+{
+  "materials": [
+    {
+      "name": "Facial",
+      "cleanName": "Facial",
+      "users": [
+        "mesh0"
+      ],
+      "baseColor": {
+        "name": "Diffuse Texture.001",
+        "path": "C:/Users/Administrator/Desktop/室内/mat0_c.jpg",
+        "basename": "mat0_c.jpg",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5527863502502441,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Hair",
+      "cleanName": "Hair",
+      "users": [
+        "mesh0.004"
+      ],
+      "baseColor": {
+        "name": "mat1_c.jpg",
+        "path": "D:/★★★模型库/★★★★★2022.9.1新收集模型/博赛朋克女拳击手高质量3D模型/Female Boxeur/mat1_c.jpg",
+        "basename": "mat1_c.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5527863502502441,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "jacket",
+      "cleanName": "jacket",
+      "users": [
+        "mesh0.001"
+      ],
+      "baseColor": {
+        "name": "mat3_c.jpg",
+        "path": "D:/★★★模型库/★★★★★2022.9.1新收集模型/博赛朋克女拳击手高质量3D模型/Female Boxeur/mat3_c.jpg",
+        "basename": "mat3_c.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5527863502502441,
+      "metallicDefault": 0.3137255012989044,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "jacket_torn",
+      "cleanName": "jacket_torn",
+      "users": [
+        "mesh0.002"
+      ],
+      "baseColor": {
+        "name": "Diffuse Texture",
+        "path": "C:/Users/Administrator/Desktop/室内/mat1_c.jpg",
+        "basename": "mat1_c.jpg",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5527863502502441,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Mat3d66-609108-34-482",
+      "cleanName": "Mat3d66-609108-34-482",
+      "users": [
+        "Obj3d66-609108-49-561"
+      ],
+      "baseColor": null,
+      "roughness": null,
+      "metallic": {
+        "name": "AM141_035_refl4",
+        "path": "C:/Users/Administrator/Desktop/溜溜ID： 609108/3d66Model-609108-files-22.jpg",
+        "basename": "3d66Model-609108-files-22.jpg",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "normal": {
+        "name": "AM141_035_bump",
+        "path": "C:/Users/Administrator/Desktop/溜溜ID： 609108/3d66Model-609108-files-15.jpg",
+        "basename": "3d66Model-609108-files-15.jpg",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "ao": null,
+      "roughnessDefault": 0.5527864098548889,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Mat3d66-609108-35-511",
+      "cleanName": "Mat3d66-609108-35-511",
+      "users": [
+        "Obj3d66-609108-49-561"
+      ],
+      "baseColor": {
+        "name": "AM141_035_diff5",
+        "path": "C:/Users/Administrator/Desktop/溜溜ID： 609108/3d66Model-609108-files-17.tif",
+        "basename": "3d66Model-609108-files-17.tif",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5527864098548889,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #111",
+      "cleanName": "Material #111",
+      "users": [
+        "Box051_original001"
+      ],
+      "baseColor": {
+        "name": "贴图 #96",
+        "path": "D:/★★★材质库/7.布 皮 编织物/布料材质50.jpg",
+        "basename": "布料材质50.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #115",
+      "cleanName": "Material #115",
+      "users": [
+        "Box101",
+        "Box157",
+        "Box163"
+      ],
+      "baseColor": {
+        "name": "贴图 #100",
+        "path": "C:/Users/Administrator/Desktop/临时下载（不要删）/src=http%3A%2F%2Fn.sinaimg.cn%2Fgames%2Fcrawl%2F20161013%2FMcs_-fxwvpaq1221577.jpg&refer=http%3A%2F%2Fn.sinaimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fn.sinaimg.cn%2Fgames%2Fcrawl%2F20161013%2FMcs_-fxwvpaq1221577.jpg&refer=http%3A%2F%2Fn.sinaimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #116",
+      "cleanName": "Material #116",
+      "users": [
+        "Box152",
+        "Box158",
+        "Box164"
+      ],
+      "baseColor": {
+        "name": "贴图 #101",
+        "path": "C:/Users/Administrator/Desktop/临时下载（不要删）/src=http%3A%2F%2Fimg01.vgtime.com%2Fgame%2Fcover%2F2018%2F06%2F28%2F180628112536833.jpg&refer=http%3A%2F%2Fimg01.vgtime.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg01.vgtime.com%2Fgame%2Fcover%2F2018%2F06%2F28%2F180628112536833.jpg&refer=http%3A%2F%2Fimg01.vgtime.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #117",
+      "cleanName": "Material #117",
+      "users": [
+        "Box153",
+        "Box159",
+        "Box165"
+      ],
+      "baseColor": {
+        "name": "贴图 #102",
+        "path": "C:/Users/Administrator/Desktop/临时下载（不要删）/src=http%3A%2F%2Fwww.mimi-shop-9.com%2Fproduct%2Fimgs%2Fproduct_21846.jpg&refer=http%3A%2F%2Fwww.mimi-shop-9.webp.jpg",
+        "basename": "src=http%3A%2F%2Fwww.mimi-shop-9.com%2Fproduct%2Fimgs%2Fproduct_21846.jpg&refer=http%3A%2F%2Fwww.mimi-shop-9.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #118",
+      "cleanName": "Material #118",
+      "users": [
+        "Box154",
+        "Box160",
+        "Box166"
+      ],
+      "baseColor": {
+        "name": "贴图 #103",
+        "path": "C:/Users/Administrator/Desktop/临时下载（不要删）/src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2012-12%2F201212121111170358492.jpg&refer=http%3A%2F%2Fpic.3h3.webp.jpg",
+        "basename": "src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2012-12%2F201212121111170358492.jpg&refer=http%3A%2F%2Fpic.3h3.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #119",
+      "cleanName": "Material #119",
+      "users": [
+        "Box155",
+        "Box156",
+        "Box161",
+        "Box167",
+        "Box168"
+      ],
+      "baseColor": {
+        "name": "贴图 #104",
+        "path": "C:/Users/Administrator/Desktop/临时下载（不要删）/src=http%3A%2F%2Fimgx.xiawu.com%2Fxzimg%2Fi4%2F471536143%2FTB2Uyo7heSSBuNjy0FlXXbBpVXa_%21%21471536143.jpg&refer=http%3A%2F%2Fimgx.xiawu.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimgx.xiawu.com%2Fxzimg%2Fi4%2F471536143%2FTB2Uyo7heSSBuNjy0FlXXbBpVXa_%21%21471536143.jpg&refer=http%3A%2F%2Fimgx.xiawu.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #26.001",
+      "cleanName": "Material #26.001",
+      "users": [
+        "004-0-4"
+      ],
+      "baseColor": {
+        "name": "face9.png",
+        "path": "D:/★★★模型库/★★★★★2022.9.1新收集模型/神武 shinmoo/texture/face9.png",
+        "basename": "face9.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #27",
+      "cleanName": "Material #27",
+      "users": [
+        "000-0-0"
+      ],
+      "baseColor": {
+        "name": "base.tga.png",
+        "path": "D:/★★★模型库/★★★★★2022.9.1新收集模型/神武 shinmoo/texture/base.tga.png",
+        "basename": "base.tga.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #28",
+      "cleanName": "Material #28",
+      "users": [
+        "Box110",
+        "Box142"
+      ],
+      "baseColor": {
+        "name": "贴图 #4",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/u=1263432653,3244339209&fm=224&app=112&f=JPEG.jpg",
+        "basename": "u=1263432653,3244339209&fm=224&app=112&f=JPEG.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #29",
+      "cleanName": "Material #29",
+      "users": [
+        "Box139",
+        "Box145"
+      ],
+      "baseColor": {
+        "name": "贴图 #5",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fimg.defanli.com%2Fi3%2F866119711%2FO1CN01DYk5Lh2LbgqKDmLJV_%21%21866119711.jpg_q90.jpg&refer=http%3A%2F%2Fimg.defanli.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg.defanli.com%2Fi3%2F866119711%2FO1CN01DYk5Lh2LbgqKDmLJV_%21%21866119711.jpg_q90.jpg&refer=http%3A%2F%2Fimg.defanli.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #32",
+      "cleanName": "Material #32",
+      "users": [
+        "对象115"
+      ],
+      "baseColor": {
+        "name": "贴图 #8",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/u=3448829263,2976814559&fm=224&app=112&f=JPEG.jpg",
+        "basename": "u=3448829263,2976814559&fm=224&app=112&f=JPEG.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #33",
+      "cleanName": "Material #33",
+      "users": [
+        "对象116"
+      ],
+      "baseColor": {
+        "name": "贴图 #9",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/u=3940600717,3351327213&fm=224&app=112&f=JPEG.jpg",
+        "basename": "u=3940600717,3351327213&fm=224&app=112&f=JPEG.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #34",
+      "cleanName": "Material #34",
+      "users": [
+        "Box141"
+      ],
+      "baseColor": {
+        "name": "贴图 #10",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/f096a9ff74722a9a.jpg",
+        "basename": "f096a9ff74722a9a.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #36",
+      "cleanName": "Material #36",
+      "users": [
+        "对象047",
+        "对象144"
+      ],
+      "baseColor": {
+        "name": "贴图 #12",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fpic3.zhimg.com%2Fv2-644f33c5806208daf48485260f3fbc2e_180x120.jpg&refer=http%3A%2F%2Fpic3.zhimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fpic3.zhimg.com%2Fv2-644f33c5806208daf48485260f3fbc2e_180x120.jpg&refer=http%3A%2F%2Fpic3.zhimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #37",
+      "cleanName": "Material #37",
+      "users": [
+        "对象048"
+      ],
+      "baseColor": {
+        "name": "贴图 #13",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/u=1530820616,684341641&fm=224&app=112&f=JPEG.jpg",
+        "basename": "u=1530820616,684341641&fm=224&app=112&f=JPEG.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #38",
+      "cleanName": "Material #38",
+      "users": [
+        "对象118"
+      ],
+      "baseColor": {
+        "name": "贴图 #14",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/401ec819af9a7b3bc95264609c0e8233090915c01aeae3-uzrLfs_fw1200.jpg",
+        "basename": "401ec819af9a7b3bc95264609c0e8233090915c01aeae3-uzrLfs_fw1200.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #40",
+      "cleanName": "Material #40",
+      "users": [
+        "对象039"
+      ],
+      "baseColor": {
+        "name": "贴图 #14",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/401ec819af9a7b3bc95264609c0e8233090915c01aeae3-uzrLfs_fw1200.jpg",
+        "basename": "401ec819af9a7b3bc95264609c0e8233090915c01aeae3-uzrLfs_fw1200.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #41",
+      "cleanName": "Material #41",
+      "users": [
+        "对象039"
+      ],
+      "baseColor": {
+        "name": "贴图 #17",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/5faeed8736d7d8a64309308ec22ed9b7c0d442055708b-Vc15Mv_fw1200.jpg",
+        "basename": "5faeed8736d7d8a64309308ec22ed9b7c0d442055708b-Vc15Mv_fw1200.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #43",
+      "cleanName": "Material #43",
+      "users": [
+        "Box140"
+      ],
+      "baseColor": {
+        "name": "贴图 #20",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/7c05eb298c0e9238c6fdc7a5b5ab81edae0af88514d467-thl06M_fw658.webp.jpg",
+        "basename": "7c05eb298c0e9238c6fdc7a5b5ab81edae0af88514d467-thl06M_fw658.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #45",
+      "cleanName": "Material #45",
+      "users": [
+        "对象119",
+        "对象122",
+        "对象123",
+        "对象137",
+        "对象138"
+      ],
+      "baseColor": {
+        "name": "贴图 #22",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/QQ图片20221013160406.png",
+        "basename": "QQ图片20221013160406.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #60",
+      "cleanName": "Material #60",
+      "users": [
+        "Box049"
+      ],
+      "baseColor": {
+        "name": "贴图 #37",
+        "path": "D:/★★★材质库/7.布 皮 编织物/3453434525.jpg",
+        "basename": "3453434525.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #62",
+      "cleanName": "Material #62",
+      "users": [
+        "Box048",
+        "ChamferBox004",
+        "ChamferBox006",
+        "Sphere005"
+      ],
+      "baseColor": {
+        "name": "贴图 #39",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/5882ab3ad098cb1be01ad661b7ae3188040994b664fa-WldJk6_fw1200.jpg",
+        "basename": "5882ab3ad098cb1be01ad661b7ae3188040994b664fa-WldJk6_fw1200.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #64",
+      "cleanName": "Material #64",
+      "users": [
+        "Box055"
+      ],
+      "baseColor": {
+        "name": "贴图 #41",
+        "path": "F:/★★★★★姚的工作内容/68.探索者集会/探索者集会/KB3D_LAB_Cardboard_basecolor.png",
+        "basename": "KB3D_LAB_Cardboard_basecolor.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": {
+        "name": "贴图 #42",
+        "path": "F:/★★★★★姚的工作内容/68.探索者集会/探索者集会/KB3D_LAB_Cardboard_normal.png",
+        "basename": "KB3D_LAB_Cardboard_normal.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #65",
+      "cleanName": "Material #65",
+      "users": [
+        "Box086"
+      ],
+      "baseColor": {
+        "name": "QQ图片20210220165817.jpg",
+        "path": "C:/Users/Administrator/Desktop/桌面备份/公司宣传图/QQ图片20210220165817.jpg",
+        "basename": "QQ图片20210220165817.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #66",
+      "cleanName": "Material #66",
+      "users": [
+        "ChamferBox007"
+      ],
+      "baseColor": {
+        "name": "贴图 #44",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/222342340111.jpg",
+        "basename": "222342340111.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #69",
+      "cleanName": "Material #69",
+      "users": [
+        "对象127"
+      ],
+      "baseColor": {
+        "name": "贴图 #47",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/22234234011133.jpg",
+        "basename": "22234234011133.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #70",
+      "cleanName": "Material #70",
+      "users": [
+        "Box023"
+      ],
+      "baseColor": {
+        "name": "贴图 #48",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fwww.tuzxijow.icu%2Fuploadfile%2Fimage%2F20191225%2F20191225113833_10331.jpg&refer=http%3A%2F%2Fwww.tuzxijow.webp.jpg",
+        "basename": "src=http%3A%2F%2Fwww.tuzxijow.icu%2Fuploadfile%2Fimage%2F20191225%2F20191225113833_10331.jpg&refer=http%3A%2F%2Fwww.tuzxijow.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #72",
+      "cleanName": "Material #72",
+      "users": [
+        "Box014"
+      ],
+      "baseColor": {
+        "name": "贴图 #50",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01bc8955421fcf0000019ae9a7dc52.jpg%403000w_1l_0o_100sh.jpg&refer=http%3A%2F%2Fimg.zcool.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01bc8955421fcf0000019ae9a7dc52.jpg%403000w_1l_0o_100sh.jpg&refer=http%3A%2F%2Fimg.zcool.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #73",
+      "cleanName": "Material #73",
+      "users": [
+        "Box016"
+      ],
+      "baseColor": {
+        "name": "贴图 #51",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fpic.sj33.cn%2Fwork%2F202107%2FeskBA9z610Gf6IqkDbqw8W6WPlNn35Tc96XFKyG5.jpg&refer=http%3A%2F%2Fpic.sj33.webp.jpg",
+        "basename": "src=http%3A%2F%2Fpic.sj33.cn%2Fwork%2F202107%2FeskBA9z610Gf6IqkDbqw8W6WPlNn35Tc96XFKyG5.jpg&refer=http%3A%2F%2Fpic.sj33.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #75",
+      "cleanName": "Material #75",
+      "users": [
+        "对象128"
+      ],
+      "baseColor": {
+        "name": "贴图 #53",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fhbimg.huabanimg.com%2F790e7276fb1d2807749afc380ddc156b569d524485806-QbPGH9_fw658&refer=http%3A%2F%2Fhbimg.huabanimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fhbimg.huabanimg.com%2F790e7276fb1d2807749afc380ddc156b569d524485806-QbPGH9_fw658&refer=http%3A%2F%2Fhbimg.huabanimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #76",
+      "cleanName": "Material #76",
+      "users": [
+        "对象129"
+      ],
+      "baseColor": {
+        "name": "贴图 #54",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-533e286d56704779f64bbf2ff7d7cbbe_hd.jpg&refer=http%3A%2F%2Fpic1.zhimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-533e286d56704779f64bbf2ff7d7cbbe_hd.jpg&refer=http%3A%2F%2Fpic1.zhimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #78",
+      "cleanName": "Material #78",
+      "users": [
+        "Box015"
+      ],
+      "baseColor": {
+        "name": "贴图 #56",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fimg.phb123.com%2Fuploads%2Fallimg%2F190306%2F38-1Z306161952-51.jpg&refer=http%3A%2F%2Fimg.phb123.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg.phb123.com%2Fuploads%2Fallimg%2F190306%2F38-1Z306161952-51.jpg&refer=http%3A%2F%2Fimg.phb123.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #79",
+      "cleanName": "Material #79",
+      "users": [
+        "Box106"
+      ],
+      "baseColor": {
+        "name": "贴图 #57",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fhbimg.huabanimg.com%2F38ee35697312777f33a023ea3fedad8b5da73d3d949f7-ge73hq_fw658&refer=http%3A%2F%2Fhbimg.huabanimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fhbimg.huabanimg.com%2F38ee35697312777f33a023ea3fedad8b5da73d3d949f7-ge73hq_fw658&refer=http%3A%2F%2Fhbimg.huabanimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #80",
+      "cleanName": "Material #80",
+      "users": [
+        "Line109",
+        "对象113.002"
+      ],
+      "baseColor": {
+        "name": "贴图 #58",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fbmbn100.com%2Fres%2F202012%2F18%2Fd9b6f692841db6f9.png&refer=http%3A%2F%2Fbmbn100.webp.jpg",
+        "basename": "src=http%3A%2F%2Fbmbn100.com%2Fres%2F202012%2F18%2Fd9b6f692841db6f9.png&refer=http%3A%2F%2Fbmbn100.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.3553106188774109,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #81",
+      "cleanName": "Material #81",
+      "users": [
+        "对象039"
+      ],
+      "baseColor": {
+        "name": "贴图 #66",
+        "path": "D:/★★★材质库/N0049_千套次世代PBR四方连续贴图/15_金属/Metal_CircularGrid_2k_alb_1222222.jpg",
+        "basename": "Metal_CircularGrid_2k_alb_1222222.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": {
+        "name": "贴图 #66",
+        "path": "D:/★★★材质库/N0049_千套次世代PBR四方连续贴图/15_金属/Metal_CircularGrid_2k_alb_1222222.jpg",
+        "basename": "Metal_CircularGrid_2k_alb_1222222.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "normal": {
+        "name": "贴图 #63",
+        "path": "D:/★★★材质库/N0049_千套次世代PBR四方连续贴图/15_金属/Metal_CircularGrid_2k_n_1.jpg",
+        "basename": "Metal_CircularGrid_2k_n_1.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #82",
+      "cleanName": "Material #82",
+      "users": [
+        "对象046"
+      ],
+      "baseColor": {
+        "name": "QQ图片20210220170413.jpg",
+        "path": "C:/Users/Administrator/Desktop/桌面备份/公司宣传图/QQ图片20210220170413.jpg",
+        "basename": "QQ图片20210220170413.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #83",
+      "cleanName": "Material #83",
+      "users": [
+        "Box146"
+      ],
+      "baseColor": {
+        "name": "贴图 #68",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fwww.kfzimg.com%2Fsw%2Fkfzimg%2F442%2F58bc7ade7696db3d_b.jpg&refer=http%3A%2F%2Fwww.kfzimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fwww.kfzimg.com%2Fsw%2Fkfzimg%2F442%2F58bc7ade7696db3d_b.jpg&refer=http%3A%2F%2Fwww.kfzimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #84",
+      "cleanName": "Material #84",
+      "users": [
+        "9999999999999"
+      ],
+      "baseColor": {
+        "name": "贴图 #69",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/微信图片_20221013180841.png",
+        "basename": "微信图片_20221013180841.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #85",
+      "cleanName": "Material #85",
+      "users": [
+        "对象135"
+      ],
+      "baseColor": {
+        "name": "贴图 #70",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/微信图片_20221013180744.png",
+        "basename": "微信图片_20221013180744.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #86",
+      "cleanName": "Material #86",
+      "users": [
+        "对象134"
+      ],
+      "baseColor": {
+        "name": "贴图 #71",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fimg3m5.ddimg.cn%2F62%2F34%2F1092126185-1_u_1.jpg&refer=http%3A%2F%2Fimg3m5.ddimg.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg3m5.ddimg.cn%2F62%2F34%2F1092126185-1_u_1.jpg&refer=http%3A%2F%2Fimg3m5.ddimg.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #87",
+      "cleanName": "Material #87",
+      "users": [
+        "对象132"
+      ],
+      "baseColor": {
+        "name": "贴图 #72",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/微信图片_20221013164122.png",
+        "basename": "微信图片_20221013164122.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #88",
+      "cleanName": "Material #88",
+      "users": [
+        "对象131"
+      ],
+      "baseColor": {
+        "name": "贴图 #73",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/22f973a114bdfa4b.jpg",
+        "basename": "22f973a114bdfa4b.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #89",
+      "cleanName": "Material #89",
+      "users": [
+        "对象133"
+      ],
+      "baseColor": {
+        "name": "贴图 #74",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/微信图片_20221013180945.png",
+        "basename": "微信图片_20221013180945.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #90",
+      "cleanName": "Material #90",
+      "users": [
+        "对象130"
+      ],
+      "baseColor": {
+        "name": "贴图 #75",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/u=3256488892,1200368930&fm=224&app=112&f=JPEG.jpg",
+        "basename": "u=3256488892,1200368930&fm=224&app=112&f=JPEG.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #91",
+      "cleanName": "Material #91",
+      "users": [
+        "Box057"
+      ],
+      "baseColor": {
+        "name": "贴图 #76",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi3%2F2487154935%2FO1CN01UZ5kB61mKHF6hPr8Q_%21%212487154935.jpg&refer=http%3A%2F%2Fimg.alicdn.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi3%2F2487154935%2FO1CN01UZ5kB61mKHF6hPr8Q_%21%212487154935.jpg&refer=http%3A%2F%2Fimg.alicdn.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": {
+        "name": "贴图 #76",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi3%2F2487154935%2FO1CN01UZ5kB61mKHF6hPr8Q_%21%212487154935.jpg&refer=http%3A%2F%2Fimg.alicdn.webp.jpg",
+        "basename": "src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi3%2F2487154935%2FO1CN01UZ5kB61mKHF6hPr8Q_%21%212487154935.jpg&refer=http%3A%2F%2Fimg.alicdn.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Material #93",
+      "cleanName": "Material #93",
+      "users": [
+        "Box147",
+        "Box148"
+      ],
+      "baseColor": {
+        "name": "贴图 #78",
+        "path": "C:/Users/Administrator/Desktop/室内/../临时下载（不要删）/src=http%3A%2F%2Ffile03.16sucai.com%2F2017%2F1100%2F16sucai_v20161108048_20a.JPG&refer=http%3A%2F%2Ffile03.16sucai.webp.jpg",
+        "basename": "src=http%3A%2F%2Ffile03.16sucai.com%2F2017%2F1100%2F16sucai_v20161108048_20a.JPG&refer=http%3A%2F%2Ffile03.16sucai.webp.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.858578622341156,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "Skin",
+      "cleanName": "Skin",
+      "users": [
+        "mesh0.003"
+      ],
+      "baseColor": {
+        "name": "mat0_c.jpg",
+        "path": "D:/★★★模型库/★★★★★2022.9.1新收集模型/博赛朋克女拳击手高质量3D模型/Female Boxeur/mat0_c.jpg",
+        "basename": "mat0_c.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5527863502502441,
+      "metallicDefault": 0.48366013169288635,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "材质",
+      "cleanName": "材质",
+      "users": [
+        "平面"
+      ],
+      "baseColor": {
+        "name": "921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200.jpg",
+        "path": "C:/Users/Administrator/Desktop/临时下载（不要删）/921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200.jpg",
+        "basename": "921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "材质.001",
+      "cleanName": "材质.001",
+      "users": [
+        "Sphere008",
+        "Sphere008.001",
+        "对象151",
+        "对象151.001"
+      ],
+      "baseColor": {
+        "name": "贴图 #96",
+        "path": "D:/★★★材质库/7.布 皮 编织物/布料材质50.jpg",
+        "basename": "布料材质50.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "材质.022",
+      "cleanName": "材质.022",
+      "users": [
+        "对象146",
+        "对象146.001",
+        "对象147",
+        "对象147.001",
+        "对象148",
+        "对象148.001"
+      ],
+      "baseColor": {
+        "name": "贴图 #96",
+        "path": "D:/★★★材质库/7.布 皮 编织物/布料材质50.jpg",
+        "basename": "布料材质50.jpg",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.5,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "材质.023",
+      "cleanName": "材质.023",
+      "users": [
+        "平面.001"
+      ],
+      "baseColor": {
+        "name": "maonv 猫女.png",
+        "path": "C:/Users/Administrator/Desktop/maonv 猫女.png",
+        "basename": "maonv 猫女.png",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": {
+        "name": "maonv 猫女.png",
+        "path": "C:/Users/Administrator/Desktop/maonv 猫女.png",
+        "basename": "maonv 猫女.png",
+        "packed": false,
+        "unityAsset": ""
+      },
+      "roughnessDefault": 0.0,
+      "metallicDefault": 0.0,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "金属白",
+      "cleanName": "金属白",
+      "users": [
+        "Box042",
+        "Line022",
+        "对象064"
+      ],
+      "baseColor": {
+        "name": "集成板3_2.png",
+        "path": "F:/★★★★★姚的工作内容/47.大地图主城6级/主城/集成板3_2.png",
+        "basename": "集成板3_2.png",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.4620857238769531,
+      "metallicDefault": 0.9281045794487,
+      "alphaDefault": 1.0
+    },
+    {
+      "name": "金属黑",
+      "cleanName": "金属黑",
+      "users": [],
+      "baseColor": {
+        "name": "金属系列1_黑2.psd",
+        "path": "F:/★★★★★姚的工作内容/47.大地图主城6级/主城/金属系列1_黑2.psd",
+        "basename": "金属系列1_黑2.psd",
+        "packed": true,
+        "unityAsset": ""
+      },
+      "roughness": null,
+      "metallic": null,
+      "normal": null,
+      "ao": null,
+      "roughnessDefault": 0.6189484596252441,
+      "metallicDefault": 1.0,
+      "alphaDefault": 1.0
+    }
+  ]
+}

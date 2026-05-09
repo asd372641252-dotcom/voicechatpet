@@ -1,0 +1,14 @@
+Blender PBR maps applied to Unity Standard
+Missing normal texture for Mat3d66-609108-34-482_24110_lilToon: AM141_035_bump / 3d66Model-609108-files-15.jpg
+Missing metallic texture for Mat3d66-609108-34-482_24110_lilToon: AM141_035_refl4 / 3d66Model-609108-files-22.jpg
+Normal -> Material #64_24054_lilToon: Assets/SceneExport/Textures/061_贴图 _42_6130fa47ec.png
+Normal -> Material #81_24186_lilToon: Assets/SceneExport/Textures/074_贴图 _63_4ea8b6af10.jpg
+Metallic/Smoothness -> Material #81_24186_lilToon: Assets/SceneExport/GeneratedPBR/Material #81_MetallicSmoothness.png
+AO -> Material #91_24236_lilToon: Assets/SceneExport/Textures/088_贴图 _76_7c74a1e400.jpg
+Matched scene materials: 55
+Skipped non-Standard materials: 0
+Defaults applied: 55
+Normal maps applied: 2
+Metallic/smoothness maps generated: 1
+Occlusion maps applied: 1
+Missing source texture references: 2

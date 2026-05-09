@@ -1,0 +1,30 @@
+﻿URP material visual restore report
+Copy project: D:\pet\场景工程_URP转换版_20260503
+Original project read-only source: D:\pet\场景工程
+Validation scene: Assets/Scenes/BlenderIndoorScene.unity
+
+Materials scanned: 126
+Materials with original source: 126
+Materials missing original source: 0
+Changed materials: 13
+White-looking materials recovered: 0
+Parent material links followed: 9
+Unresolved parent guids: 0
+Unresolved texture guids: 0
+
+Base maps restored: 0
+Colors restored: 13
+Normal maps restored: 0
+Metallic maps restored: 0
+Occlusion maps restored: 0
+Emission maps restored: 0
+PBR floats restored: 13
+
+Renderer material slots checked: 261
+Null renderer material slots: 0
+White renderer slots without base texture: 8
+White slot examples:
+- No Name_23824_lilToon
+- Shiny_white_24026_lilToon
+- Mat3d66-586052-23-90_24466_lilToon
+- Mat3d66-586052-19-368_24426_lilToon

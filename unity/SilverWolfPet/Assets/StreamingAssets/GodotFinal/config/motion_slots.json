@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_pose_library": {
+    "source": "res://generated/pose_library/runtime_pose_state_data.json",
+    "pose_count": 118,
+    "notes": "MVP states map to generated pose state pools here. Runtime code calls this mapping instead of hard-coding pose resources."
+  },
+  "slots": {
+    "idle": {
+      "generated_state": "idle",
+      "generated_pose_candidates": ["Stand_04", "Stand_06", "Stand_33", "Stand_02", "Stand_16", "Stand_23"],
+      "actions": [
+        {"type": "generated_controller", "method": "cancel_special", "args": []},
+        {"type": "generated_controller", "method": "set_talk_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_sit_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_state", "args": ["idle"]},
+        {"type": "animation", "names": ["idle", "Idle", "stand_idle", "Stand_04"], "blend_sec": 0.2}
+      ]
+    },
+    "talk": {
+      "generated_state": "talk",
+      "generated_pose_candidates": ["Nail_05", "Nail_02", "Nail_07", "Group_15_A"],
+      "actions": [
+        {"type": "generated_controller", "method": "cancel_special", "args": []},
+        {"type": "generated_controller", "method": "set_sit_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_talk_enabled", "args": [true]},
+        {"type": "animation", "names": ["talk", "Talk", "talking", "Nail_05"], "blend_sec": 0.15}
+      ]
+    },
+    "think": {
+      "generated_state": "think",
+      "generated_pose_candidates": ["Nail_01", "Stand_36", "Stand_17"],
+      "actions": [
+        {"type": "generated_controller", "method": "cancel_special", "args": []},
+        {"type": "generated_controller", "method": "set_talk_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_sit_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_state", "args": ["think"]},
+        {"type": "animation", "names": ["think", "Thinking", "thinking", "Stand_36"], "blend_sec": 0.2}
+      ]
+    },
+    "happy": {
+      "generated_state": "special",
+      "generated_pose_candidates": ["Group_10_B", "Stand_11", "Group_1_B", "Stand_07"],
+      "actions": [
+        {"type": "generated_controller", "method": "set_talk_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_sit_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "trigger_special", "args": ["Stand_11"]},
+        {"type": "animation", "names": ["happy", "Happy", "joy", "Stand_11"], "blend_sec": 0.18}
+      ]
+    },
+    "angry": {
+      "generated_state": "annoyed",
+      "generated_pose_candidates": ["Group_11_B", "Stand_27", "Stand_08"],
+      "actions": [
+        {"type": "generated_controller", "method": "cancel_special", "args": []},
+        {"type": "generated_controller", "method": "set_talk_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_sit_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_state", "args": ["annoyed"]},
+        {"type": "animation", "names": ["angry", "Angry", "annoyed", "Group_11_B"], "blend_sec": 0.16}
+      ]
+    },
+    "sleeping": {
+      "generated_state": "sit",
+      "generated_pose_candidates": ["Sit_14", "Sit_04", "Sit_07", "Sit_17"],
+      "actions": [
+        {"type": "generated_controller", "method": "cancel_special", "args": []},
+        {"type": "generated_controller", "method": "set_talk_enabled", "args": [false]},
+        {"type": "generated_controller", "method": "set_sit_enabled", "args": [true]},
+        {"type": "animation", "names": ["sleep", "Sleep", "sleeping", "Sit_14"], "blend_sec": 0.25}
+      ]
+    }
+  }
+}

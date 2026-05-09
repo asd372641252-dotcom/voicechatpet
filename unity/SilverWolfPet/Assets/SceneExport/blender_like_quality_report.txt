@@ -1,0 +1,11 @@
+Blender-like quality applied
+Color space: Linear
+Skybox: Assets/SceneExport/Lighting/HDRI_Tears_Of_Steel_Skybox.mat
+Ambient mode: Skybox
+Ambient intensity: 0.95
+Reflection intensity: 0.82
+Reflection probe center: (0.75, 1.61, 0.22)
+Reflection probe size: (7.79, 4.41, 8.02)
+Quality anti aliasing: 8
+Standard materials with reflections enabled: 109
+Glass materials made glossier: 2

@@ -1,0 +1,14 @@
+Original Blender light components enabled
+Proxy enabled: 面光.005 Realtime Proxy type=Point intensity=0.75 shadows=Soft
+Proxy enabled: 面光.003 Realtime Proxy type=Point intensity=0.8267146 shadows=Soft
+Original enabled: 面光.005 type=Rectangle intensity=0.1570796 shadows=Soft
+Original enabled: 面光 type=Rectangle intensity=20 shadows=Soft
+Proxy enabled: 面光.002 Realtime Proxy type=Point intensity=0.8267146 shadows=Soft
+Original enabled: 面光.002 type=Rectangle intensity=0.3926991 shadows=Soft
+Original enabled: 面光.003 type=Rectangle intensity=0.3926991 shadows=Soft
+Proxy enabled: 面光.004 Realtime Proxy type=Point intensity=0.75 shadows=Soft
+Original enabled: 面光.001 type=Rectangle intensity=11.78097 shadows=Soft
+Original enabled: 面光.004 type=Rectangle intensity=0.1570796 shadows=Soft
+Proxy enabled: 面光.001 Realtime Proxy type=Point intensity=4.8 shadows=Soft
+Original count: 6
+Proxy count: 5

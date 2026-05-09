@@ -1,0 +1,8 @@
+Window sun lighting applied
+Disabled previous lights: 6
+Window renderer: 平面
+Window center: (-1.74, 0.53, 1.83)
+Sun direction: (0.87, 0.15, -0.47)
+Beam source: (-3.25, 0.57, 2.65)
+Target: (1.12, 1.04, 0.26)
+Ambient intensity: 0.42

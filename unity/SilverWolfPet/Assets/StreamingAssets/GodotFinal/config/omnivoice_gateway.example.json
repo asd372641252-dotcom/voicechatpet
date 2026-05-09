@@ -1,0 +1,9 @@
+{
+  "GatewayURL": "http://117.50.176.5:9000",
+  "APIToken": "${OMNIVOICE_API_TOKEN}",
+  "VoiceId": "role_001",
+  "Lang": "zh",
+  "PseudoStream": true,
+  "PlaybackEnabled": true,
+  "CacheDir": ".tmp/cache/tts"
+}

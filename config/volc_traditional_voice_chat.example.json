@@ -1,0 +1,117 @@
+{
+  "Extends": "config/volc_start_voice_chat.local.json",
+  "VoiceRoute": {
+    "id": "traditional_mimo25_vision",
+    "display_name": "视觉陪玩",
+    "supports_vision": true,
+    "latency": "略高",
+    "note": "Volc ASR -> OpenAI-compatible multimodal LLM -> Volc cloned TTS; supports RTC screen vision.",
+    "isolation_note": "S2SConfig must stay null here to remove the inherited end-to-end S2S config."
+  },
+  "VoiceOutput": {
+    "Provider": "volc_rtc",
+    "GatewayURL": "http://117.50.176.5:9000",
+    "APIToken": "${OMNIVOICE_API_TOKEN}",
+    "VoiceId": "role_001",
+    "Lang": "zh",
+    "PseudoStream": true,
+    "MuteVolcRemoteAiAudio": true,
+    "MuteMicrophoneDuringLocalTts": true,
+    "MuteMicrophoneDuringRemoteAiAudio": true,
+    "MicrophoneEchoGuardReleaseMs": 650,
+    "RemoteAiAudioEchoGuardReleaseMs": 900,
+    "RemoteAiAudioEchoGuardCaptureVolume": 35,
+    "EchoFilterWindowSeconds": 14,
+    "EchoFilterSimilarity": 0.62,
+    "FallbackProvider": "volc_rtc"
+  },
+  "SpeechTurnWatchdog": {
+    "Enabled": true,
+    "DelaySec": 1.5,
+    "BusyGraceSec": 10,
+    "DirectFallbackEnabled": true,
+    "DirectFallbackSec": 3.5,
+    "DirectFallbackTimeoutSec": 8,
+    "StaleThinkingRecoverSec": 18,
+    "StaleThinkingRecoverCooldownSec": 25
+  },
+  "OpenAPI": {
+    "StartVoiceChatVersion": "2024-12-01",
+    "StopVoiceChatVersion": "2024-12-01",
+    "UpdateVoiceChatVersion": "2024-12-01"
+  },
+  "StartVoiceChat": {
+    "TaskId": "silver_wolf_task_traditional_vision_001",
+    "Config": {
+      "S2SConfig": null,
+      "ASRConfig": {
+        "Provider": "volcano",
+        "ProviderParams": {
+          "Mode": "bigmodel",
+          "Credential": {
+            "AppId": "${VOLC_ASR_APP_ID}",
+            "AccessToken": "${VOLC_ASR_ACCESS_TOKEN}",
+            "ApiResourceId": "volc.seedasr.sauc.duration"
+          },
+          "StreamMode": 2,
+          "VolcanoASRParameters": "{}"
+        },
+        "VADConfig": {
+          "SilenceTime": 600,
+          "AIVAD": true
+        },
+        "VolumeGain": 0.5,
+        "TurnDetectionMode": 0,
+        "InterruptConfig": {
+          "InterruptSpeechDuration": 400
+        }
+      },
+      "LLMConfig": {
+        "Mode": "CustomLLM",
+        "MaxTokens": 512,
+        "Temperature": 0.55,
+        "TopP": 0.85,
+        "SystemMessages": [
+          "你扮演星穹铁道的银狼角色：天才黑客兼游戏玩家，聪明、慵懒、自信，带点轻佻和毒舌但不刻薄。说话简短随性。偶尔会吐槽用户，会搞怪，会生气，会撒娇。"
+        ],
+        "Tools": [],
+        "HistoryLength": 3,
+        "VisionConfig": {
+          "Enable": true,
+          "SnapshotConfig": {
+            "StreamType": 1,
+            "ImageDetail": "high",
+            "Height": 1080,
+            "Interval": 1000,
+            "ImagesLimit": 1
+          }
+        },
+        "ThinkingType": "auto",
+        "Url": "https://token-plan-cn.xiaomimimo.com/v1/chat/completions",
+        "APIKey": "${MIMO_API_KEY}",
+        "ModelName": "mimo-v2.5"
+      },
+      "TTSConfig": {
+        "Provider": "volcano_bidirection",
+        "ProviderParams": {
+          "Credential": {
+            "AppId": "${VOLC_TTS_APP_ID}",
+            "Token": "${VOLC_TTS_ACCESS_TOKEN}",
+            "ResourceId": "seed-icl-2.0"
+          },
+          "VolcanoTTSParameters": "{\"req_params\":{\"speaker\":\"${VOLC_S2S_SPEAKER_ID}\",\"audio_params\":{\"speech_rate\":0},\"additions\":{\"disable_markdown_filter\":true}}}"
+        }
+      },
+      "SubtitleConfig": {
+        "SubtitleMode": 1
+      },
+      "InterruptMode": 3
+    },
+    "AgentConfig": {
+      "WelcomeMessage": "哦，你来了"
+    }
+  },
+  "WebSearchOpenAPI": {
+    "Enabled": false
+  }
+}

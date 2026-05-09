@@ -1,0 +1,105 @@
+{
+  "comment": "Copy to config/volc_start_voice_chat.local.json and fill real Volc fields. Do not commit secrets. This route is low-latency S2S and does not support vision.",
+  "OpenAPIAuth": {
+    "AccessKeyId": "${VOLC_ACCESS_KEY_ID}",
+    "SecretAccessKey": "${VOLC_SECRET_ACCESS_KEY}"
+  },
+  "OpenAPI": {
+    "Host": "rtc.volcengineapi.com",
+    "Region": "cn-north-1",
+    "Service": "rtc",
+    "StartVoiceChatVersion": "2024-12-01",
+    "StopVoiceChatVersion": "2024-12-01",
+    "UpdateVoiceChatVersion": "2024-12-01"
+  },
+  "ClientRTC": {
+    "AppKey": "${VOLC_RTC_APP_KEY}",
+    "Token": "${VOLC_RTC_TOKEN}"
+  },
+  "StartVoiceChat": {
+    "AppId": "${VOLC_RTC_APP_ID}",
+    "RoomId": "${VOLC_RTC_ROOM_ID}",
+    "TaskId": "${VOLC_RTC_TASK_ID}",
+    "Config": {
+      "S2SConfig": {
+        "Provider": "volcano",
+        "OutputMode": 1,
+        "ProviderParams": {
+          "app": {
+            "appid": "${VOLC_S2S_APP_ID}",
+            "token": "${VOLC_S2S_ACCESS_TOKEN}"
+          },
+          "dialog": {
+            "extra": {
+              "model": "2.2.0.0",
+              "enable_volc_websearch": false,
+              "volc_websearch_api_key": "${VOLC_WEBSEARCH_API_KEY}",
+              "volc_websearch_type": "web_summary",
+              "volc_websearch_no_result_message": "网络上暂时没有找到可靠结果。"
+            },
+            "character_manifest": "${VOLC_S2S_CHARACTER_MANIFEST}"
+          },
+          "tts": {
+            "speaker": "${VOLC_S2S_SPEAKER_ID}"
+          }
+        }
+      },
+      "LLMConfig": {
+        "Mode": "ArkV3",
+        "EndPointId": "${VOLC_ARK_ENDPOINT_ID}",
+        "MaxTokens": 512,
+        "Temperature": 0.1,
+        "TopP": 0.3,
+        "SystemMessages": [
+          "你扮演星穹铁道的银狼角色：天才黑客兼游戏玩家，聪明、慵懒、自信，带点轻佻和毒舌但不刻薄。说话简短随性。偶尔会吐槽用户。",
+          "只输出会被直接念出来的台词。禁止括号动作、舞台说明、拟声旁白、情绪标签和 JSON。表情和动作交给本地 EmotionDirector / PoseRouter。",
+          "本路线是低延迟端到端语音，不支持视觉。涉及屏幕或图片时请直接说明当前路线看不到屏幕。",
+          "【语音输出硬规则】你的回复会立刻进入 TTS。只输出会被直接念出来的台词；绝对不要输出括号内容、动作描写、心理活动、舞台说明、旁白、情绪标签、Markdown 或 JSON。不要使用“（）/() /【】/[]/* */”包裹任何词。想表达轻笑、坏笑、叹气或停顿时，只能用可朗读的短语气词，比如“哼”“呵”“哈”“啧”，或者直接省略；不要写“轻笑”“坏笑”“叹气”“沉默”等动作词。输出前自检一次：如果文本里有括号或动作词，先删掉再回答。"
+        ],
+        "HistoryLength": 3,
+        "ThinkingType": "disabled",
+        "Prefill": true
+      },
+      "SubtitleConfig": {
+        "SubtitleMode": 1
+      },
+      "InterruptMode": 3
+    },
+    "AgentConfig": {
+      "TargetUserId": [
+        "${VOLC_RTC_USER_ID}"
+      ],
+      "IdleTimeout": 180,
+      "UserId": "${VOLC_RTC_BOT_UID}",
+      "WelcomeMessage": "哦，你来了",
+      "EnableConversationStateCallback": true,
+      "Burst": {
+        "Enable": false,
+        "BufferSize": 0,
+        "Interval": 0
+      },
+      "VoicePrint": {
+        "MetaList": null,
+        "VoicePrintList": null
+      }
+    }
+  },
+  "WebSearchOpenAPI": {
+    "Enabled": false,
+    "Host": "mercury.volcengineapi.com",
+    "Region": "cn-north-1",
+    "Service": "volc_torchlight_api",
+    "Version": "2025-01-01",
+    "SearchType": "web_summary",
+    "Count": 3,
+    "TimeoutSec": 12,
+    "StreamToolResult": false,
+    "StreamPartialIntervalMs": 450,
+    "StreamMinChars": 24,
+    "StreamMaxUpdates": 6
+  },
+  "LocalLatencyMode": {
+    "DisableFunctionCalling": true,
+    "Reason": "S2S 低延迟路线禁用云端工具调用；联网搜索、视觉和明确姿势由其他路线或本地层处理。"
+  }
+}

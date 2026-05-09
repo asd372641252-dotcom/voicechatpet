@@ -1,0 +1,47 @@
+{
+  "default_route": "traditional_vision",
+  "routes": {
+    "s2s_low_latency": {
+      "display_name": "端到端低延迟",
+      "short_name": "端到端",
+      "description": "豆包 S2S 混合编排，延迟低；当前不支持视觉。",
+      "supports_vision": false,
+      "latency": "低",
+      "config_path": "res://config/volc_start_voice_chat.local.json",
+      "godot_pose_port": 17865
+    },
+    "traditional_vision": {
+      "display_name": "视觉陪玩",
+      "short_name": "视觉",
+      "description": "火山 ASR -> 自定义多模态 LLM -> 火山复刻 TTS；支持屏幕识别，延迟略高。",
+      "supports_vision": true,
+      "latency": "略高",
+      "config_path": "res://config/volc_traditional_voice_chat.local.json",
+      "godot_pose_port": 17865
+    },
+    "traditional_companion_polling": {
+      "display_name": "陪玩轮询",
+      "short_name": "陪玩轮询",
+      "description": "独立测试路线：在视觉主链基础上开启 CompanionVision，支持 5/8/10/15 秒主动看屏幕；上一句没说完就等待。",
+      "supports_vision": true,
+      "latency": "略高",
+      "config_path": "res://config/volc_traditional_companion_polling.local.json",
+      "godot_pose_port": 17865
+    },
+    "agent_speaker": {
+      "display_name": "Agent 外挂发声器",
+      "short_name": "Agent 发声器",
+      "description": "不听麦、不进 RTC；外部桌面 Agent 负责推理，本地用配置的 TTS 发声并驱动气泡和姿势表演。",
+      "supports_vision": false,
+      "latency": "取决于外部 Agent",
+      "kind": "agent_speaker",
+      "tts_provider": "mimo",
+      "thinking": "auto",
+      "config_path": "res://config/agent_speaker.local.json",
+      "example_config_path": "res://config/agent_speaker.example.json",
+      "bridge_script_path": "res://scripts/run_agent_speaker_server.py",
+      "bridge_port": 17342,
+      "requires_runtime_window": false
+    }
+  }
+}

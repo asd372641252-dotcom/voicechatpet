@@ -1,0 +1,6 @@
+﻿DIFFUSE_GI_STABLE_REBAKE_20260503_V1
+2026-05-03 11:58:04
+LightingSettings: stable preview GI, resolution=20 samples=256 bounces=4
+Excluded names: 对象097, Box034.003, 对象087, 对象098, 对象096
+ExcludedInvalidUvMeshes: 5
+BakeAsyncStarted: True

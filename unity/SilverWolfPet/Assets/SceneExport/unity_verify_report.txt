@@ -1,0 +1,10 @@
+Scene export Unity verification
+Model: Assets/SceneExport/Models/blender_indoor_scene.fbx
+Scene: Assets/Scenes/BlenderIndoorScene.unity
+Scene exists: True
+Model prefab loaded: true
+Renderer count: 235
+Material slot count: 255
+Unique imported material count: 111
+Materials with main texture: 53
+SceneExport texture dependencies: 54

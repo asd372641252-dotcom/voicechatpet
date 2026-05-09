@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source_root": "",
+  "main_pmx": "",
+  "texture_root": "",
+  "accessory_root": "",
+  "accessory_pmx": [],
+  "runtime_output": "assets/converted/user_pet_model.vrm",
+  "fallback_glb_output": "assets/converted/user_pet_model.glb",
+  "accessory_output_dir": "assets/converted/accessories",
+  "rule": "Public source uses a placeholder/default user model path. Do not commit restricted character models; users should place their own .glb or .vrm under assets/converted."
+}

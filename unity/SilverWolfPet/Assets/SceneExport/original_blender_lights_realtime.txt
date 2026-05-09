@@ -1,0 +1,9 @@
+Original Blender lights made realtime
+Scene radius: 6.685727
+面光.004 disabled Rectangle/Area component, added Point proxy intensity=0.75 range=3.67715
+面光 kept as realtime Directional intensity=1.05
+面光.003 disabled Rectangle/Area component, added Point proxy intensity=0.8267146 range=3.67715
+面光.001 disabled Rectangle/Area component, added Point proxy intensity=4.8 range=3.67715
+面光.002 disabled Rectangle/Area component, added Point proxy intensity=0.8267146 range=3.67715
+面光.005 disabled Rectangle/Area component, added Point proxy intensity=0.75 range=3.67715
+Realtime original light entries: 6

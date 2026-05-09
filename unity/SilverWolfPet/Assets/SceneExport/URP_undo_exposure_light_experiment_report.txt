@@ -1,0 +1,14 @@
+﻿Undo exposure/light experiment
+Scene: Assets/Scenes/BlenderIndoorScene.unity
+
+Skybox exposure restored to 1.05
+Volume restored: URP Quality Volume
+Light Window Realtime Projection/Window Realtime Projection - soft sun spot 1 intensity 0.85 -> 8.2
+Light Window Realtime Projection/Window Realtime Projection - soft sun spot 2 intensity 0.85 -> 8.2
+Light Window Realtime Projection/Window Realtime Projection - soft sun spot 3 intensity 0.85 -> 6.5
+Light Window Realtime Projection/Window Realtime Projection - soft sun spot 4 intensity 0.85 -> 8.2
+Light Window Realtime Projection/Window Realtime Projection - soft sun spot 5 intensity 0.85 -> 8.2
+Light Blender Indoor Scene/面光 intensity 0.85 -> 1.8
+Light Blender Indoor Scene/面光.001 intensity 0.75 -> 11.781
+Light Blender Indoor Scene/面光.001/面光.001 Realtime Proxy intensity 0.75 -> 2.8
+Light Blender Indoor Scene/面光.003/面光.003 Realtime Proxy intensity 0.75 -> 0.827

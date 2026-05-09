@@ -1,0 +1,10 @@
+Window shadow accent applied
+Window renderer: 平面
+Window center: (-1.74, 0.53, 1.83)
+Inward direction: (0.88, 0.00, -0.48)
+Cookie beam source: (-2.80, 1.23, 2.40)
+Cookie beam target: (0.26, -0.35, 0.74)
+Renderers configured: 235
+Window/glass/backdrop casters disabled: 6
+lilToon materials configured to receive shadows: 111
+Decal scale: (2.65, 4.19, 1.00)

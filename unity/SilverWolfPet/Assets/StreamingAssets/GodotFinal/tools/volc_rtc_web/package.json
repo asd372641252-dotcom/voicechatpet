@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "volc-rtc-web-pose-bridge",
+  "version": "0.1.0",
+  "description": "Local browser RTC client for Volc StartVoiceChat -> Godot PoseBridge testing.",
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.35",
+    "@volcengine/rtc": "4.68.3"
+  }
+}

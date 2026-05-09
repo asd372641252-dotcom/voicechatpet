@@ -1,0 +1,5 @@
+﻿Anime fresh lilToon style applied by YAML pass
+Material files touched: 111
+Opaque materials with outline/rim: 107
+Transparent materials preserved without outline/rim: 4
+Look: light blue-violet toon shadows, thin slate outline, soft sky rim, brighter light response.

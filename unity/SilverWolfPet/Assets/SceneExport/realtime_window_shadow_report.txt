@@ -1,0 +1,15 @@
+Realtime window shadow rig applied
+This uses realtime shadow maps from shadow-only window bars, not a floor decal.
+Window renderer: Blender Indoor Scene/平面
+Window center: (-1.92, 0.84, 1.79)
+Inward direction: (0.88, 0.00, -0.47)
+Frame center: (-1.95, 0.89, 1.80)
+Frame size: 2.15 x 1.823272
+Realtime light source: (-4.16, 2.15, 2.98)
+Realtime light target: (0.80, 0.00, 0.35)
+Soft realtime light count: 5
+Soft realtime total intensity: 41
+Per-light shadow strength: 0.48
+Shadow-only bar count: 6
+Renderers receiving realtime shadows: 231
+Glass/window pass-through renderers: 4

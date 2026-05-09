@@ -1,0 +1,7 @@
+﻿DIFFUSE_GI_FORCE_REBAKE_20260503_V3
+2026-05-03 11:41:11
+Lightmapping.isRunning before cancel: False
+Cancel requested: False
+Lightmapping.isRunning before start: False
+BakeAsyncStarted: True
+Status: started

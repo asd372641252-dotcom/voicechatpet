@@ -1,0 +1,19 @@
+{
+  "default_route": "unity",
+  "routes": {
+    "unity": {
+      "backend": "unity",
+      "host": "127.0.0.1",
+      "port": 17861,
+      "timeout_sec": 0.2,
+      "description": "Unity PetDesktop PetControlServer TCP presentation route."
+    },
+    "godot": {
+      "backend": "godot",
+      "host": "127.0.0.1",
+      "port": 17865,
+      "timeout_sec": 0.2,
+      "description": "Godot PetPoseServer TCP presentation route."
+    }
+  }
+}

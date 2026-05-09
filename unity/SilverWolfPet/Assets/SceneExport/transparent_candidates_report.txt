@@ -1,0 +1,19 @@
+Transparent/window candidate renderers
+Rectangle006 active=True enabled=True
+  bounds center=(-0.26, 0.51, 0.02) size=(0.02, 0.86, 0.86)
+  material=材质.010 shader=Standard color=RGBA(0.948, 0.944, 1.000, 0.647) texture=<none>
+平面 active=True enabled=True
+  bounds center=(-1.74, 0.53, 1.83) size=(0.00, 1.98, 3.56)
+  material=平面_Visible shader=SceneExport/DoubleSidedOpaqueTexture color=RGBA(1.000, 1.000, 1.000, 1.000) texture=Assets/SceneExport/Textures/024_921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200_004fbc2914.jpg
+对象039 active=True enabled=True
+  bounds center=(1.05, 0.43, 0.24) size=(0.60, 0.86, 0.53)
+  material=01 - Default.005 shader=Standard color=RGBA(0.032, 0.091, 0.180, 0.261) texture=<none>
+对象010 active=True enabled=True
+  bounds center=(-0.13, 0.42, 0.33) size=(0.21, 0.27, 0.00)
+  material=01 - Default.005 shader=Standard color=RGBA(0.032, 0.091, 0.180, 0.261) texture=<none>
+平面.001 active=True enabled=True
+  bounds center=(2.45, 0.43, 0.46) size=(0.63, 1.03, 0.27)
+  material=平面.001_Visible shader=SceneExport/DoubleSidedOpaqueTexture color=RGBA(1.000, 1.000, 1.000, 1.000) texture=<none>
+Line006.002 active=True enabled=True
+  bounds center=(-0.16, 0.33, 0.27) size=(0.03, 0.10, 0.03)
+  material=材质.032 shader=Standard color=RGBA(0.327, 0.513, 0.800, 0.353) texture=<none>

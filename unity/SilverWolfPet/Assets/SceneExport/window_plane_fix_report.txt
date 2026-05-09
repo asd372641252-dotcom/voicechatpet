@@ -1,0 +1,4 @@
+Window plane visibility fix
+平面.001 -> Assets/SceneExport/Materials/平面.001_Visible.mat texture=<none>
+平面 -> Assets/SceneExport/Materials/平面_Visible.mat texture=Assets/SceneExport/Textures/024_921daa9462033c0f23d62ee1e903ca2bed0029b2843d0-rJCB3b_fw1200_004fbc2914.jpg
+Fixed renderer count: 2

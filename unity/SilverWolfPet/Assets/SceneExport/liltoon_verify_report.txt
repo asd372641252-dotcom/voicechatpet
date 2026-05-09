@@ -1,0 +1,5 @@
+lilToon conversion verification
+Total material slots: 255
+lilToon slots: 254
+Preserved functional slots: 1
+Other slots: 0

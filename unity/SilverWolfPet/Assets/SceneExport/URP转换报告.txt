@@ -1,0 +1,21 @@
+URP 转换报告
+
+副本工程：D:\pet\场景工程_URP转换版_20260503
+原工程保持不动：D:\pet\场景工程
+
+URP 包版本：com.unity.render-pipelines.universal@17.4.0
+URP Pipeline Asset：Assets\URP_转换设置\URP_转换版_PipelineAsset.asset
+URP Renderer：Assets\URP_转换设置\URP_转换版_Renderer.asset
+
+材质扫描数量：126
+已转换到 URP/Lit 或 URP/Unlit 的材质：124
+已按透明材质处理：12
+跳过的天空盒/特殊材质：2
+已配置 URP HDR/MSAA 的相机：1
+
+清理说明：
+旧的 embedded lilToon 包只在副本中禁用，并移动到：
+D:\pet\场景工程_URP转换版_20260503\Packages_DISABLED_URP_COPY\jp.lilxyzw.liltoon_DISABLED
+
+用途：
+这是 URP 转换专用副本。继续测试 URP、光照、材质时请使用这个副本，不要误开原工程。

@@ -1,0 +1,20 @@
+{
+  "Memory": {
+    "Enabled": true,
+    "DatabasePath": "%APPDATA%/SilverWolfPet/pet_memory.sqlite3",
+    "UserId": "default_user",
+    "CharacterId": "silver_wolf",
+    "ConversationId": "default",
+    "IngestSubtitles": true,
+    "StartupSystemInjection": true,
+    "ExternalTextInjection": false,
+    "ShortTermTurns": 10,
+    "RecallLimit": 6,
+    "StartupRecallLimit": 8,
+    "MaxPromptChars": 900,
+    "SummaryMaxChars": 700,
+    "CompactAfterMessages": 40,
+    "MinMessageChars": 2,
+    "ImportanceThreshold": 0.45
+  }
+}

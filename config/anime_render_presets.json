@@ -1,0 +1,251 @@
+{
+  "default_preset": "StarRailStyle",
+  "presets": {
+    "DesktopPetSoft": {
+      "description": "Soft companion desktop-pet look with low contrast shadows.",
+      "camera": {
+        "orthogonal_size": 2.05,
+        "position": [0.0, 1.03, 4.4],
+        "target": [0.0, 1.03, 0.0]
+      },
+      "world": {
+        "background_color": [0.10, 0.11, 0.13, 1.0],
+        "ambient_color": [0.34, 0.36, 0.42, 1.0],
+        "ambient_energy": 0.33,
+        "tonemap": "linear",
+        "exposure": 0.96
+      },
+      "light": {
+        "energy": 0.48,
+        "rotation_degrees": [-34.0, -28.0, 0.0]
+      },
+      "outline": {
+        "enabled": true,
+        "width": 0.0045,
+        "color": [0.15, 0.12, 0.21, 1.0]
+      },
+      "toon": {
+        "shadow_threshold": 0.44,
+        "shadow_softness": 0.15,
+        "second_shadow_threshold": 0.12,
+        "shadow_strength": 0.46,
+        "specular_strength": 0.01,
+        "brightness": 1.04
+      },
+      "face": {
+        "shadow_strength": 0.10,
+        "shadow_threshold": 0.18,
+        "shadow_softness": 0.30,
+        "brightness": 1.03
+      },
+      "eye": {
+        "brightness": 1.08,
+        "emission_strength": 0.20
+      }
+    },
+    "CelAnime": {
+      "description": "Sharper cel-animation look with visible bands and outline.",
+      "camera": {
+        "orthogonal_size": 2.0,
+        "position": [0.0, 1.03, 4.4],
+        "target": [0.0, 1.03, 0.0]
+      },
+      "world": {
+        "background_color": [0.08, 0.085, 0.105, 1.0],
+        "ambient_color": [0.25, 0.27, 0.34, 1.0],
+        "ambient_energy": 0.28,
+        "tonemap": "linear",
+        "exposure": 1.0
+      },
+      "light": {
+        "energy": 0.68,
+        "rotation_degrees": [-37.0, -32.0, 0.0]
+      },
+      "outline": {
+        "enabled": true,
+        "width": 0.0085,
+        "color": [0.10, 0.08, 0.16, 1.0]
+      },
+      "toon": {
+        "shadow_threshold": 0.55,
+        "shadow_softness": 0.035,
+        "second_shadow_threshold": 0.20,
+        "shadow_strength": 0.76,
+        "specular_strength": 0.018,
+        "brightness": 1.02
+      },
+      "face": {
+        "shadow_strength": 0.16,
+        "shadow_threshold": 0.24,
+        "shadow_softness": 0.18,
+        "brightness": 1.02
+      },
+      "eye": {
+        "brightness": 1.12,
+        "emission_strength": 0.26
+      }
+    },
+    "StarRailStyle": {
+      "description": "Star Rail inspired cel look with blue-purple rim light, bloom, and stronger emissive parts.",
+      "camera": {
+        "orthogonal_size": 2.0,
+        "position": [0.0, 1.03, 4.4],
+        "target": [0.0, 1.03, 0.0]
+      },
+      "world": {
+        "background_color": [0.06, 0.065, 0.10, 1.0],
+        "ambient_color": [0.24, 0.27, 0.36, 1.0],
+        "ambient_energy": 0.31,
+        "tonemap": "linear",
+        "exposure": 1.02,
+        "glow": {
+          "enabled": true,
+          "normalized": false,
+          "intensity": 0.46,
+          "strength": 0.92,
+          "bloom": 0.18,
+          "hdr_threshold": 0.62,
+          "hdr_scale": 1.45,
+          "hdr_luminance_cap": 9.0
+        }
+      },
+      "light": {
+        "energy": 0.58,
+        "color": [1.0, 0.92, 0.88, 1.0],
+        "rotation_degrees": [-33.0, -37.0, 0.0],
+        "shadow_enabled": false
+      },
+      "rim_light": {
+        "enabled": true,
+        "energy": 0.24,
+        "color": [0.46, 0.58, 1.0, 1.0],
+        "rotation_degrees": [-24.0, 142.0, 0.0],
+        "shadow_enabled": false
+      },
+      "outline": {
+        "enabled": true,
+        "width": 0.0065,
+        "color": [0.08, 0.07, 0.15, 1.0]
+      },
+      "toon": {
+        "shadow_threshold": 0.50,
+        "shadow_softness": 0.055,
+        "second_shadow_threshold": 0.14,
+        "shadow_strength": 0.66,
+        "cool_shadow_color": [0.38, 0.42, 0.66, 1.0],
+        "warm_skin_shadow_color": [0.98, 0.68, 0.76, 1.0],
+        "cool_shadow_strength": 0.34,
+        "cool_shadow_strength_by_category": {
+          "hair": 0.42,
+          "clothes": 0.58,
+          "accessory": 0.52
+        },
+        "warm_skin_shadow_strength_by_category": {
+          "skin": 0.68
+        },
+        "specular_strength": 0.012,
+        "brightness": 1.06
+      },
+      "rim": {
+        "color": [0.42, 0.68, 1.0, 1.0],
+        "strength": 0.18,
+        "emissive_strength": 0.42,
+        "power": 2.65,
+        "strength_by_category": {
+          "hair": 0.30,
+          "skin": 0.08,
+          "clothes": 0.24,
+          "accessory": 0.36
+        }
+      },
+      "emission": {
+        "tint": [0.36, 0.72, 1.0, 1.0],
+        "effect": 0.95,
+        "glow_wing": 0.62,
+        "glass": 0.18,
+        "strength_by_role": {
+          "effect": 1.10,
+          "glow_wing": 0.74,
+          "head_glasses_lens": 0.16,
+          "eye_glasses": 0.12,
+          "vrm_eye_glasses": 0.12
+        },
+        "tint_by_role": {
+          "effect": [0.26, 0.86, 1.0, 1.0],
+          "glow_wing": [0.34, 0.70, 1.0, 1.0]
+        }
+      },
+      "category_tints": {
+        "hair": [0.84, 0.88, 1.0, 1.0],
+        "skin": [1.0, 0.90, 0.90, 1.0],
+        "skin_body": [1.0, 0.91, 0.90, 1.0],
+        "clothes": [0.88, 0.89, 0.94, 1.0],
+        "white_cloth": [0.86, 0.88, 0.94, 1.0]
+      },
+      "category_colors": {
+        "hair_shadow": [0.56, 0.60, 0.86, 1.0],
+        "hair_deep_shadow": [0.32, 0.36, 0.60, 1.0],
+        "skin_shadow": [0.98, 0.68, 0.76, 1.0],
+        "skin_deep_shadow": [0.78, 0.48, 0.62, 1.0],
+        "clothes_shadow": [0.38, 0.39, 0.60, 1.0],
+        "clothes_deep_shadow": [0.18, 0.18, 0.32, 1.0],
+        "accessory_shadow": [0.34, 0.40, 0.62, 1.0],
+        "accessory_deep_shadow": [0.16, 0.18, 0.34, 1.0]
+      },
+      "face": {
+        "shadow_color": [0.98, 0.75, 0.80, 1.0],
+        "shadow_strength": 0.055,
+        "shadow_threshold": 0.14,
+        "shadow_softness": 0.36,
+        "rim_strength": 0.025,
+        "brightness": 1.035
+      },
+      "eye": {
+        "brightness": 1.16,
+        "emission_strength": 0.34
+      }
+    },
+    "FlatLive2DLike": {
+      "description": "Flatter portrait style with reduced volume and softer shadows.",
+      "camera": {
+        "orthogonal_size": 1.95,
+        "position": [0.0, 1.03, 4.4],
+        "target": [0.0, 1.03, 0.0]
+      },
+      "world": {
+        "background_color": [0.11, 0.115, 0.14, 1.0],
+        "ambient_color": [0.42, 0.43, 0.48, 1.0],
+        "ambient_energy": 0.45,
+        "tonemap": "linear",
+        "exposure": 1.0
+      },
+      "light": {
+        "energy": 0.42,
+        "rotation_degrees": [-28.0, -22.0, 0.0]
+      },
+      "outline": {
+        "enabled": true,
+        "width": 0.0035,
+        "color": [0.18, 0.14, 0.24, 1.0]
+      },
+      "toon": {
+        "shadow_threshold": 0.30,
+        "shadow_softness": 0.22,
+        "second_shadow_threshold": 0.05,
+        "shadow_strength": 0.24,
+        "specular_strength": 0.0,
+        "brightness": 1.08
+      },
+      "face": {
+        "shadow_strength": 0.04,
+        "shadow_threshold": 0.12,
+        "shadow_softness": 0.42,
+        "brightness": 1.05
+      },
+      "eye": {
+        "brightness": 1.15,
+        "emission_strength": 0.30
+      }
+    }
+  }
+}

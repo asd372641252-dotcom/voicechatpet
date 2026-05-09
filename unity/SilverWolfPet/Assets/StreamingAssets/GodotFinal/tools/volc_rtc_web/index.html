@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>银狼 RTC 联调</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
+        background: #141018;
+        color: #f7edf7;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(255, 115, 197, 0.25), transparent 30rem),
+          radial-gradient(circle at 80% 70%, rgba(106, 193, 255, 0.22), transparent 28rem),
+          #141018;
+      }
+
+      main {
+        width: min(920px, calc(100vw - 32px));
+        border: 1px solid rgba(255, 188, 232, 0.3);
+        border-radius: 8px;
+        background: rgba(30, 22, 36, 0.82);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
+        overflow: hidden;
+      }
+
+      header,
+      section {
+        padding: 18px 22px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 188, 232, 0.18);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .meta div,
+      .log {
+        border: 1px solid rgba(255, 188, 232, 0.18);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .meta div {
+        padding: 10px 12px;
+        min-width: 0;
+      }
+
+      .label {
+        color: #dcb5d2;
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+
+      .value {
+        font-family: Consolas, "Cascadia Mono", monospace;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      button {
+        border: 0;
+        border-radius: 6px;
+        padding: 10px 16px;
+        color: #22151f;
+        background: #ffb7df;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        color: #f8e8f3;
+        background: rgba(255, 255, 255, 0.13);
+      }
+
+      button.ready {
+        color: #241520;
+        background: linear-gradient(135deg, #ffb7df, #9ddcff);
+      }
+
+      button.attention {
+        color: #27131f;
+        background: linear-gradient(135deg, #ffd2ec, #8fdcff);
+        box-shadow: 0 0 0 2px rgba(255, 210, 236, 0.35), 0 0 24px rgba(255, 136, 210, 0.35);
+      }
+
+      button:disabled {
+        cursor: default;
+        opacity: 0.5;
+      }
+
+      label {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #ead4e4;
+        user-select: none;
+      }
+
+      input {
+        accent-color: #ff9cd1;
+      }
+
+      .log {
+        height: 320px;
+        overflow: auto;
+        padding: 12px;
+        font-family: Consolas, "Cascadia Mono", monospace;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .ok {
+        color: #9df4c8;
+      }
+
+      .warn {
+        color: #ffd47d;
+      }
+
+      .bad {
+        color: #ff9da8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>银狼 RTC 联调</h1>
+        <div id="status" class="warn">未连接</div>
+      </header>
+      <section class="meta">
+        <div>
+          <div class="label">房间</div>
+          <div id="room" class="value">-</div>
+        </div>
+        <div>
+          <div class="label">本地用户</div>
+          <div id="user" class="value">-</div>
+        </div>
+        <div>
+          <div class="label">AI 用户</div>
+          <div id="bot" class="value">-</div>
+        </div>
+      </section>
+      <section class="actions">
+        <button id="start">开始语音联调</button>
+        <button id="stop" class="secondary" disabled>停止</button>
+        <button id="visionStart" class="secondary">开启屏幕识别</button>
+        <button id="visionStop" class="secondary" disabled>关闭屏幕识别</button>
+        <button id="cameraStart" class="secondary">开启摄像头推流</button>
+        <button id="cameraStop" class="secondary" disabled>关闭摄像头推流</button>
+        <button id="check" class="secondary">检查配置</button>
+        <label>
+          <input id="clientSubtitle" type="checkbox" checked />
+          额外启动 RTC 字幕 API
+        </label>
+      </section>
+      <section>
+        <div id="log" class="log"></div>
+      </section>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

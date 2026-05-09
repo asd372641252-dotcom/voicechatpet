@@ -1,0 +1,7 @@
+Blender-like lighting applied
+Source: Blender EEVEE, Filmic, Medium Contrast, exposure +0.1
+Realtime lights created: 6
+Disabled imported/baked lights: 6
+Scene bounds center: (1.12, 1.46, 0.26)
+Scene bounds size: (5.73, 3.84, 6.69)
+Ambient: warm HDRI approximation, strength 2.4 translated to Unity Trilight

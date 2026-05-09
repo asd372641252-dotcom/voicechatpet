@@ -1,0 +1,70 @@
+# Unity generated state
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Ll]ogs/
+**/[Oo]bj/
+**/[Bb]in/
+**/[Uu]ser[Ss]ettings/
+**/[Mm]emoryCaptures/
+**/.vs/
+
+# Product builds and release zips
+builds/
+**/[Bb]uilds/
+*.zip
+*.7z
+*.rar
+*.pdb
+**/*_BurstDebugInformation_DoNotShip/
+
+# Python / Node / .NET generated state
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+node_modules/
+**/bin/
+**/obj/
+
+# Local credentials and runtime config
+*.env
+.env*
+*.local.json
+*.local.json.*
+**/config/*.local.json
+**/config/*.local.json.*
+RTC_Token/
+akskdemo/
+SDK/
+
+# Public source character-asset boundary
+# Internal/test packages may include the restricted character model, but public
+# Git history must not contain it. Textures, shaders, scenes, and animations can
+# still be tracked when their redistribution rights are cleared.
+**/silver_wolf_lv999*.fbx
+**/silver_wolf_lv999*.fbx.meta
+**/silver_wolf_lv999*.glb
+**/silver_wolf_lv999*.glb.meta
+**/silver_wolf_lv999*.gltf
+**/silver_wolf_lv999*.gltf.meta
+**/silver_wolf_lv999*.vrm
+**/silver_wolf_lv999*.vrm.meta
+**/silver_wolf_lv999*.pmx
+**/silver_wolf_lv999*.pmx.meta
+**/silver_wolf_lv999*.pmd
+**/silver_wolf_lv999*.pmd.meta
+
+# Runtime caches and logs
+.tmp/
+logs/
+*.log
+*.tmp
+*.bak
+*.bak.*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

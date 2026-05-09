@@ -1,0 +1,32 @@
+Standard window glass and light pass fix
+Renderer lets light pass: Blender Indoor Scene/对象039
+Glass material transparent Standard: Assets/SceneExport/MaterialsLilToon/01 - Default.005_TransparentGlass_21756_lilToon.mat
+Renderer lets light pass: Blender Indoor Scene/Rectangle006
+Glass material transparent Standard: Assets/SceneExport/MaterialsLilToon/材质.010_TransparentGlass_21754_lilToon.mat
+Renderer lets light pass: Blender Indoor Scene/Line006.002
+Glass material transparent Standard: Assets/SceneExport/MaterialsLilToon/材质.032_TransparentGlass_21764_lilToon.mat
+Renderer lets light pass: Blender Indoor Scene/对象010
+Renderer lets light pass: Blender Indoor Scene/平面
+Window material no shadow caster: Assets/SceneExport/Materials/Window_Backdrop_IndoorOnly.mat
+Renderer lets light pass: Blender Indoor Scene/图形019
+Glass material transparent Standard: Assets/SceneExport/MaterialsLilToon/Dull_white_23950_lilToon.mat
+Glass material asset transparent Standard: Assets/SceneExport/Materials/01 - Default.005_TransparentGlass.mat
+Glass material asset transparent Standard: Assets/SceneExport/Materials/材质.010_TransparentGlass.mat
+Glass material asset transparent Standard: Assets/SceneExport/Materials/材质.032_TransparentGlass.mat
+Original/proxy light enabled: Blender Indoor Scene/面光.004 type=Rectangle intensity=0.1570796
+Original/proxy light enabled: Blender Indoor Scene/面光.005/面光.005 Realtime Proxy type=Point intensity=0.75
+Original/proxy light enabled: Blender Indoor Scene/面光.004/面光.004 Realtime Proxy type=Point intensity=0.75
+Original/proxy light enabled: Blender Indoor Scene/面光.003/面光.003 Realtime Proxy type=Point intensity=0.8267146
+Original/proxy light enabled: Blender Indoor Scene/面光.005 type=Rectangle intensity=0.1570796
+Original/proxy light enabled: Blender Indoor Scene/面光.002/面光.002 Realtime Proxy type=Point intensity=0.8267146
+Original/proxy light enabled: Blender Indoor Scene/面光 type=Rectangle intensity=20
+Original/proxy light enabled: Blender Indoor Scene/面光.001/面光.001 Realtime Proxy type=Point intensity=4.8
+Original/proxy light enabled: Blender Indoor Scene/面光.002 type=Rectangle intensity=0.3926991
+Original/proxy light enabled: Blender Indoor Scene/面光.001 type=Rectangle intensity=11.78097
+Window accent light enabled: Window Shadow Accent/Window Shadow Accent - cookie beam intensity=50 range=9.694304
+Original/proxy light enabled: Blender Indoor Scene/面光.003 type=Rectangle intensity=0.3926991
+Light-pass renderers configured: 6
+Glass materials configured: 7
+Window/backdrop materials configured: 1
+Lights enabled for pass: 12
+Window accent lights configured: 1

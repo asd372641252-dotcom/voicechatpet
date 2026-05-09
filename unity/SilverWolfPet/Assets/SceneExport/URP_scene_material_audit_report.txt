@@ -1,0 +1,57 @@
+﻿URP scene material audit
+Scene: Assets/Scenes/BlenderIndoorScene.unity
+Preview asset: Assets/SceneExport/URP_scene_material_audit_preview.png
+Preview disk copy: D:/pet/urp_scene_material_audit_preview.png
+CSV: Assets/SceneExport/URP_scene_material_audit.csv
+
+Renderer material slots: 261
+Null material slots: 0
+Slots with base texture: 83
+Slots with white color and no base texture: 8
+Slots with texture but white tint: 2
+Unique base textures used: 52
+
+Rendered preview average RGB: 178.3, 179.2, 177.7
+Rendered preview near-white pixel ratio: 37.46 %
+Rendered preview saturated-white pixel ratio: 35.37 %
+
+Shader counts:
+- Universal Render Pipeline/Lit: 260
+- Universal Render Pipeline/Unlit: 1
+
+White/no-texture material examples:
+- No Name_23824_lilToon | Assets/SceneExport/MaterialsLilToon/No Name_23824_lilToon.mat | renderer Blender Indoor Scene/Line016.001
+- Mat3d66-586052-19-368_24426_lilToon | Assets/SceneExport/MaterialsLilToon/Mat3d66-586052-19-368_24426_lilToon.mat | renderer Blender Indoor Scene/Group-586052-229/Obj3d66-586052-54-537
+- Mat3d66-586052-23-90_24466_lilToon | Assets/SceneExport/MaterialsLilToon/Mat3d66-586052-23-90_24466_lilToon.mat | renderer Blender Indoor Scene/Group-586052-731/Group-586052-192/Group-586052-423/Obj3d66-586052-7-856.002
+- No Name_23824_lilToon | Assets/SceneExport/MaterialsLilToon/No Name_23824_lilToon.mat | renderer Blender Indoor Scene/Line104
+- No Name_23824_lilToon | Assets/SceneExport/MaterialsLilToon/No Name_23824_lilToon.mat | renderer Blender Indoor Scene/Sphere004
+- No Name_23824_lilToon | Assets/SceneExport/MaterialsLilToon/No Name_23824_lilToon.mat | renderer Blender Indoor Scene/对象106
+- Shiny_white_24026_lilToon | Assets/SceneExport/MaterialsLilToon/Shiny_white_24026_lilToon.mat | renderer Blender Indoor Scene/对象060
+- No Name_23824_lilToon | Assets/SceneExport/MaterialsLilToon/No Name_23824_lilToon.mat | renderer Blender Indoor Scene/立方体.002
+
+First textured material examples:
+- Material #69_24214_lilToon | Assets/SceneExport/Textures/063_贴图 _47_a7db654950.jpg | renderer Blender Indoor Scene/对象127
+- Material #27_24436_lilToon | Assets/SceneExport/Textures/028_base.tga_6917dd332e.png | renderer Blender Indoor Scene/组005/000-0-0
+- Material #86_23978_lilToon | Assets/SceneExport/Textures/081_贴图 _71_a489611e87.jpg | renderer Blender Indoor Scene/对象134
+- Material #117_23928_lilToon | Assets/SceneExport/Textures/048_贴图 _102_774281c164.jpg | renderer Blender Indoor Scene/Box159
+- Material #119_24090_lilToon | Assets/SceneExport/Textures/050_贴图 _104_d10737a8ce.jpg | renderer Blender Indoor Scene/Box156
+- Material #62_23918_lilToon | Assets/SceneExport/Textures/058_贴图 _39_d35001f6fd.jpg | renderer Blender Indoor Scene/ChamferBox004
+- Material #115_23812_lilToon | Assets/SceneExport/Textures/046_贴图 _100_a26bebd4eb.jpg | renderer Blender Indoor Scene/Box101
+- Material #117_23928_lilToon | Assets/SceneExport/Textures/048_贴图 _102_774281c164.jpg | renderer Blender Indoor Scene/Box165
+- Material #65_24194_lilToon | Assets/SceneExport/Textures/041_QQ图片20210220165817_4e73e43538.jpg | renderer Blender Indoor Scene/Box086
+- Material #80_24258_lilToon | Assets/SceneExport/Textures/072_贴图 _58_82f5ea1501.jpg | renderer Blender Indoor Scene/对象113.002
+- Material #111_23860_lilToon | Assets/SceneExport/Textures/092_贴图 _96_ffa79e945d.jpg | renderer Blender Indoor Scene/Box051_original001
+- Material #75_24136_lilToon | Assets/SceneExport/Textures/068_贴图 _53_34c8749b58.jpg | renderer Blender Indoor Scene/对象128
+- Material #116_23740_lilToon | Assets/SceneExport/Textures/047_贴图 _101_0aa1c9f79b.jpg | renderer Blender Indoor Scene/Box164
+- Material #93_23730_lilToon | Assets/SceneExport/Textures/089_贴图 _78_9c31fa4777.jpg | renderer Blender Indoor Scene/Box147
+- Material #34_23886_lilToon | Assets/SceneExport/Textures/045_贴图 _10_f7e8382c8f.jpg | renderer Blender Indoor Scene/Box141
+- Material #28_23836_lilToon | Assets/SceneExport/Textures/059_贴图 _4_3ebe13a449.jpg | renderer Blender Indoor Scene/Box142
+- Skin_24440_lilToon | Assets/SceneExport/Textures/038_mat0_c_cb453112b7.jpg | renderer Blender Indoor Scene/组004/mesh0.003
+- Material #73_24200_lilToon | Assets/SceneExport/Textures/067_贴图 _51_db9910b3cf.jpg | renderer Blender Indoor Scene/Box016
+- Material #38_24036_lilToon | Assets/SceneExport/Textures/053_贴图 _14_90bfdaaa22.jpg | renderer Blender Indoor Scene/对象118
+- Material #45_23922_lilToon | Assets/SceneExport/Textures/056_贴图 _22_3df9a42e70.png | renderer Blender Indoor Scene/对象119
+- Material #62_23918_lilToon | Assets/SceneExport/Textures/058_贴图 _39_d35001f6fd.jpg | renderer Blender Indoor Scene/ChamferBox006
+- Material #116_23740_lilToon | Assets/SceneExport/Textures/047_贴图 _101_0aa1c9f79b.jpg | renderer Blender Indoor Scene/Box158
+- Material #91_24236_lilToon | Assets/SceneExport/Textures/088_贴图 _76_7c74a1e400.jpg | renderer Blender Indoor Scene/Box057
+- Material #33_24256_lilToon | Assets/SceneExport/Textures/091_贴图 _9_686a136b22.jpg | renderer Blender Indoor Scene/对象116
+- Material #43_24044_lilToon | Assets/SceneExport/Textures/055_贴图 _20_e8330ef2b9.jpg | renderer Blender Indoor Scene/Box140

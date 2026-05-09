@@ -1,0 +1,122 @@
+﻿Shader-only Standard swap
+Scene material references changed: False
+Referenced material assets found: 113
+Material files changed to Standard shader: 111
+Material files already Standard: 2
+Material files missing m_Shader line: 0
+Standard shader line:   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+
+Changed material files:
+D:\pet\场景工程\Assets\SceneExport\Materials\Window_Backdrop_IndoorOnly.mat
+D:\pet\场景工程\Assets\SceneExport\Materials\Window_Shadow_Decal.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\_Aircraft_055_24386_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\_Blender Bros Emissive Pack2.1_012.001_23692_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\_Example Sheet_019.001_23850_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\_Example Sheet_052.002_23988_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\_Examples_003.001_24092_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\_Examples_036.002_23798_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\01 - Default.005_TransparentGlass_21756_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Blue_23772_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Dull_white_23950_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Facial_24406_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Hair_24416_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\jacket_24434_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\jacket_torn_24438_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-371593-12-724_24402_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-586052-19-368_24426_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-586052-20-16_24424_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-586052-23-90_24466_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-609108-33-753_24108_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-609108-34-482_24110_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-609108-35-511_24112_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Mat3d66-609108-36-104_24114_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #111_23860_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #115_23812_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #116_23740_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #117_23928_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #118_23710_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #119_24090_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #26.001_24446_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #27_24436_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #28_23836_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #29_23952_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #32_24120_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #33_24256_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #34_23886_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #36_23784_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #37_23960_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #38_24036_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #40_24182_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #41_24184_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #43_24044_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #45_23922_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #60_24170_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #62_23918_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #64_24054_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #65_24194_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #66_24128_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #69_24214_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #70_24050_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #72_24250_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #73_24200_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #75_24136_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #76_24280_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #78_23742_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #79_24022_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #80_24258_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #81_24186_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #82_24296_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #83_24122_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #84_24160_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #85_23840_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #86_23978_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #87_23848_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #88_23980_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #89_24234_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #90_24390_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #91_24236_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Material #93_23730_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\No Name_23824_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Shiny_white_24026_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\Skin_24440_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\不锈钢_23792_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.001_23780_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.002_23898_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.003_24298_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.004_23796_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.005_23728_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.007_24208_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.008_24038_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.009_23774_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.010_TransparentGlass_21754_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.012_23802_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.014_24104_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.015_24072_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.016_23770_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.017_24020_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.018_24116_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.019_23956_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.020_23732_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.021_23736_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.022_23726_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.024_23932_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.025_23720_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.027_24344_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.028_24352_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.029_23800_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.031_24174_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.032_24172_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.032_TransparentGlass_21764_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.033_23986_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.034_23924_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.035_23714_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.036_24314_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\材质.037_24164_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\黑缝隙.002_23768_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\黑缝隙_24028_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\肌理_黑_23738_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\金属白_23690_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\金属黑.001_24024_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\金属黑.002_23920_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\平面.001_Visible_21760_lilToon.mat
+D:\pet\场景工程\Assets\SceneExport\MaterialsLilToon\自发光_蓝光_23958_lilToon.mat

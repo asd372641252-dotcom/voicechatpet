@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "runtime_policy": {
+    "mode": "desktop_pet_idle_only_mvp",
+    "only_idle_actions": true,
+    "excluded_idle_action_numbers": [7, 13, 30, 33, 34, 57, 58],
+    "notes": [
+      "Current runtime keeps only KA_Idle actions for stability.",
+      "Large posture, transition, showcase, and overlay slots are reserved but not enabled unless they map to an allowed local action."
+    ]
+  },
+  "slots": {
+    "stand_idle": {
+      "category": "idle",
+      "primary": "KA_Idle01_breathing",
+      "pool": ["KA_Idle01_breathing", "KA_Idle09_Waiting", "KA_Idle03_LookAtHands", "KA_Idle04_LookAtFeet", "KA_Idle05_Stretch", "KA_Idle11_LookingBack", "KA_Idle12_LeaningForward"],
+      "posture": "stand",
+      "type": "loop",
+      "enabled": true
+    },
+    "sit_idle": {
+      "category": "idle",
+      "primary": "KA_Idle10_Sit",
+      "pool": ["KA_Idle10_Sit", "KA_Idle40_CrossLegs", "KA_Idle46_SitFloor", "KA_Idle53_Seiza"],
+      "posture": "sit",
+      "type": "loop",
+      "enabled": true
+    },
+    "lie_idle": {
+      "category": "idle",
+      "primary": "",
+      "pool": [],
+      "posture": "lie",
+      "type": "loop",
+      "enabled": false
+    },
+    "air_idle": {
+      "category": "idle",
+      "primary": "",
+      "pool": [],
+      "posture": "air",
+      "type": "loop",
+      "enabled": false
+    },
+    "sleepy_idle": {
+      "category": "idle",
+      "primary": "KA_Idle09_Waiting",
+      "pool": ["KA_Idle09_Waiting", "KA_Idle18_Shy"],
+      "posture": "stand",
+      "type": "loop",
+      "enabled": true
+    },
+
+    "listening": {
+      "category": "voice_state",
+      "primary": "KA_Idle02_LookLeftAndRight",
+      "pool": ["KA_Idle02_LookLeftAndRight", "KA_Idle11_LookingBack", "KA_Idle12_LeaningForward", "KA_Idle18_Shy", "KA_Idle43_HandOnHip"],
+      "posture": "stand",
+      "type": "loop",
+      "enabled": true
+    },
+    "thinking": {
+      "category": "voice_state",
+      "primary": "KA_Idle08_ComeUpWithAnIdea",
+      "pool": ["KA_Idle08_ComeUpWithAnIdea", "KA_Idle03_LookAtHands", "KA_Idle04_LookAtFeet", "KA_Idle35_FingerSnap", "KA_Idle43_HandOnHip"],
+      "posture": "stand",
+      "type": "loop",
+      "enabled": true
+    },
+    "speaking": {
+      "category": "voice_state",
+      "primary": "KA_Idle50_StandingTalk1_1",
+      "pool": ["KA_Idle50_StandingTalk1_1", "KA_Idle51_StandingTalk1_2", "KA_Idle12_LeaningForward", "KA_Idle16_WaveHands", "KA_Idle35_FingerSnap", "KA_Idle37_Tsundere", "KA_Idle43_HandOnHip", "KA_Idle45_WaveHandSlightly"],
+      "posture": "stand",
+      "type": "loop",
+      "enabled": true
+    },
+    "interrupted": {
+      "category": "voice_state",
+      "primary": "KA_Idle29_Surprised",
+      "pool": ["KA_Idle29_Surprised", "KA_Idle47_Scaring"],
+      "posture": "stand",
+      "type": "reaction",
+      "enabled": true
+    },
+
+    "talk_neutral": {"category": "voice_state", "primary": "KA_Idle50_StandingTalk1_1", "pool": ["KA_Idle50_StandingTalk1_1", "KA_Idle51_StandingTalk1_2", "KA_Idle12_LeaningForward", "KA_Idle43_HandOnHip", "KA_Idle45_WaveHandSlightly"], "posture": "stand", "type": "loop", "enabled": true},
+    "talk_happy": {"category": "voice_state", "primary": "KA_Idle28_Laugh", "pool": ["KA_Idle28_Laugh", "KA_Idle36_Yay"], "posture": "stand", "type": "gesture", "enabled": true},
+    "talk_mocking": {"category": "voice_state", "primary": "KA_Idle42_Taunt", "pool": ["KA_Idle42_Taunt", "KA_Idle43_HandOnHip"], "posture": "stand", "type": "gesture", "enabled": true},
+    "talk_serious": {"category": "voice_state", "primary": "KA_Idle50_StandingTalk1_1", "pool": ["KA_Idle50_StandingTalk1_1"], "posture": "stand", "type": "loop", "enabled": true},
+    "talk_confused": {"category": "voice_state", "primary": "KA_Idle08_ComeUpWithAnIdea", "pool": ["KA_Idle08_ComeUpWithAnIdea"], "posture": "stand", "type": "gesture", "enabled": true},
+    "talk_annoyed": {"category": "voice_state", "primary": "KA_Idle27_Angry", "pool": ["KA_Idle27_Angry", "KA_Idle19_ShyRefusal"], "posture": "stand", "type": "gesture", "enabled": true},
+
+    "happy_react": {"category": "emotion_reaction", "primary": "KA_Idle28_Laugh", "pool": ["KA_Idle28_Laugh", "KA_Idle25_Cheers", "KA_Idle36_Yay"], "posture": "stand", "type": "reaction", "enabled": true},
+    "mocking_react": {"category": "emotion_reaction", "primary": "KA_Idle42_Taunt", "pool": ["KA_Idle42_Taunt"], "posture": "stand", "type": "reaction", "enabled": true},
+    "angry_react": {"category": "emotion_reaction", "primary": "KA_Idle27_Angry", "pool": ["KA_Idle27_Angry"], "posture": "stand", "type": "reaction", "enabled": true},
+    "confused_react": {"category": "emotion_reaction", "primary": "KA_Idle08_ComeUpWithAnIdea", "pool": ["KA_Idle08_ComeUpWithAnIdea", "KA_Idle03_LookAtHands"], "posture": "stand", "type": "reaction", "enabled": true},
+    "surprised_react": {"category": "emotion_reaction", "primary": "KA_Idle29_Surprised", "pool": ["KA_Idle29_Surprised"], "posture": "stand", "type": "reaction", "enabled": true},
+    "sleepy_react": {"category": "emotion_reaction", "primary": "KA_Idle09_Waiting", "pool": ["KA_Idle09_Waiting", "KA_Idle18_Shy"], "posture": "stand", "type": "reaction", "enabled": true},
+    "smug_react": {"category": "emotion_reaction", "primary": "KA_Idle43_HandOnHip", "pool": ["KA_Idle43_HandOnHip", "KA_Idle42_Taunt"], "posture": "stand", "type": "reaction", "enabled": true},
+
+    "work_start": {"category": "work_state", "primary": "KA_Idle03_LookAtHands", "pool": ["KA_Idle03_LookAtHands"], "posture": "stand", "type": "gesture", "enabled": true},
+    "work_thinking": {"category": "work_state", "primary": "KA_Idle08_ComeUpWithAnIdea", "pool": ["KA_Idle08_ComeUpWithAnIdea"], "posture": "stand", "type": "loop", "enabled": true},
+    "work_searching": {"category": "work_state", "primary": "KA_Idle02_LookLeftAndRight", "pool": ["KA_Idle02_LookLeftAndRight"], "posture": "stand", "type": "loop", "enabled": true},
+    "work_waiting": {"category": "work_state", "primary": "KA_Idle09_Waiting", "pool": ["KA_Idle09_Waiting"], "posture": "stand", "type": "loop", "enabled": true},
+    "work_success": {"category": "work_state", "primary": "KA_Idle36_Yay", "pool": ["KA_Idle36_Yay", "KA_Idle28_Laugh"], "posture": "stand", "type": "reaction", "enabled": true},
+    "work_failed": {"category": "work_state", "primary": "KA_Idle19_ShyRefusal", "pool": ["KA_Idle19_ShyRefusal", "KA_Idle27_Angry"], "posture": "stand", "type": "reaction", "enabled": true},
+
+    "clicked": {"category": "user_interaction", "primary": "KA_Idle45_WaveHandSlightly", "pool": ["KA_Idle45_WaveHandSlightly"], "posture": "stand", "type": "reaction", "enabled": true},
+    "drag_start": {"category": "user_interaction", "primary": "KA_Idle43_HandOnHip", "pool": ["KA_Idle43_HandOnHip"], "posture": "stand", "type": "gesture", "enabled": true},
+    "dragging": {"category": "user_interaction", "primary": "KA_Idle01_breathing", "pool": ["KA_Idle01_breathing"], "posture": "stand", "type": "loop", "enabled": true},
+    "drag_end": {"category": "user_interaction", "primary": "KA_Idle44_GreetingBow", "pool": ["KA_Idle44_GreetingBow"], "posture": "stand", "type": "reaction", "enabled": true},
+    "user_idle": {"category": "user_interaction", "primary": "KA_Idle09_Waiting", "pool": ["KA_Idle09_Waiting"], "posture": "stand", "type": "loop", "enabled": true},
+    "user_active": {"category": "user_interaction", "primary": "KA_Idle02_LookLeftAndRight", "pool": ["KA_Idle02_LookLeftAndRight"], "posture": "stand", "type": "loop", "enabled": true},
+    "mouse_follow": {"category": "user_interaction", "primary": "KA_Idle02_LookLeftAndRight", "pool": ["KA_Idle02_LookLeftAndRight"], "posture": "stand", "type": "loop", "enabled": true},
+    "look_at_user": {"category": "user_interaction", "primary": "KA_Idle12_LeaningForward", "pool": ["KA_Idle12_LeaningForward"], "posture": "stand", "type": "loop", "enabled": true},
+
+    "stand": {"category": "posture", "primary": "KA_Idle01_breathing", "pool": ["KA_Idle01_breathing"], "posture": "stand", "type": "posture", "enabled": true},
+    "sit": {"category": "posture", "primary": "KA_Idle10_Sit", "pool": ["KA_Idle10_Sit", "KA_Idle40_CrossLegs"], "posture": "sit", "type": "posture", "enabled": true},
+    "lie": {"category": "posture", "primary": "", "pool": [], "posture": "lie", "type": "posture", "enabled": false},
+    "air": {"category": "posture", "primary": "", "pool": [], "posture": "air", "type": "posture", "enabled": false},
+    "crouch": {"category": "posture", "primary": "", "pool": [], "posture": "stand", "type": "posture", "enabled": false},
+
+    "stand_to_sit": {"category": "transition", "primary": "", "pool": [], "posture": "sit", "type": "transition", "enabled": false},
+    "sit_to_stand": {"category": "transition", "primary": "", "pool": [], "posture": "stand", "type": "transition", "enabled": false},
+    "stand_to_lie": {"category": "transition", "primary": "", "pool": [], "posture": "lie", "type": "transition", "enabled": false},
+    "lie_to_stand": {"category": "transition", "primary": "", "pool": [], "posture": "stand", "type": "transition", "enabled": false},
+    "stand_to_air": {"category": "transition", "primary": "", "pool": [], "posture": "air", "type": "transition", "enabled": false},
+    "air_to_stand": {"category": "transition", "primary": "", "pool": [], "posture": "stand", "type": "transition", "enabled": false},
+    "land": {"category": "transition", "primary": "", "pool": [], "posture": "stand", "type": "transition", "enabled": false},
+    "takeoff": {"category": "transition", "primary": "", "pool": [], "posture": "air", "type": "transition", "enabled": false},
+    "get_up": {"category": "transition", "primary": "", "pool": [], "posture": "stand", "type": "transition", "enabled": false},
+
+    "dance": {"category": "special_showcase", "primary": "KA_Idle23_Dance03", "pool": ["KA_Idle14_Dance02", "KA_Idle23_Dance03", "KA_Idle24_Dance04"], "posture": "stand", "type": "showcase", "enabled": false},
+    "fly_show": {"category": "special_showcase", "primary": "", "pool": [], "posture": "air", "type": "showcase", "enabled": false},
+    "weapon_pose": {"category": "special_showcase", "primary": "", "pool": [], "posture": "stand", "type": "showcase", "enabled": false},
+    "magic_pose": {"category": "special_showcase", "primary": "", "pool": [], "posture": "stand", "type": "showcase", "enabled": false},
+    "victory_pose": {"category": "special_showcase", "primary": "KA_Idle36_Yay", "pool": ["KA_Idle36_Yay"], "posture": "stand", "type": "showcase", "enabled": false},
+    "cute_pose": {"category": "special_showcase", "primary": "KA_Idle41_CuteShyPose", "pool": ["KA_Idle41_CuteShyPose", "KA_Idle39_CuteArmUp"], "posture": "stand", "type": "showcase", "enabled": false},
+    "photo_pose": {"category": "special_showcase", "primary": "KA_Idle43_HandOnHip", "pool": ["KA_Idle43_HandOnHip", "KA_Idle41_CuteShyPose"], "posture": "stand", "type": "showcase", "enabled": false},
+
+    "mouth_open": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "blink": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "eye_look": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "face_happy": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "face_angry": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "face_mocking": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "face_confused": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false},
+    "face_sleepy": {"category": "overlay", "primary": "", "pool": [], "type": "overlay", "enabled": false}
+  },
+  "semantic_bindings": {
+    "state_to_slot": {
+      "idle": "stand_idle",
+      "listening": "listening",
+      "thinking": "thinking",
+      "speaking": "speaking",
+      "interrupted": "interrupted",
+      "acting": "clicked",
+      "sleep": "sleepy_idle"
+    },
+    "emotion_to_slot": {
+      "neutral": "",
+      "happy": "happy_react",
+      "angry": "angry_react",
+      "mocking": "mocking_react",
+      "sleepy": "sleepy_react",
+      "surprised": "surprised_react",
+      "confused": "confused_react"
+    },
+    "gesture_to_slot": {
+      "none": "",
+      "small_tease": "talk_mocking",
+      "point": "clicked",
+      "arms_crossed": "talk_annoyed",
+      "nod": "drag_end",
+      "shake_head": "talk_annoyed",
+      "think": "thinking",
+      "smug": "smug_react"
+    },
+    "posture_to_slot": {
+      "stand": "stand",
+      "sit": "sit",
+      "lie": "lie",
+      "air": "air"
+    }
+  },
+  "safe_state_slots": {
+    "idle": ["stand_idle", "sleepy_idle"],
+    "listening": ["listening"],
+    "thinking": ["thinking", "work_thinking"],
+    "speaking": ["speaking", "talk_neutral"],
+    "interrupted": ["interrupted"]
+  },
+  "transition_routes": {
+    "stand->sit": ["stand_to_sit", "sit_idle"],
+    "sit->stand": ["sit_to_stand", "stand_idle"],
+    "air->lie": ["air_to_stand", "stand_idle", "stand_to_lie", "lie_idle"],
+    "lie->air": ["get_up", "stand_idle", "stand_to_air", "air_idle"]
+  },
+  "overlay_policy": {
+    "mouth_open": "Driven by audio_volume / mouth_open, not by action slot.",
+    "blink": "Expression/face layer, not an AnimationDirector state.",
+    "eye_look": "Look/mouse follow layer, not an AnimationDirector state.",
+    "face_*": "ExpressionController layer, not full-body action."
+  }
+}

@@ -1,0 +1,3 @@
+﻿lilToon lighting response repaired by YAML pass
+Material files touched: 111
+Values: _VertexLightStrength=1, _AsUnlit=0, _LightMinLimit=0.04, _LightMaxLimit=2, _lilDirectionalLightStrength=1, _MonochromeLighting=0

@@ -1,0 +1,10 @@
+﻿DIFFUSE_GI_SETUP_20260503_V4
+Diffuse GI setup for BlenderIndoorScene
+2026-05-03 11:12:27
+ModelImporter: generateSecondaryUV=True changed=False
+RenderSettings: ambientIntensity=1.55 reflectionIntensity=0.32
+LightingSettings: indirectOutput=1.9 bounceScale=1.45 bounces=5 samples=768
+RendererSettings: ForwardPlus=2 SSAOAdjusted=1
+Renderers: contributeGI=0 receiveGI=0 scaleInLightmap=0 skipped=13
+BakeAsyncStarted: False
+Bake did not start; use Window > Rendering > Lighting > Generate Lighting.

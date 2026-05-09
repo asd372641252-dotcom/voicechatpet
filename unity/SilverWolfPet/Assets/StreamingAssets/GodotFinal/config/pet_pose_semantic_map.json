@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "state_actions": {
+    "idle": "KA_Idle01_breathing",
+    "listening": "KA_Idle02_LookLeftAndRight",
+    "thinking": "KA_Idle08_ComeUpWithAnIdea",
+    "speaking": "KA_Idle50_StandingTalk1_1",
+    "interrupted": "KA_Idle29_Surprised",
+    "acting": "KA_Idle45_WaveHandSlightly",
+    "sleep": "KA_Idle09_Waiting"
+  },
+  "emotion_actions": {
+    "neutral": "",
+    "happy": "KA_Idle28_Laugh",
+    "angry": "KA_Idle27_Angry",
+    "mocking": "KA_Idle42_Taunt",
+    "sleepy": "KA_Idle09_Waiting",
+    "surprised": "KA_Idle29_Surprised",
+    "confused": "KA_Idle08_ComeUpWithAnIdea"
+  },
+  "gesture_actions": {
+    "none": "",
+    "small_tease": "KA_Idle42_Taunt",
+    "point": "KA_Idle39_CuteArmUp",
+    "arms_crossed": "KA_Idle37_Tsundere",
+    "nod": "KA_Idle44_GreetingBow",
+    "shake_head": "KA_Idle02_LookLeftAndRight",
+    "think": "KA_Idle08_ComeUpWithAnIdea",
+    "smug": "KA_Idle43_HandOnHip"
+  },
+  "posture_defaults": {
+    "stand": "KA_Idle01_breathing",
+    "sit": "KA_Idle10_Sit",
+    "lie": "",
+    "air": ""
+  },
+  "transition_routes": {
+    "air->lie": ["KA_Fly_End_Witch", "KA_Idle01_breathing", "KA_Sleep_Start"],
+    "lie->air": ["KA_Sleep_End", "KA_Idle01_breathing", "KA_Fly_Start_Witch"],
+    "stand->lie": ["KA_Sleep_Start"],
+    "lie->stand": ["KA_Sleep_End", "KA_Idle01_breathing"],
+    "stand->air": ["KA_Fly_Start_Witch"],
+    "air->stand": ["KA_Fly_End_Witch", "KA_Idle01_breathing"],
+    "stand->sit": ["KA_Sit_Start"],
+    "sit->stand": ["KA_Sit_End", "KA_Idle01_breathing"]
+  },
+  "fallbacks": {
+    "idle": "KA_Idle01_breathing",
+    "speaking_idle": "KA_Idle50_StandingTalk1_1",
+    "thinking_idle": "KA_Idle08_ComeUpWithAnIdea"
+  }
+}

@@ -1,0 +1,16 @@
+﻿MaterialsLilToon full folder restore + URP shader remap
+Folder: Assets/SceneExport/MaterialsLilToon
+
+Scene renderer material slots checked: 261
+Scene slots using MaterialsLilToon: 253
+MaterialsLilToon scene slots with texture: 81
+MaterialsLilToon scene slots white with no texture: 11
+
+Material assets scanned: 111
+Material assets remapped to URP/Lit: 111
+Materials with base texture: 53
+Materials with non-white _BaseColor after remap: 101
+Materials with white _BaseColor after remap: 10
+Materials with white _Color after source restore: 6
+
+Note: white _BaseColor now means the original _Color was also white, not a leftover default _BaseColor.

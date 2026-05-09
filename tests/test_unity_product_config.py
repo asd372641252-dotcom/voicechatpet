@@ -1,0 +1,259 @@
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+import unittest
+
+
+ROOT = Path(__file__).resolve().parents[1]
+UNITY_ROOT = ROOT / "unity" / "SilverWolfPet"
+ACTION_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetKawaiiActionController.cs"
+PRODUCT_VALIDATOR = UNITY_ROOT / "Assets/TransparentPet/Editor/TransparentPetProductValidator.cs"
+SCENE_BUILDER = UNITY_ROOT / "Assets/TransparentPet/Editor/TransparentPetSceneBuilder.cs"
+CONTEXT_MENU = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetContextMenu.cs"
+PLACEMENT_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetPlacementController.cs"
+FREE_CAMERA = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetFreeCamera.cs"
+FACE_TRACKER = UNITY_ROOT / "Assets/TransparentPet/Scripts/SceneHost/TransparentPetSceneFaceTracker.cs"
+FACE_TRACKING_PREFLIGHT = ROOT / "scripts/check_face_tracking_preflight.py"
+PRODUCT_PREFLIGHT = ROOT / "scripts/check_product_preflight.py"
+SCENE_BUILD_SCRIPT = ROOT / "scripts/build_unity_dual_product.ps1"
+
+
+class UnityProductConfigTests(unittest.TestCase):
+    def test_random_idle_actions_use_product_whitelist(self):
+        source = ACTION_CONTROLLER.read_text(encoding="utf-8")
+        self.assertIn("useProductRandomActionWhitelist = true", source)
+        self.assertIn("!IsRandomActionAllowedForProduct(actionName)", source)
+
+        whitelist_match = re.search(
+            r"randomActionWhitelist\s*=\s*(?P<body>.*?);",
+            source,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(whitelist_match)
+        whitelist = "".join(re.findall(r'"([^"]*)"', whitelist_match.group("body")))
+        allowed = {item.strip() for item in re.split(r"[,;\r\n]+", whitelist) if item.strip()}
+
+        safe_actions = {
+            "KA_Idle02_LookLeftAndRight",
+            "KA_Idle08_ComeUpWithAnIdea",
+            "KA_Idle16_WaveHands",
+            "KA_Idle28_Laugh",
+            "KA_Idle45_WaveHandSlightly",
+            "KA_Idle50_StandingTalk1_1",
+        }
+        risky_actions = {
+            "KA_Idle17_StumbleAndFall",
+            "KA_Idle54_CartwheelAndBackHandspring",
+            "KA_Idle55_Backflip",
+            "KA_Idle56_Handstand",
+            "KA_Idle57_Dance05",
+            "KA_Idle58_Dance06",
+        }
+
+        self.assertTrue(safe_actions.issubset(allowed))
+        self.assertTrue(risky_actions.isdisjoint(allowed))
+
+    def test_product_validator_checks_random_whitelist(self):
+        validator = PRODUCT_VALIDATOR.read_text(encoding="utf-8")
+        self.assertIn("ValidateRandomActionWhitelist", validator)
+        self.assertIn("KA_Idle17_StumbleAndFall", validator)
+        self.assertIn("KA_Idle54_CartwheelAndBackHandspring", validator)
+        self.assertIn("IsRandomActionAllowedForProduct", validator)
+
+    def test_scene_product_has_user_save_and_build_entry(self):
+        placement = PLACEMENT_CONTROLLER.read_text(encoding="utf-8")
+        self.assertIn("SaveUserPlacementNow", placement)
+        self.assertIn("ClearSavedPlacement", placement)
+        self.assertIn("ResetToFactoryDefault", placement)
+        self.assertIn("HasSavedPlacement", placement)
+
+        camera = FREE_CAMERA.read_text(encoding="utf-8")
+        self.assertIn("SaveUserCameraNow", camera)
+        self.assertIn("ClearSavedCamera", camera)
+        self.assertIn("ResetToFactoryDefault", camera)
+        self.assertIn("HasSavedCamera", camera)
+
+        menu = CONTEXT_MENU.read_text(encoding="utf-8")
+        self.assertIn("SaveUserPlacementNow", menu)
+        self.assertIn("SaveUserCameraNow", menu)
+        self.assertIn("ResetToFactoryDefault", menu)
+
+        builder = SCENE_BUILDER.read_text(encoding="utf-8")
+        self.assertIn("BuildSceneHostWindows", builder)
+        self.assertIn("UrpHostBuildPath", builder)
+        self.assertIn("ConfigureSceneHostPlayerSettings", builder)
+        self.assertIn("new Vector2(520f, 560f)", builder)
+
+        validator = PRODUCT_VALIDATOR.read_text(encoding="utf-8")
+        self.assertIn("ValidatePlacementPersistence", validator)
+        self.assertIn('StartsWith("ScenePet.", StringComparison.Ordinal)', validator)
+        self.assertIn("Editor play does not overwrite user camera saves", validator)
+        self.assertIn("Editor play does not overwrite user placement saves", validator)
+
+        build_script = SCENE_BUILD_SCRIPT.read_text(encoding="utf-8")
+        self.assertIn("TransparentPetSceneBuilder.BuildSceneHostWindows", build_script)
+
+    def test_desktop_product_defaults_to_right_side_small_window(self):
+        builder = SCENE_BUILDER.read_text(encoding="utf-8")
+        controller = (
+            UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentWindowController.cs"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("window.presentationMode = TransparentWindowController.MonitorPresentationMode.SmallWindow", builder)
+        self.assertIn("window.preferredMonitorIndex = 0", builder)
+        self.assertIn("window.primaryRightWindowSizePixels = new Vector2Int(720, 960)", builder)
+        self.assertIn('window.windowSettingsKey = "DesktopPet.Window.v1"', builder)
+        self.assertIn("PlayerSettings.defaultScreenWidth = 720", builder)
+        self.assertIn("PlayerSettings.defaultScreenHeight = 960", builder)
+        self.assertIn("PlayerSettings.resizableWindow = true", builder)
+        self.assertIn("int currentWidth = Mathf.Max(1, primaryRightWindowSizePixels.x);", controller)
+        self.assertIn("int currentHeight = Mathf.Max(1, primaryRightWindowSizePixels.y);", controller)
+
+    def test_voice_menu_can_edit_persona_and_polling_prompts(self):
+        menu = CONTEXT_MENU.read_text(encoding="utf-8")
+        launcher = (
+            UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetVoiceRuntimeLauncher.cs"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("DrawPromptSection", menu)
+        self.assertIn("MenuView.Prompts", menu)
+        self.assertIn("voiceLauncher.personaPrompt", menu)
+        self.assertIn("voiceLauncher.companionPollingPrompt", menu)
+        self.assertIn("ApplyPromptSettingsToConfig", menu)
+
+        self.assertIn("public string personaPrompt", launcher)
+        self.assertIn("public string companionPollingPrompt", launcher)
+        self.assertIn("LoadPromptSettingsFromConfig", launcher)
+        self.assertIn("SavePersonaPromptToMirroredConfigs", launcher)
+        self.assertIn("SaveCompanionPromptToMirroredConfigs", launcher)
+
+    def test_face_tracking_preflight_runs_without_camera(self):
+        result = subprocess.run(
+            [sys.executable, str(FACE_TRACKING_PREFLIGHT), "--skip-imports"],
+            cwd=ROOT,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=30,
+            check=False,
+        )
+
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("Face tracking preflight passed", result.stdout)
+        self.assertIn('"scene_has_face_tracker": true', result.stdout)
+        self.assertIn('"voice_uses_camera_hub_default": true', result.stdout)
+
+    def test_scene_face_tracking_does_not_recenter_manual_camera(self):
+        tracker = FACE_TRACKER.read_text(encoding="utf-8")
+        self.assertNotIn("freeCamera.SetFollowPlacementTarget(true);", tracker)
+        self.assertIn("trackingEnabled = startCameraOnEnable || settings.trackingEnabled", tracker)
+        self.assertIn("trackingEnabled = startCameraOnEnable || trackingEnabled", tracker)
+
+    def test_scene_camera_locks_focus_and_depth_of_field_by_default(self):
+        camera = FREE_CAMERA.read_text(encoding="utf-8")
+        self.assertIn("CurrentCameraStateVersion = 4", camera)
+        self.assertIn("public bool depthOfFieldEnabled = true", camera)
+        self.assertIn("state.version >= CurrentCameraStateVersion ? state.depthOfFieldEnabled : true", camera)
+        self.assertIn("bool keepPlacementTargetLocked", camera)
+        self.assertIn("followPlacementTarget = keepPlacementTargetLocked", camera)
+
+        placement = PLACEMENT_CONTROLLER.read_text(encoding="utf-8")
+        self.assertIn("public bool lockCameraTargetToPet = true", placement)
+        self.assertIn("CameraTargetLockedToPet", placement)
+        self.assertIn("SetCameraTargetLockedToPet", placement)
+        self.assertIn("freeCamera.SetFollowPlacementTarget(lockCameraTargetToPet)", placement)
+        self.assertIn("lockCameraTargetToPet && !freeCamera.followPlacementTarget", placement)
+        self.assertIn("version = 5", placement)
+        self.assertIn("lockCameraTargetToPet = lockCameraTargetToPet", placement)
+        self.assertIn("state.version >= 5 ? state.lockCameraTargetToPet : true", placement)
+
+        menu = CONTEXT_MENU.read_text(encoding="utf-8")
+        self.assertIn("CameraTargetLockedToPet", menu)
+        self.assertIn("SetCameraTargetLockedToPet", menu)
+
+        builder = SCENE_BUILDER.read_text(encoding="utf-8")
+        self.assertIn("freeCamera.depthOfFieldEnabled = true", builder)
+        self.assertIn("freeCamera.lockDepthOfFieldToPet = true", builder)
+        self.assertIn("placementController.lockCameraTargetToPet = true", builder)
+
+        validator = PRODUCT_VALIDATOR.read_text(encoding="utf-8")
+        self.assertIn("Depth of field is enabled by default", validator)
+        self.assertIn("Camera focus stays locked to the pet while placement changes", validator)
+
+        scene = (UNITY_ROOT / "Assets/Scenes/BlenderIndoorScene.unity").read_text(encoding="utf-8")
+        self.assertIn("lockCameraTargetToPet: 1", scene)
+        self.assertIn("depthOfFieldEnabled: 1", scene)
+
+    def test_scene_face_tracking_uses_stable_jitter_defaults(self):
+        tracker = FACE_TRACKER.read_text(encoding="utf-8")
+        self.assertIn("CurrentSettingsVersion = 7", tracker)
+        self.assertIn("StableNormalizedDeadZone = 0.07f", tracker)
+        self.assertIn("StableNormalizedDepthDeadZone = 0.05f", tracker)
+        self.assertIn("StableOffsetSmoothTime = 0.3f", tracker)
+        self.assertIn("StableDepthSmoothTime = 0.32f", tracker)
+        self.assertIn("StableCameraTargetShiftMeters = 0.08f", tracker)
+        self.assertIn("StableCameraDepthShiftMeters = 0.06f", tracker)
+        self.assertIn("StableCameraHeightFollowMeters = 0.55f", tracker)
+        self.assertIn("StableCameraOrbitDeadZoneDegrees = 5f", tracker)
+        self.assertIn("StableCameraOrbitSmoothTime = 0.32f", tracker)
+        self.assertIn("StableHeadYawPoseWeight = 0.22f", tracker)
+        self.assertIn("StableHeadPitchPoseWeight = 0.18f", tracker)
+        self.assertIn("ApplyStableTrackingDefaults", tracker)
+        self.assertIn("settings.settingsVersion < CurrentSettingsVersion", tracker)
+        self.assertIn("cameraOrbitDeadZoneDegrees = cameraOrbitDeadZoneDegrees", tracker)
+        self.assertIn("cameraHeightFollowMeters = cameraHeightFollowMeters", tracker)
+        self.assertIn("-Vector3.up * (_smoothOffset.y * cameraHeightFollowMeters)", tracker)
+        self.assertIn("freeCamera.SetExternalTargetOffset(heightTargetOffset)", tracker)
+
+        scene = (UNITY_ROOT / "Assets/Scenes/BlenderIndoorScene.unity").read_text(encoding="utf-8")
+        self.assertIn("normalizedDeadZone: 0.07", scene)
+        self.assertIn("normalizedDepthDeadZone: 0.05", scene)
+        self.assertIn("offsetSmoothTime: 0.3", scene)
+        self.assertIn("depthSmoothTime: 0.32", scene)
+        self.assertIn("cameraTargetShiftMeters: 0.08", scene)
+        self.assertIn("cameraDepthShiftMeters: 0.06", scene)
+        self.assertIn("cameraHeightFollowMeters: 0.55", scene)
+        self.assertIn("cameraOrbitDeadZoneDegrees: 5", scene)
+        self.assertIn("cameraOrbitSmoothTime: 0.32", scene)
+
+        head_tracker = (ROOT / "head_tracker/head_tracker.py").read_text(encoding="utf-8")
+        self.assertIn('parser.add_argument("--cutoff-hz", type=float, default=4.0)', head_tracker)
+        self.assertIn('parser.add_argument("--deadzone-xy", type=float, default=0.04)', head_tracker)
+        self.assertIn('parser.add_argument("--deadzone-z", type=float, default=0.035)', head_tracker)
+
+    def test_product_preflight_checks_mouth_expression_map(self):
+        source = PRODUCT_PREFLIGHT.read_text(encoding="utf-8")
+        self.assertIn("check_expression_map", source)
+        self.assertIn("mouth_round", source)
+        self.assertIn("mouth_smirk", source)
+
+        root_map = json.loads((ROOT / "config/expression_map.json").read_text(encoding="utf-8-sig"))
+        scene_map = json.loads(
+            (
+                UNITY_ROOT
+                / "Assets/StreamingAssets/GodotFinal/config/expression_map.json"
+            ).read_text(encoding="utf-8-sig")
+        )
+        self.assertEqual(root_map, scene_map)
+
+        mouth_expressions = root_map["expressions"]
+        required = {
+            "mouth_open",
+            "mouth_small",
+            "mouth_wide",
+            "mouth_round",
+            "mouth_closed",
+            "mouth_smirk",
+        }
+        self.assertTrue(required.issubset(mouth_expressions))
+        for key in required:
+            self.assertEqual("mouth", mouth_expressions[key]["exclusive_group"])
+            self.assertTrue(mouth_expressions[key]["blend_shapes"])
+
+
+if __name__ == "__main__":
+    unittest.main()

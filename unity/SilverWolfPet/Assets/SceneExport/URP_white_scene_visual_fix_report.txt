@@ -1,0 +1,33 @@
+﻿URP white scene visual fix
+Scene: Assets/Scenes/BlenderIndoorScene.unity
+
+Assigned Assets/SceneExport/Materials/平面_Visible.mat -> Blender Indoor Scene/平面
+Assigned Assets/SceneExport/Materials/平面.001_Visible.mat -> Blender Indoor Scene/平面.001
+Softened bright/no-texture material: 不锈钢_23792_lilToon | Assets/SceneExport/MaterialsLilToon/不锈钢_23792_lilToon.mat
+Softened bright/no-texture material: Mat3d66-586052-19-368_24426_lilToon | Assets/SceneExport/MaterialsLilToon/Mat3d66-586052-19-368_24426_lilToon.mat
+Softened bright/no-texture material: _Examples_003.001_24092_lilToon | Assets/SceneExport/MaterialsLilToon/_Examples_003.001_24092_lilToon.mat
+Softened bright/no-texture material: _Examples_036.002_23798_lilToon | Assets/SceneExport/MaterialsLilToon/_Examples_036.002_23798_lilToon.mat
+Softened bright/no-texture material: _Aircraft_055_24386_lilToon | Assets/SceneExport/MaterialsLilToon/_Aircraft_055_24386_lilToon.mat
+Softened bright/no-texture material: No Name_23824_lilToon | Assets/SceneExport/MaterialsLilToon/No Name_23824_lilToon.mat
+Softened bright/no-texture material: Shiny_white_24026_lilToon | Assets/SceneExport/MaterialsLilToon/Shiny_white_24026_lilToon.mat
+Softened bright/no-texture material: _Example Sheet_019.001_23850_lilToon | Assets/SceneExport/MaterialsLilToon/_Example Sheet_019.001_23850_lilToon.mat
+Softened bright/no-texture material: _Example Sheet_052.002_23988_lilToon | Assets/SceneExport/MaterialsLilToon/_Example Sheet_052.002_23988_lilToon.mat
+Softened bright/no-texture material: 材质.022_23726_lilToon | Assets/SceneExport/MaterialsLilToon/材质.022_23726_lilToon.mat
+Softened bright/no-texture material: Mat3d66-586052-23-90_24466_lilToon | Assets/SceneExport/MaterialsLilToon/Mat3d66-586052-23-90_24466_lilToon.mat
+Softened bright/no-texture material: _Blender Bros Emissive Pack2.1_012.001_23692_lilToon | Assets/SceneExport/MaterialsLilToon/_Blender Bros Emissive Pack2.1_012.001_23692_lilToon.mat
+Softened bright/no-texture material: 材质.014_24104_lilToon | Assets/SceneExport/MaterialsLilToon/材质.014_24104_lilToon.mat
+Clamped light Blender Indoor Scene/面光 Spot intensity 1.45 -> 0.85
+Clamped light Window Realtime Projection/Window Realtime Projection - soft sun spot 5 Spot intensity 1.45 -> 0.85
+Clamped light Window Realtime Projection/Window Realtime Projection - soft sun spot 3 Spot intensity 1.45 -> 0.85
+Clamped light Window Realtime Projection/Window Realtime Projection - soft sun spot 4 Spot intensity 1.45 -> 0.85
+Clamped light Blender Indoor Scene/面光.001 Point intensity 1.25 -> 0.75
+Clamped light Blender Indoor Scene/面光.003/面光.003 Realtime Proxy Point intensity 0.827 -> 0.75
+Clamped light Blender Indoor Scene/面光.001/面光.001 Realtime Proxy Point intensity 1.25 -> 0.75
+Clamped light Window Realtime Projection/Window Realtime Projection - soft sun spot 1 Spot intensity 1.45 -> 0.85
+Clamped light Window Realtime Projection/Window Realtime Projection - soft sun spot 2 Spot intensity 1.45 -> 0.85
+Skybox exposure set to 0.24
+
+Plane material fixes: 0
+White no-texture materials softened: 13
+Realtime lights clamped: 9
+Exposure/volume settings changed: 5

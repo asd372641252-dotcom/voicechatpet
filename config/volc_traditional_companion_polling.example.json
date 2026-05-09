@@ -1,0 +1,42 @@
+{
+  "Extends": "config/volc_traditional_voice_chat.local.json",
+  "VoiceRoute": {
+    "id": "traditional_companion_polling",
+    "display_name": "陪玩轮询",
+    "supports_vision": true,
+    "latency": "略高",
+    "note": "Same Volc ASR -> custom OpenAI-compatible LLM -> Volc cloned TTS route, with local CompanionVision polling enabled."
+  },
+  "CompanionVision": {
+    "Enabled": true,
+    "IntervalSec": 8,
+    "TickSec": 0.25,
+    "WaitUntilSpeechDone": true,
+    "PendingTimeoutSec": 20,
+    "MaxBusyWithoutAudioSec": 18,
+    "MinIdleSec": 1,
+    "UserSilenceSec": 15,
+    "FailureBackoffSec": 45,
+    "MaxFailureBackoffSec": 60,
+    "RecentContextCount": 0,
+    "RecentContextWindowSec": 180,
+    "InterruptMode": 1,
+    "Prompt": "你会收到截图，但不要复述画面、读UI、不要像屏幕解说员。你只需要说一句提醒、吐槽或建议，搞怪，撒娇和回怼。不要和之前的内容重复，只输出会被直接念出来的台词，禁止括号动作、舞台说明"
+  },
+  "StartVoiceChat": {
+    "TaskId": "silver_wolf_task_traditional_vision_001",
+    "Config": {
+      "ASRConfig": {
+        "InterruptConfig": {
+          "InterruptSpeechDuration": 400
+        }
+      },
+      "LLMConfig": {
+        "ThinkingType": "auto",
+        "MaxTokens": 512,
+        "Temperature": 0.55,
+        "TopP": 0.85
+      }
+    }
+  }
+}

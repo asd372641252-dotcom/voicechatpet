@@ -1,0 +1,54 @@
+{
+  "comment": "Copy to config/agent_speaker.local.json if you need local overrides. Do not commit secrets. This Godot package defaults to the Godot presentation route on 127.0.0.1:17865.",
+  "TTSProvider": "volc",
+  "AgentPlugin": {
+    "Host": "127.0.0.1",
+    "Port": 17342,
+    "RequireAuth": false,
+    "ApiKey": "${PET_AGENT_PLUGIN_API_KEY}",
+    "MaxTextChars": 1200,
+    "DefaultEmotion": "neutral",
+    "DefaultGesture": "none",
+    "DefaultPosture": "stand",
+    "DefaultPriority": 60
+  },
+  "Godot": {
+    "Host": "127.0.0.1",
+    "Port": 17865,
+    "TimeoutSec": 0.25
+  },
+  "Presentation": {
+    "Route": "godot",
+    "Backend": "godot",
+    "Host": "127.0.0.1",
+    "Port": 17865,
+    "TimeoutSec": 0.25
+  },
+  "VolcTTS": {
+    "AutoInheritFromVoiceConfig": true,
+    "Enabled": true,
+    "Endpoint": "https://openspeech.bytedance.com/api/v1/tts",
+    "AppId": "${VOLC_S2S_APP_ID}",
+    "AccessToken": "${VOLC_S2S_ACCESS_TOKEN}",
+    "Cluster": "volcano_icl",
+    "SpeakerId": "${VOLC_S2S_SPEAKER_ID}",
+    "Encoding": "wav",
+    "SpeedRatio": 1.0,
+    "VolumeRatio": 1.0,
+    "PitchRatio": 1.0,
+    "TimeoutSec": 20.0,
+    "CacheDir": "user://agent_tts_cache"
+  },
+  "MimoTTS": {
+    "AutoInheritFromVoiceConfig": true,
+    "Enabled": false,
+    "Endpoint": "https://token-plan-cn.xiaomimimo.com/v1/chat/completions",
+    "APIKey": "${MIMO_API_KEY}",
+    "Model": "mimo-v2.5-tts-voiceclone",
+    "ReferenceAudioPath": "assets/audio/reference_silver_wolf.wav",
+    "StylePrompt": "",
+    "OutputFormat": "wav",
+    "TimeoutSec": 120.0,
+    "CacheDir": "user://mimo_tts_cache"
+  }
+}

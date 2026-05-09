@@ -1,0 +1,15 @@
+﻿URP quality polish and validation report
+Project: D:/pet/URP copy project
+URP pipeline quality: HDR, depth, opaque texture, MSAA 4x, render scale 1.15, cascaded soft shadows, additional light shadows, reflection probe blending.
+Quality settings: very high shadows, 4 cascades, forced anisotropic filtering, skybox ambient/reflection.
+HDRI skybox assigned from 044_tears_of_steel_bridge.
+Global volume: ACES tonemapping, light bloom, slightly warmer contrast/saturation.
+Renderer feature: screen space ambient occlusion enabled.
+Cameras configured for URP post-processing/depth/color/SMAA: 1
+Lights enabled/polished for soft realtime shadows: 11
+Texture import settings changed: 0
+Materials polished: 126
+Scene renderers polished: 240
+Validation bad material assets: 0
+Validation renderer material issues: 0
+Validation error count: 0

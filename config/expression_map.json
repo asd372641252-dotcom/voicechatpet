@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "lip_sync": {
+    "expression": "mouth_open",
+    "min_weight": 0.0,
+    "max_weight": 1.0
+  },
+  "expressions": {
+    "neutral": {
+      "exclusive_group": "face",
+      "reset_others": true,
+      "blend_shapes": []
+    },
+    "talk": {
+      "exclusive_group": "face",
+      "reset_others": true,
+      "blend_shapes": []
+    },
+    "thinking": {
+      "exclusive_group": "face",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["Frown", "frown", "Troubled", "thinking", "vrc.blink_l", "困る", "真面目", "じと目", "じと目2", "心配する"],
+          "weight": 0.45
+        }
+      ]
+    },
+    "happy": {
+      "exclusive_group": "face",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["Joy", "joy", "Happy", "happy", "Smile", "smile", "vrc.v_ih", "喜び", "喜び2", "笑い", "笑い2", "口角上げ"],
+          "weight": 1.0
+        }
+      ]
+    },
+    "angry": {
+      "exclusive_group": "face",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["Angry", "angry", "Frown", "frown", "vrc.v_oh", "怒り", "怒り右", "怒った", "怒った2", "怒", "ムッ"],
+          "weight": 1.0
+        }
+      ]
+    },
+    "sleeping": {
+      "exclusive_group": "face",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["Blink", "blink", "Blink_L", "Blink_R", "EyeClose", "eyes_closed", "まばたき", "ウィンク", "ウィンク右", "ウィンク２", "ｳｨﾝｸ２右"],
+          "weight": 1.0
+        }
+      ]
+    },
+    "mouth_open": {
+      "exclusive_group": "mouth",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["あ"],
+          "weight": 0.45
+        },
+        {
+          "names": ["大口"],
+          "weight": 0.45
+        },
+        {
+          "names": ["口下"],
+          "weight": 0.35
+        },
+        {
+          "names": ["口"],
+          "weight": 0.28
+        }
+      ]
+    },
+    "mouth_small": {
+      "exclusive_group": "mouth",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["あ"],
+          "weight": 0.52
+        },
+        {
+          "names": ["口"],
+          "weight": 0.2
+        }
+      ]
+    },
+    "mouth_wide": {
+      "exclusive_group": "mouth",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["ワ"],
+          "weight": 0.5
+        },
+        {
+          "names": ["ワ1", "ワ2"],
+          "weight": 0.38
+        },
+        {
+          "names": ["口横広げ"],
+          "weight": 0.25
+        },
+        {
+          "names": ["口"],
+          "weight": 0.18
+        }
+      ]
+    },
+    "mouth_round": {
+      "exclusive_group": "mouth",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["お", "お2"],
+          "weight": 0.46
+        },
+        {
+          "names": ["う"],
+          "weight": 0.28
+        },
+        {
+          "names": ["口下"],
+          "weight": 0.18
+        }
+      ]
+    },
+    "mouth_closed": {
+      "exclusive_group": "mouth",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["ん"],
+          "weight": 0.08
+        }
+      ]
+    },
+    "mouth_smirk": {
+      "exclusive_group": "mouth",
+      "reset_others": true,
+      "blend_shapes": [
+        {
+          "names": ["にやり", "にやり２", "にやり３"],
+          "weight": 0.22
+        },
+        {
+          "names": ["ワ"],
+          "weight": 0.2
+        }
+      ]
+    }
+  }
+}

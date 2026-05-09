@@ -1,0 +1,7 @@
+Scene materials converted to lilToon
+lilToon package: jp.lilxyzw.liltoon 2.3.2
+Unique source materials converted: 111
+Renderer count touched: 234
+Material slots replaced: 254
+Preserved functional window materials: 1
+PRESERVED 平面 -> Window_Backdrop_IndoorOnly
