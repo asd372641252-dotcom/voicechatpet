@@ -197,11 +197,12 @@ class UnityProductConfigTests(unittest.TestCase):
 
     def test_scene_face_tracking_uses_stable_jitter_defaults(self):
         tracker = FACE_TRACKER.read_text(encoding="utf-8")
-        self.assertIn("CurrentSettingsVersion = 13", tracker)
+        self.assertIn("CurrentSettingsVersion = 14", tracker)
         self.assertIn("StableTrackingDefaultsSettingsVersion = 7", tracker)
         self.assertIn("GlobalTrackingSensitivitySettingsVersion = 10", tracker)
         self.assertIn("GlobalTrackingHeightDepthSettingsVersion = 12", tracker)
         self.assertIn("GlobalTrackingAxisFixSettingsVersion = 13", tracker)
+        self.assertIn("GlobalTrackingLateralRangeSettingsVersion = 14", tracker)
         self.assertIn("StableNormalizedDeadZone = 0.07f", tracker)
         self.assertIn("StableNormalizedDepthDeadZone = 0.05f", tracker)
         self.assertIn("StableOffsetSmoothTime = 0.3f", tracker)
@@ -211,7 +212,7 @@ class UnityProductConfigTests(unittest.TestCase):
         self.assertIn("StableCameraHeightFollowMeters = 0.55f", tracker)
         self.assertIn("StableCameraOrbitDeadZoneDegrees = 5f", tracker)
         self.assertIn("StableCameraOrbitSmoothTime = 0.32f", tracker)
-        self.assertIn("StableGlobalTrackingLateralMeters = 0.50625f", tracker)
+        self.assertIn("StableGlobalTrackingLateralMeters = 0.65f", tracker)
         self.assertIn("StableGlobalTrackingHeightMeters = 0.225f", tracker)
         self.assertIn("StableGlobalTrackingDepthMeters = 0.1375f", tracker)
         self.assertIn("StableGlobalTrackingOffsetSmoothTime = 0.2f", tracker)
@@ -275,7 +276,7 @@ class UnityProductConfigTests(unittest.TestCase):
 
         builder = SCENE_BUILDER.read_text(encoding="utf-8")
         self.assertIn("sceneFaceTracker.globalTrackingEnabled = false", builder)
-        self.assertIn("sceneFaceTracker.globalTrackingLateralMeters = 0.50625f", builder)
+        self.assertIn("sceneFaceTracker.globalTrackingLateralMeters = 0.65f", builder)
         self.assertIn("sceneFaceTracker.globalTrackingHeightMeters = 0.225f", builder)
         self.assertIn("sceneFaceTracker.globalTrackingDepthMeters = 0.1375f", builder)
         self.assertIn("sceneFaceTracker.globalTrackingOffsetSmoothTime = 0.2f", builder)
@@ -283,7 +284,7 @@ class UnityProductConfigTests(unittest.TestCase):
 
         scene = (UNITY_ROOT / "Assets/Scenes/BlenderIndoorScene.unity").read_text(encoding="utf-8")
         self.assertIn("globalTrackingEnabled: 0", scene)
-        self.assertIn("globalTrackingLateralMeters: 0.50625", scene)
+        self.assertIn("globalTrackingLateralMeters: 0.65", scene)
         self.assertIn("globalTrackingHeightMeters: 0.225", scene)
         self.assertIn("globalTrackingDepthMeters: 0.1375", scene)
         self.assertIn("globalTrackingOffsetSmoothTime: 0.2", scene)

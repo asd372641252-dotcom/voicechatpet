@@ -4534,7 +4534,7 @@ MonoBehaviour:
   headPitchStrengthDegrees: 8
   cameraTargetShiftMeters: 0.08
   cameraHeightFollowMeters: 0.55
-  globalTrackingLateralMeters: 0.50625
+  globalTrackingLateralMeters: 0.65
   globalTrackingHeightMeters: 0.225
   globalTrackingDepthMeters: 0.1375
   globalTrackingOffsetSmoothTime: 0.2

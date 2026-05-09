@@ -40,11 +40,12 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 13;
+    private const int CurrentSettingsVersion = 14;
     private const int StableTrackingDefaultsSettingsVersion = 7;
     private const int GlobalTrackingSensitivitySettingsVersion = 10;
     private const int GlobalTrackingHeightDepthSettingsVersion = 12;
     private const int GlobalTrackingAxisFixSettingsVersion = 13;
+    private const int GlobalTrackingLateralRangeSettingsVersion = 14;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -54,7 +55,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableCameraHeightFollowMeters = 0.55f;
     private const float StableCameraOrbitDeadZoneDegrees = 5f;
     private const float StableCameraOrbitSmoothTime = 0.32f;
-    private const float StableGlobalTrackingLateralMeters = 0.50625f;
+    private const float StableGlobalTrackingLateralMeters = 0.65f;
     private const float StableGlobalTrackingHeightMeters = 0.225f;
     private const float StableGlobalTrackingDepthMeters = 0.1375f;
     private const float StableGlobalTrackingOffsetSmoothTime = 0.2f;
@@ -2488,6 +2489,10 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
                 globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
                 globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
                 globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
+            }
+            if (settings.settingsVersion >= 13 && settings.settingsVersion < GlobalTrackingLateralRangeSettingsVersion)
+            {
+                globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
             }
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
