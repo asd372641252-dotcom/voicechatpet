@@ -4537,6 +4537,8 @@ MonoBehaviour:
   globalTrackingLateralMeters: 0.50625
   globalTrackingHeightMeters: 0.45
   globalTrackingDepthMeters: 0.275
+  globalTrackingOffsetSmoothTime: 0.2
+  globalTrackingDepthSmoothTime: 0.22
 --- !u!114 &694790301
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 public sealed class TransparentPetFreeCamera : MonoBehaviour
 {
     private const int CurrentCameraStateVersion = 5;
+    public const float MinimumCameraDistanceMeters = 0.15f;
 
     public TransparentWindowController windowController;
     public TransparentPetContextMenu contextMenu;
@@ -285,7 +286,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
         followPlacementTarget = keepPlacementTargetLocked;
         target = worldTarget;
         _manualTargetOffset = Vector3.zero;
-        distance = Mathf.Clamp(preferredDistance, 0.25f, 12f);
+        distance = Mathf.Clamp(preferredDistance, MinimumCameraDistanceMeters, 12f);
         if (targetCamera != null)
         {
             if (targetCamera.orthographic)
@@ -509,7 +510,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
         }
         else
         {
-            distance = Mathf.Clamp(distance - steps * 0.28f, 0.25f, 9f);
+            distance = Mathf.Clamp(distance - steps * 0.28f, MinimumCameraDistanceMeters, 9f);
         }
 
         ApplyCameraTransform();
@@ -715,10 +716,24 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
         Transform cameraTransform = ResolveCameraTransform();
         Vector3 effectiveTarget = GetEffectiveTarget();
         Quaternion orbit = BuildCameraRotation();
-        Vector3 cameraOffset = _hasExternalCameraOffset ? _externalCameraOffset : Vector3.zero;
+        distance = Mathf.Clamp(distance, MinimumCameraDistanceMeters, 12f);
+        Vector3 cameraOffset = _hasExternalCameraOffset ? ClampExternalCameraOffset(orbit, _externalCameraOffset) : Vector3.zero;
         cameraTransform.position = effectiveTarget + orbit * new Vector3(0f, 0f, -distance) + cameraOffset;
         cameraTransform.LookAt(effectiveTarget, Vector3.up);
         SyncRigTransformFromCamera();
+    }
+
+    private Vector3 ClampExternalCameraOffset(Quaternion orbit, Vector3 worldOffset)
+    {
+        Vector3 forward = orbit * Vector3.forward;
+        float forwardOffset = Vector3.Dot(worldOffset, forward);
+        float maxForwardOffset = Mathf.Max(0f, distance - MinimumCameraDistanceMeters);
+        if (forwardOffset <= maxForwardOffset)
+        {
+            return worldOffset;
+        }
+
+        return worldOffset - forward * (forwardOffset - maxForwardOffset);
     }
 
     private void ApplyCameraRotationOnly()
@@ -1006,7 +1021,7 @@ public sealed class TransparentPetFreeCamera : MonoBehaviour
             }
 
             target = state.target;
-            distance = Mathf.Clamp(state.distance, 0.25f, 12f);
+            distance = Mathf.Clamp(state.distance, MinimumCameraDistanceMeters, 12f);
             yawDegrees = state.yawDegrees;
             pitchDegrees = Mathf.Clamp(state.pitchDegrees, minPitchDegrees, maxPitchDegrees);
             focusDistance = Mathf.Clamp(state.focusDistance, 0.15f, 30f);

@@ -40,9 +40,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 10;
+    private const int CurrentSettingsVersion = 11;
     private const int StableTrackingDefaultsSettingsVersion = 7;
-    private const int GlobalTrackingSensitivitySettingsVersion = 10;
+    private const int GlobalTrackingSensitivitySettingsVersion = 11;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -55,10 +55,17 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableGlobalTrackingLateralMeters = 0.50625f;
     private const float StableGlobalTrackingHeightMeters = 0.45f;
     private const float StableGlobalTrackingDepthMeters = 0.275f;
+    private const float StableGlobalTrackingOffsetSmoothTime = 0.2f;
+    private const float StableGlobalTrackingDepthSmoothTime = 0.22f;
     private const float GlobalTrackingV8LateralMigrationScale = 0.375f;
     private const float GlobalTrackingV8HeightDepthMigrationScale = 0.25f;
     private const float GlobalTrackingV9LateralMigrationScale = 0.75f;
     private const float GlobalTrackingV9HeightDepthMigrationScale = 0.5f;
+    private const float ExternalJumpOffsetThreshold = 0.45f;
+    private const float ExternalJumpDepthThreshold = 0.28f;
+    private const float ExternalJumpOffsetConfirmTolerance = 0.18f;
+    private const float ExternalJumpDepthConfirmTolerance = 0.16f;
+    private const int ExternalJumpConfirmPackets = 3;
     private const float StableHeadYawPoseWeight = 0.22f;
     private const float StableHeadPitchPoseWeight = 0.18f;
     private static TransparentPetSceneFaceTracker _activeSceneTracker;
@@ -158,6 +165,10 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public float globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
     [Range(0.1f, 3f)]
     public float globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
+    [Range(0.03f, 0.8f)]
+    public float globalTrackingOffsetSmoothTime = StableGlobalTrackingOffsetSmoothTime;
+    [Range(0.03f, 0.8f)]
+    public float globalTrackingDepthSmoothTime = StableGlobalTrackingDepthSmoothTime;
 
     private WebCamTexture _webCamTexture;
     private Process _externalProcess;
@@ -196,6 +207,11 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private float _lastAcceptedExternalYaw;
     private float _lastAcceptedExternalPitch;
     private float _lastAcceptedExternalDepth;
+    private bool _hasExternalJumpCandidate;
+    private bool _externalJumpHeldThisPacket;
+    private int _externalJumpCandidatePackets;
+    private Vector2 _externalJumpCandidateOffset;
+    private float _externalJumpCandidateDepth;
     private int _udpReceivedPacketCount;
     private int _externalAcceptedPacketCount;
     private int _externalIgnoredPacketCount;
@@ -289,6 +305,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     public float GlobalTrackingLateralMeters => globalTrackingLateralMeters;
     public float GlobalTrackingHeightMeters => globalTrackingHeightMeters;
     public float GlobalTrackingDepthMeters => globalTrackingDepthMeters;
+    public float GlobalTrackingOffsetSmoothTime => globalTrackingOffsetSmoothTime;
+    public float GlobalTrackingDepthSmoothTime => globalTrackingDepthSmoothTime;
     public float CameraYawOrbitStrength => cameraYawOrbitStrength;
     public float CameraPitchOrbitStrength => cameraPitchOrbitStrength;
     public float CameraOrbitSmoothTime => cameraOrbitSmoothTime;
@@ -1715,7 +1733,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
                 _status = "MediaPipe face tracked  offset " + _rawOffset.ToString("F2")
                     + "  yaw " + Mathf.RoundToInt(_externalYaw).ToString()
                     + "  pitch " + Mathf.RoundToInt(_externalPitch).ToString()
-                    + "  depth " + _rawDepthOffset.ToString("F2");
+                    + "  depth " + _rawDepthOffset.ToString("F2")
+                    + (_externalJumpHeldThisPacket ? "  jump held" : "");
             }
             else
             {
@@ -1851,9 +1870,11 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     {
         if (!externalPacketStabilizationEnabled)
         {
+            _externalJumpHeldThisPacket = false;
             return;
         }
 
+        _externalJumpHeldThisPacket = false;
         if (!_hasAcceptedExternalPacket)
         {
             _hasAcceptedExternalPacket = true;
@@ -1861,6 +1882,18 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             _lastAcceptedExternalYaw = yaw;
             _lastAcceptedExternalPitch = pitch;
             _lastAcceptedExternalDepth = depthOffset;
+            ResetExternalJumpCandidate();
+            return;
+        }
+
+        if (ShouldHoldExternalJump(offset, depthOffset))
+        {
+            offset = _lastAcceptedExternalOffset;
+            yaw = _lastAcceptedExternalYaw;
+            pitch = _lastAcceptedExternalPitch;
+            depthOffset = _lastAcceptedExternalDepth;
+            _externalJumpHeldThisPacket = true;
+            _externalIgnoredPacketCount++;
             return;
         }
 
@@ -1874,6 +1907,47 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         _lastAcceptedExternalDepth = depthOffset;
     }
 
+    private bool ShouldHoldExternalJump(Vector2 offset, float depthOffset)
+    {
+        bool largeOffsetJump = Vector2.Distance(_lastAcceptedExternalOffset, offset) > ExternalJumpOffsetThreshold;
+        bool largeDepthJump = Mathf.Abs(_lastAcceptedExternalDepth - depthOffset) > ExternalJumpDepthThreshold;
+        if (!largeOffsetJump && !largeDepthJump)
+        {
+            ResetExternalJumpCandidate();
+            return false;
+        }
+
+        if (!_hasExternalJumpCandidate ||
+            Vector2.Distance(_externalJumpCandidateOffset, offset) > ExternalJumpOffsetConfirmTolerance ||
+            Mathf.Abs(_externalJumpCandidateDepth - depthOffset) > ExternalJumpDepthConfirmTolerance)
+        {
+            _hasExternalJumpCandidate = true;
+            _externalJumpCandidatePackets = 1;
+            _externalJumpCandidateOffset = offset;
+            _externalJumpCandidateDepth = depthOffset;
+        }
+        else
+        {
+            _externalJumpCandidatePackets++;
+        }
+
+        if (_externalJumpCandidatePackets >= ExternalJumpConfirmPackets)
+        {
+            ResetExternalJumpCandidate();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void ResetExternalJumpCandidate()
+    {
+        _hasExternalJumpCandidate = false;
+        _externalJumpCandidatePackets = 0;
+        _externalJumpCandidateOffset = Vector2.zero;
+        _externalJumpCandidateDepth = 0f;
+    }
+
     private void ResetExternalPacketStabilizer()
     {
         _hasAcceptedExternalPacket = false;
@@ -1881,6 +1955,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         _lastAcceptedExternalYaw = 0f;
         _lastAcceptedExternalPitch = 0f;
         _lastAcceptedExternalDepth = 0f;
+        _externalJumpHeldThisPacket = false;
+        ResetExternalJumpCandidate();
     }
 
     private void ResetTrackingMotionState(bool clearDrivenEffects)
@@ -2061,8 +2137,10 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         Vector2 targetOrbit = _hasFace ? _rawOrbitAngles : Vector2.zero;
         Vector2 targetHeadAngles = _hasFace ? BuildHeadFollowAngles(_externalYaw, _externalPitch, targetOffset) : Vector2.zero;
         float deltaTime = Mathf.Max(Time.unscaledDeltaTime, 0.0001f);
-        _smoothOffset = Vector2.SmoothDamp(_smoothOffset, targetOffset, ref _offsetVelocity, offsetSmoothTime, Mathf.Infinity, deltaTime);
-        _smoothDepthOffset = Mathf.SmoothDamp(_smoothDepthOffset, targetDepth, ref _depthVelocity, depthSmoothTime, Mathf.Infinity, deltaTime);
+        float activeOffsetSmoothTime = globalTrackingEnabled ? globalTrackingOffsetSmoothTime : offsetSmoothTime;
+        float activeDepthSmoothTime = globalTrackingEnabled ? globalTrackingDepthSmoothTime : depthSmoothTime;
+        _smoothOffset = Vector2.SmoothDamp(_smoothOffset, targetOffset, ref _offsetVelocity, activeOffsetSmoothTime, Mathf.Infinity, deltaTime);
+        _smoothDepthOffset = Mathf.SmoothDamp(_smoothDepthOffset, targetDepth, ref _depthVelocity, activeDepthSmoothTime, Mathf.Infinity, deltaTime);
         _smoothOrbitAngles = Vector2.SmoothDamp(_smoothOrbitAngles, targetOrbit, ref _orbitVelocity, cameraOrbitSmoothTime, Mathf.Infinity, deltaTime);
         _smoothHeadAngles = Vector2.SmoothDamp(_smoothHeadAngles, targetHeadAngles, ref _headAngleVelocity, offsetSmoothTime, Mathf.Infinity, deltaTime);
     }
@@ -2262,6 +2340,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         globalTrackingLateralMeters = Mathf.Clamp(globalTrackingLateralMeters, 0.1f, 3f);
         globalTrackingHeightMeters = Mathf.Clamp(globalTrackingHeightMeters, 0.1f, 3f);
         globalTrackingDepthMeters = Mathf.Clamp(globalTrackingDepthMeters, 0.1f, 3f);
+        globalTrackingOffsetSmoothTime = Mathf.Clamp(globalTrackingOffsetSmoothTime, 0.03f, 0.8f);
+        globalTrackingDepthSmoothTime = Mathf.Clamp(globalTrackingDepthSmoothTime, 0.03f, 0.8f);
         cameraYawOrbitStrength = Mathf.Clamp(cameraYawOrbitStrength, -1.5f, 1.5f);
         cameraPitchOrbitStrength = Mathf.Clamp(cameraPitchOrbitStrength, -1.5f, 1.5f);
         maxCameraYawOrbitDegrees = Mathf.Clamp(maxCameraYawOrbitDegrees, 0f, 60f);
@@ -2316,6 +2396,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
         globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
         globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
+        globalTrackingOffsetSmoothTime = StableGlobalTrackingOffsetSmoothTime;
+        globalTrackingDepthSmoothTime = StableGlobalTrackingDepthSmoothTime;
     }
 
     private void LoadSettings()
@@ -2376,6 +2458,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             globalTrackingLateralMeters = settings.globalTrackingLateralMeters > 0f ? settings.globalTrackingLateralMeters : globalTrackingLateralMeters;
             globalTrackingHeightMeters = settings.globalTrackingHeightMeters > 0f ? settings.globalTrackingHeightMeters : globalTrackingHeightMeters;
             globalTrackingDepthMeters = settings.globalTrackingDepthMeters > 0f ? settings.globalTrackingDepthMeters : globalTrackingDepthMeters;
+            globalTrackingOffsetSmoothTime = settings.globalTrackingOffsetSmoothTime > 0f ? settings.globalTrackingOffsetSmoothTime : globalTrackingOffsetSmoothTime;
+            globalTrackingDepthSmoothTime = settings.globalTrackingDepthSmoothTime > 0f ? settings.globalTrackingDepthSmoothTime : globalTrackingDepthSmoothTime;
             if (settings.settingsVersion >= 8 && settings.settingsVersion < GlobalTrackingSensitivitySettingsVersion)
             {
                 bool fromFirstGlobalTrackingTuning = settings.settingsVersion < 9;
@@ -2387,6 +2471,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
                     : GlobalTrackingV9HeightDepthMigrationScale;
                 globalTrackingHeightMeters *= heightDepthScale;
                 globalTrackingDepthMeters *= heightDepthScale;
+                globalTrackingOffsetSmoothTime = StableGlobalTrackingOffsetSmoothTime;
+                globalTrackingDepthSmoothTime = StableGlobalTrackingDepthSmoothTime;
             }
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
@@ -2450,6 +2536,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             globalTrackingLateralMeters = globalTrackingLateralMeters,
             globalTrackingHeightMeters = globalTrackingHeightMeters,
             globalTrackingDepthMeters = globalTrackingDepthMeters,
+            globalTrackingOffsetSmoothTime = globalTrackingOffsetSmoothTime,
+            globalTrackingDepthSmoothTime = globalTrackingDepthSmoothTime,
             cameraYawOrbitStrength = cameraYawOrbitStrength,
             cameraPitchOrbitStrength = cameraPitchOrbitStrength,
             cameraOrbitDeadZoneDegrees = cameraOrbitDeadZoneDegrees,
@@ -2547,6 +2635,8 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         public float globalTrackingLateralMeters = StableGlobalTrackingLateralMeters;
         public float globalTrackingHeightMeters = StableGlobalTrackingHeightMeters;
         public float globalTrackingDepthMeters = StableGlobalTrackingDepthMeters;
+        public float globalTrackingOffsetSmoothTime = StableGlobalTrackingOffsetSmoothTime;
+        public float globalTrackingDepthSmoothTime = StableGlobalTrackingDepthSmoothTime;
         public float cameraYawOrbitStrength = 1f;
         public float cameraPitchOrbitStrength = 0.35f;
         public float cameraOrbitDeadZoneDegrees = StableCameraOrbitDeadZoneDegrees;
