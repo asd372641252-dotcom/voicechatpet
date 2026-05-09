@@ -133,6 +133,50 @@ class UnityProductConfigTests(unittest.TestCase):
         self.assertIn("LoadPromptSettingsFromConfig", launcher)
         self.assertIn("SavePersonaPromptToMirroredConfigs", launcher)
         self.assertIn("SaveCompanionPromptToMirroredConfigs", launcher)
+        self.assertIn("SpokenOutputGuardMessage", launcher)
+        self.assertIn("VisualRouteTtsGuardMessage", launcher)
+        self.assertIn("HardTtsOutputGuardMessage", launcher)
+        self.assertIn("NonRepeatingVisualGuardMessage", launcher)
+        self.assertIn("ScreenTruthfulnessGuardMessage", launcher)
+        self.assertIn("ComposeCompanionVisionPrompt", launcher)
+        self.assertIn("RecentContextCount", launcher)
+        self.assertIn("Voice bridge dropped; restarting active screen/camera route.", launcher)
+
+    def test_vision_voice_examples_keep_tts_and_screen_truth_guards(self):
+        config_paths = [
+            ROOT / "config/volc_traditional_voice_chat.example.json",
+            UNITY_ROOT / "Assets/StreamingAssets/GodotFinal/config/volc_traditional_voice_chat.example.json",
+        ]
+        companion_paths = [
+            ROOT / "config/volc_traditional_companion_polling.example.json",
+            UNITY_ROOT / "Assets/StreamingAssets/GodotFinal/config/volc_traditional_companion_polling.example.json",
+        ]
+
+        for path in config_paths:
+            with self.subTest(path=path):
+                data = json.loads(path.read_text(encoding="utf-8"))
+                companion = data["CompanionVision"]
+                messages = data["StartVoiceChat"]["Config"]["LLMConfig"]["SystemMessages"]
+                joined = "\n".join(messages)
+
+                self.assertEqual(companion["RecentContextCount"], 3)
+                self.assertIn("不要复用上一轮", companion["Prompt"])
+                self.assertIn("确实收到清晰屏幕", companion["Prompt"])
+                self.assertIn("禁止括号动作", companion["Prompt"])
+                self.assertIn("语音输出硬规则", joined)
+                self.assertIn("不要机械复用", joined)
+                self.assertIn("确实收到清晰屏幕", joined)
+                self.assertIn("不要猜 UI", joined)
+
+        for path in companion_paths:
+            with self.subTest(path=path):
+                data = json.loads(path.read_text(encoding="utf-8"))
+                companion = data["CompanionVision"]
+
+                self.assertEqual(companion["RecentContextCount"], 3)
+                self.assertIn("不要复用上一轮", companion["Prompt"])
+                self.assertIn("确实收到清晰屏幕", companion["Prompt"])
+                self.assertIn("禁止括号动作", companion["Prompt"])
 
     def test_face_tracking_preflight_runs_without_camera(self):
         result = subprocess.run(

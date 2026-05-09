@@ -13,6 +13,11 @@ using Debug = UnityEngine.Debug;
 public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
 {
     private const int StreamLimitSettingsVersion = 8;
+    private const string SpokenOutputGuardMessage = "只输出会被直接念出来的台词。禁止输出括号动作、舞台说明、拟声旁白或情绪标签；不要使用“（）/() /【】/[]”包裹动作，因为这些文字会被 TTS 念出来。表情和动作交给本地 EmotionDirector / PoseRouter。";
+    private const string VisualRouteTtsGuardMessage = "视觉陪玩路线会把你的回答交给 TTS 播放。不要朗读或输出“轻笑”“坏笑”“叹气”“沉默”“看向用户”等动作词；想表达这些效果时，只能用“哼”“呵”“哈”“啧”这类可朗读语气词，或者直接省略。";
+    private const string HardTtsOutputGuardMessage = "【语音输出硬规则】你的回复会立刻进入 TTS。只输出会被直接念出来的台词；绝对不要输出括号内容、动作描写、心理活动、舞台说明、旁白、情绪标签、Markdown 或 JSON。不要使用“（）/() /【】/[]/* */”包裹任何词。输出前自检一次：如果文本里有括号或动作词，先删掉再回答。";
+    private const string NonRepeatingVisualGuardMessage = "不要机械复用上一轮的开头、句式、吐槽模板或口头禅。保持短句，但每次换一种切入角度。";
+    private const string ScreenTruthfulnessGuardMessage = "只有在确实收到清晰屏幕或截图内容时才描述画面。看不到、模糊、没有新截图或屏幕流断开时，必须明说“我这边看不清/没拿到画面”，不要猜 UI、按钮、敌人、奖励、地图或文字。";
 
     public string streamingRootRelativePath = "GodotFinal";
     public string projectRootOverride = "";
@@ -1127,7 +1132,8 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
                 RestoreSceneFaceTrackerExclusiveCamera();
             }
 
-            if (CameraVideoActive && Time.realtimeSinceStartup >= _nextCameraOwnershipReconcileRealtime)
+            if ((CameraVideoActive || ScreenVisionActive || CompanionPollingActive) &&
+                Time.realtimeSinceStartup >= _nextCameraOwnershipReconcileRealtime)
             {
                 _nextCameraOwnershipReconcileRealtime = Time.realtimeSinceStartup + 2f;
                 if (_startRoutine != null)
@@ -1135,7 +1141,7 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
                     StopCoroutine(_startRoutine);
                 }
 
-                SetStatus("Camera video bridge dropped; restarting voice bridge.");
+                SetStatus("Voice bridge dropped; restarting active screen/camera route.");
                 _startRoutine = StartCoroutine(StartVoiceRuntimeRoutine(ShouldRequestScreenVision(ActiveRoute())));
             }
             return;
@@ -2330,6 +2336,12 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
                 systemMessages[0] = prompt;
             }
 
+            EnsureSystemMessage(systemMessages, SpokenOutputGuardMessage, "禁止输出括号动作");
+            EnsureSystemMessage(systemMessages, VisualRouteTtsGuardMessage, "视觉陪玩路线");
+            EnsureSystemMessage(systemMessages, HardTtsOutputGuardMessage, "语音输出硬规则");
+            EnsureSystemMessage(systemMessages, NonRepeatingVisualGuardMessage, "不要机械复用");
+            EnsureSystemMessage(systemMessages, ScreenTruthfulnessGuardMessage, "确实收到清晰屏幕");
+
             WriteConfigRoot(paths[i], root);
             writes++;
         }
@@ -2337,20 +2349,62 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
         return writes;
     }
 
+    private static void EnsureSystemMessage(List<object> systemMessages, string message, string marker)
+    {
+        for (int i = 0; i < systemMessages.Count; i++)
+        {
+            string existing = Convert.ToString(systemMessages[i] ?? "", System.Globalization.CultureInfo.InvariantCulture);
+            if (existing.IndexOf(marker, StringComparison.Ordinal) >= 0)
+            {
+                systemMessages[i] = message;
+                return;
+            }
+        }
+
+        systemMessages.Add(message);
+    }
+
     private int SaveCompanionPromptToMirroredConfigs(string relativePath, string prompt)
     {
         int writes = 0;
         List<string> paths = ResolveMirroredConfigPaths(relativePath);
+        string guardedPrompt = ComposeCompanionVisionPrompt(prompt);
         for (int i = 0; i < paths.Count; i++)
         {
             Dictionary<string, object> root = LoadConfigRootForWrite(paths[i]);
             Dictionary<string, object> companionVision = EnsureNestedObject(root, "CompanionVision");
-            companionVision["Prompt"] = prompt;
+            companionVision["Prompt"] = guardedPrompt;
+            companionVision["RecentContextCount"] = Math.Max(3, GetOptionalInt(companionVision, "RecentContextCount", 0));
+            companionVision["RecentContextWindowSec"] = Math.Max(180, GetOptionalInt(companionVision, "RecentContextWindowSec", 180));
             WriteConfigRoot(paths[i], root);
             writes++;
         }
 
         return writes;
+    }
+
+    private static string ComposeCompanionVisionPrompt(string prompt)
+    {
+        string text = (prompt ?? string.Empty).Trim();
+        text = EnsurePromptClause(text, "不要复用上一轮", "不要复用上一轮的开头、句式或口头禅。");
+        text = EnsurePromptClause(text, "确实收到清晰屏幕", "只有在确实收到清晰屏幕内容时才描述画面；如果截图缺失、模糊或看不清，就直接说看不清，不要猜 UI、按钮、敌人、奖励或文字。");
+        text = EnsurePromptClause(text, "禁止括号动作", "只输出会被直接念出来的台词，禁止括号动作、舞台说明。");
+        return text;
+    }
+
+    private static string EnsurePromptClause(string text, string marker, string clause)
+    {
+        if (text.IndexOf(marker, StringComparison.Ordinal) >= 0)
+        {
+            return text;
+        }
+
+        if (text.Length > 0 && !"。！？!?.".Contains(text[text.Length - 1].ToString()))
+        {
+            text += "。";
+        }
+
+        return string.IsNullOrWhiteSpace(text) ? clause : text + clause;
     }
 
     private Dictionary<string, object> LoadConfigRootForWrite(string path)
@@ -3460,6 +3514,33 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
         }
 
         return Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
+    }
+
+    private static int GetOptionalInt(Dictionary<string, object> data, string key, int fallback)
+    {
+        if (!TryGetDictionaryValue(data, key, out object value) || value == null)
+        {
+            return fallback;
+        }
+
+        if (value is long longValue)
+        {
+            return (int)longValue;
+        }
+
+        if (value is int intValue)
+        {
+            return intValue;
+        }
+
+        if (value is double doubleValue)
+        {
+            return Mathf.RoundToInt((float)doubleValue);
+        }
+
+        return int.TryParse(Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture), out int parsed)
+            ? parsed
+            : fallback;
     }
 
     private static int NormalizeCompanionPollingInterval(int seconds)

@@ -18,10 +18,10 @@
     "UserSilenceSec": 15,
     "FailureBackoffSec": 45,
     "MaxFailureBackoffSec": 60,
-    "RecentContextCount": 0,
+    "RecentContextCount": 3,
     "RecentContextWindowSec": 180,
     "InterruptMode": 1,
-    "Prompt": "你会收到截图，但不要复述画面、读UI、不要像屏幕解说员。你只需要说一句提醒、吐槽或建议，搞怪，撒娇和回怼。不要和之前的内容重复，只输出会被直接念出来的台词，禁止括号动作、舞台说明"
+    "Prompt": "你会收到截图，但不要复述画面、读UI、不要像屏幕解说员。你只需要说一句提醒、吐槽或建议，搞怪，撒娇和回怼。不要和之前的内容重复，不要复用上一轮的开头、句式或口头禅。只有在确实收到清晰屏幕内容时才描述画面；如果截图缺失、模糊或看不清，就直接说看不清，不要猜 UI、按钮、敌人、奖励或文字。只输出会被直接念出来的台词，禁止括号动作、舞台说明。"
   },
   "StartVoiceChat": {
     "TaskId": "silver_wolf_task_traditional_vision_001",
