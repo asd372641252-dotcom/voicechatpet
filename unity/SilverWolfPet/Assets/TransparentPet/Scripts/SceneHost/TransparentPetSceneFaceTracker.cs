@@ -1559,7 +1559,7 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             root = Path.GetTempPath();
         }
 
-        return Path.Combine(root, "SilverWolfPet", "head_tracker_status_" + externalTrackerPort.ToString() + ".json");
+        return Path.Combine(root, "voicechatpet", "head_tracker_status_" + externalTrackerPort.ToString() + ".json");
     }
 
     private void UpdateDetection()

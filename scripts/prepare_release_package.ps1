@@ -44,7 +44,7 @@ if ([string]::IsNullOrWhiteSpace($Version)) {
 $resolvedProject = (Resolve-Path -LiteralPath $ProjectPath).Path
 $resolvedOutputRoot = [System.IO.Path]::GetFullPath($OutputRoot)
 
-$packageName = "SilverWolfPet_$Version"
+$packageName = "voicechatpet_$Version"
 $packageRoot = Join-Path $resolvedOutputRoot $packageName
 $desktopBuild = Join-Path $resolvedProject "Builds\TransparentWindowPet"
 $sceneBuild = Join-Path $resolvedProject "Builds\ScenePet"
@@ -281,7 +281,7 @@ foreach ($file in ($configCandidates | Sort-Object FullName -Unique)) {
 }
 
 $readme = @"
-SilverWolfPet package
+voicechatpet package
 
 This package contains two isolated Windows builds:
 
@@ -315,7 +315,7 @@ Start-Process -FilePath $exe -WorkingDirectory (Split-Path -Parent $exe)
 Set-Content -LiteralPath (Join-Path $packageRoot "Start-ScenePet.ps1") -Value $startScene -Encoding UTF8
 
 $manifest = [ordered]@{
-    package = "SilverWolfPet"
+    package = "voicechatpet"
     version = $Version
     createdAt = (Get-Date).ToString("s")
     layoutVersion = 1

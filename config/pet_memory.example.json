@@ -1,7 +1,7 @@
 {
   "Memory": {
     "Enabled": true,
-    "DatabasePath": "%APPDATA%/SilverWolfPet/pet_memory.sqlite3",
+    "DatabasePath": "%APPDATA%/voicechatpet/pet_memory.sqlite3",
     "UserId": "default_user",
     "CharacterId": "silver_wolf",
     "ConversationId": "default",

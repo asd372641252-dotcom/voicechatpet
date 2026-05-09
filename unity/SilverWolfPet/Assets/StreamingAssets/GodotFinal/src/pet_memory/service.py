@@ -226,7 +226,7 @@ def copy_request_with_memory(config: Mapping[str, Any], service: PetMemoryServic
 def _resolve_database_path(root: Path, value: str) -> Path:
     raw = (value or "").strip()
     if not raw:
-        raw = "%APPDATA%/SilverWolfPet/pet_memory.sqlite3"
+        raw = "%APPDATA%/voicechatpet/pet_memory.sqlite3"
     appdata = os.getenv("APPDATA") or str(Path.home() / "AppData" / "Roaming")
     expanded = Path(raw.replace("%APPDATA%", appdata))
     if not expanded.is_absolute():

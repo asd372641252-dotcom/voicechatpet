@@ -79,7 +79,7 @@ def _default_raw_event_log_path() -> Path:
     for env_key in ("LOCALAPPDATA", "APPDATA"):
         base = os.getenv(env_key)
         if base:
-            return Path(base) / "SilverWolfPet" / "logs" / "volc_pose_raw_events.jsonl"
+            return Path(base) / "voicechatpet" / "logs" / "volc_pose_raw_events.jsonl"
 
     return Path.home() / ".silverwolf_pet" / "logs" / "volc_pose_raw_events.jsonl"
 
@@ -5490,7 +5490,7 @@ def _silver_wolf_runtime_root() -> Path:
     for env_key in ("LOCALAPPDATA", "APPDATA"):
         base = os.getenv(env_key)
         if base:
-            return Path(base) / "SilverWolfPet"
+            return Path(base) / "voicechatpet"
     return Path.home() / ".silverwolf_pet"
 
 

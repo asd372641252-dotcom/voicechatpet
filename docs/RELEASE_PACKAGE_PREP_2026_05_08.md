@@ -3,7 +3,7 @@
 The product package contains both Unity variants while keeping their runtime files separate:
 
 ```text
-SilverWolfPet_<version>/
+voicechatpet_<version>/
 |-- Start-DesktopPet.ps1
 |-- Start-ScenePet.ps1
 |-- README_PACKAGE.txt

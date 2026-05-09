@@ -63,9 +63,9 @@ internal sealed class VoiceRuntimeForm : Form
         _hidden = options.Hidden;
         _logPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "SilverWolfPet",
+            "voicechatpet",
             "voice_runtime.log");
-        Text = "Silver Wolf Voice";
+        Text = "voicechatpet Voice";
         StartPosition = _hidden ? FormStartPosition.Manual : FormStartPosition.CenterScreen;
         Location = _hidden ? new Point(-10000, -10000) : Point.Empty;
         Size = new Size(640, 620);
@@ -80,7 +80,7 @@ internal sealed class VoiceRuntimeForm : Form
         {
             Dock = DockStyle.Top,
             Height = 40,
-            Text = "Silver Wolf Voice Runtime",
+            Text = "voicechatpet Voice Runtime",
             TextAlign = ContentAlignment.MiddleCenter,
             Font = new Font("Microsoft YaHei UI", 11, FontStyle.Bold),
             ForeColor = Color.FromArgb(255, 183, 223),

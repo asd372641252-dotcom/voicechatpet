@@ -10,7 +10,7 @@ from typing import Any, Mapping
 @dataclass(frozen=True)
 class PetMemoryConfig:
     enabled: bool = True
-    database_path: str = "%APPDATA%/SilverWolfPet/pet_memory.sqlite3"
+    database_path: str = "%APPDATA%/voicechatpet/pet_memory.sqlite3"
     user_id: str = "default_user"
     character_id: str = "silver_wolf"
     conversation_id: str = "default"
@@ -71,7 +71,7 @@ class PetMemoryConfig:
     def normalized(self) -> "PetMemoryConfig":
         return PetMemoryConfig(
             enabled=bool(self.enabled),
-            database_path=self.database_path.strip() or "%APPDATA%/SilverWolfPet/pet_memory.sqlite3",
+            database_path=self.database_path.strip() or "%APPDATA%/voicechatpet/pet_memory.sqlite3",
             user_id=self.user_id.strip() or "default_user",
             character_id=self.character_id.strip() or "silver_wolf",
             conversation_id=self.conversation_id.strip() or "default",

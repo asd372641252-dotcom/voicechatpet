@@ -1533,7 +1533,7 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
             : SanitizeFileName(chromeRuntimeProfileName);
         string profilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "SilverWolfPet",
+            "voicechatpet",
             profileName);
         Directory.CreateDirectory(profilePath);
 
@@ -2970,7 +2970,7 @@ public sealed class TransparentPetVoiceRuntimeLauncher : MonoBehaviour
             string root = Path.GetFullPath(ProjectRoot).TrimEnd('\\', '/');
             string chromeProfile = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "SilverWolfPet",
+                "voicechatpet",
                 SanitizeFileName(string.IsNullOrWhiteSpace(chromeRuntimeProfileName) ? "SilverWolfRtcRuntime" : chromeRuntimeProfileName));
             string command =
                 "$ErrorActionPreference='SilentlyContinue';" +

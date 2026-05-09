@@ -1,6 +1,6 @@
-# SilverWolfPet
+# voicechatpet
 
-Unity desktop pet prototype with two Windows builds:
+Unity voice chat desktop pet prototype with two Windows builds:
 
 - `TransparentWindowPet`: a transparent desktop pet window.
 - `ScenePet`: the same pet integrated into a URP indoor scene, with free camera controls, depth of field, placement tools, and MediaPipe-based face tracking.
