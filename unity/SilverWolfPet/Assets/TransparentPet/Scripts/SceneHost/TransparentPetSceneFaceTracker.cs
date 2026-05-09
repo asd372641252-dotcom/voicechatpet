@@ -40,8 +40,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 8;
+    private const int CurrentSettingsVersion = 9;
     private const int StableTrackingDefaultsSettingsVersion = 7;
+    private const int GlobalTrackingSensitivitySettingsVersion = 9;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -51,9 +52,10 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableCameraHeightFollowMeters = 0.55f;
     private const float StableCameraOrbitDeadZoneDegrees = 5f;
     private const float StableCameraOrbitSmoothTime = 0.32f;
-    private const float StableGlobalTrackingLateralMeters = 1.35f;
-    private const float StableGlobalTrackingHeightMeters = 1.8f;
-    private const float StableGlobalTrackingDepthMeters = 1.1f;
+    private const float StableGlobalTrackingLateralMeters = 0.675f;
+    private const float StableGlobalTrackingHeightMeters = 0.9f;
+    private const float StableGlobalTrackingDepthMeters = 0.55f;
+    private const float GlobalTrackingSensitivityMigrationScale = 0.5f;
     private const float StableHeadYawPoseWeight = 0.22f;
     private const float StableHeadPitchPoseWeight = 0.18f;
     private static TransparentPetSceneFaceTracker _activeSceneTracker;
@@ -2371,6 +2373,12 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             globalTrackingLateralMeters = settings.globalTrackingLateralMeters > 0f ? settings.globalTrackingLateralMeters : globalTrackingLateralMeters;
             globalTrackingHeightMeters = settings.globalTrackingHeightMeters > 0f ? settings.globalTrackingHeightMeters : globalTrackingHeightMeters;
             globalTrackingDepthMeters = settings.globalTrackingDepthMeters > 0f ? settings.globalTrackingDepthMeters : globalTrackingDepthMeters;
+            if (settings.settingsVersion >= 8 && settings.settingsVersion < GlobalTrackingSensitivitySettingsVersion)
+            {
+                globalTrackingLateralMeters *= GlobalTrackingSensitivityMigrationScale;
+                globalTrackingHeightMeters *= GlobalTrackingSensitivityMigrationScale;
+                globalTrackingDepthMeters *= GlobalTrackingSensitivityMigrationScale;
+            }
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
             cameraOrbitDeadZoneDegrees = settings.cameraOrbitDeadZoneDegrees > 0f ? settings.cameraOrbitDeadZoneDegrees : cameraOrbitDeadZoneDegrees;
