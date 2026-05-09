@@ -611,7 +611,7 @@ public static class TransparentPetSceneBuilder
         sceneFaceTracker.headFollowEnabled = true;
         sceneFaceTracker.cameraParallaxEnabled = true;
         sceneFaceTracker.cameraOrbitEnabled = true;
-        sceneFaceTracker.globalTrackingEnabled = false;
+        sceneFaceTracker.globalTrackingEnabled = true;
         sceneFaceTracker.mirrorHorizontal = true;
         sceneFaceTracker.mirrorVertical = true;
         sceneFaceTracker.launchExternalProcess = true;
@@ -625,14 +625,14 @@ public static class TransparentPetSceneBuilder
         sceneFaceTracker.cameraTargetShiftMeters = 0.08f;
         sceneFaceTracker.cameraDepthShiftMeters = 0.06f;
         sceneFaceTracker.cameraHeightFollowMeters = 0.55f;
-        sceneFaceTracker.globalTrackingLateralMeters = 0.25f;
+        sceneFaceTracker.globalTrackingLateralMeters = 0.18f;
         sceneFaceTracker.globalTrackingHeightMeters = 0.225f;
         sceneFaceTracker.globalTrackingDepthMeters = 0.1375f;
         sceneFaceTracker.globalTrackingOffsetSmoothTime = 0.2f;
         sceneFaceTracker.globalTrackingDepthSmoothTime = 0.22f;
         sceneFaceTracker.cameraOrbitDeadZoneDegrees = 5f;
         sceneFaceTracker.cameraOrbitSmoothTime = 0.32f;
-        sceneFaceTracker.cameraYawOrbitStrength = 1.35f;
+        sceneFaceTracker.cameraYawOrbitStrength = 1.0f;
         sceneFaceTracker.cameraPitchOrbitStrength = 0.35f;
 
         TransparentPetPlacementController placementController = root.AddComponent<TransparentPetPlacementController>();

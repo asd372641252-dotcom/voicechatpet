@@ -691,7 +691,7 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         }
 
         DrawSection("\u8fd0\u884c\u65f6");
-        DrawToggle("\u663e\u793a\u8bed\u97f3\u8c03\u8bd5\u7a97\u53e3", voiceLauncher.showRuntimeWindow, value => voiceLauncher.showRuntimeWindow = value);
+        DrawToggle("\u4e0b\u6b21\u663e\u793a\u8bed\u97f3\u8c03\u8bd5\u7a97\u53e3", voiceLauncher.showRuntimeWindow, value => voiceLauncher.showRuntimeWindow = value);
 
         DrawSection("\u5b9e\u65f6\u76d1\u63a7");
         DrawSlider("\u68c0\u67e5\u95f4\u9694", voiceLauncher.realtimeMonitoringIntervalSec, 1f, 15f,
@@ -742,9 +742,7 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         DrawSlider("\u6444\u50cf\u5934\u7801\u7387", voiceLauncher.CameraVideoMaxKbps, 500f, 6000f,
             value => voiceLauncher.SetCameraVideoMaxKbps(value),
             voiceLauncher.CameraVideoMaxKbps.ToString() + "k");
-        DrawToggle("\u4f7f\u7528\u672c\u5730 Camera Hub", voiceLauncher.CameraVideoUseCameraHub,
-            value => voiceLauncher.SetCameraVideoUseCameraHub(value));
-        if (!voiceLauncher.CameraVideoUseCameraHub)
+        if (SceneCameraHubOwnsCamera())
         {
             DrawToggle("\u4ec5\u4f7f\u7528\u865a\u62df\u6444\u50cf\u5934", voiceLauncher.CameraVideoUseVirtualCamera,
                 value => voiceLauncher.SetCameraVideoUseVirtualCamera(value));
@@ -753,11 +751,26 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
                 DrawToggle("\u627e\u4e0d\u5230\u865a\u62df\u6444\u50cf\u5934\u5219\u4e0d\u63a8\u6d41", voiceLauncher.CameraVideoRequireVirtualCamera,
                     value => voiceLauncher.SetCameraVideoRequireVirtualCamera(value));
             }
-
-            if (!voiceLauncher.CameraVideoUseVirtualCamera)
+        }
+        else
+        {
+            DrawToggle("\u4f7f\u7528\u672c\u5730 Camera Hub", voiceLauncher.CameraVideoUseCameraHub,
+                value => voiceLauncher.SetCameraVideoUseCameraHub(value));
+            if (!voiceLauncher.CameraVideoUseCameraHub)
             {
-                DrawToggle("\u6444\u50cf\u5934\u6d41\u53d1\u9001\u8ddf\u8e2a\u5305", voiceLauncher.CameraVideoSendFaceTrackingPackets,
-                    value => voiceLauncher.SetCameraVideoSendFaceTrackingPackets(value));
+                DrawToggle("\u4ec5\u4f7f\u7528\u865a\u62df\u6444\u50cf\u5934", voiceLauncher.CameraVideoUseVirtualCamera,
+                    value => voiceLauncher.SetCameraVideoUseVirtualCamera(value));
+                if (voiceLauncher.CameraVideoUseVirtualCamera)
+                {
+                    DrawToggle("\u627e\u4e0d\u5230\u865a\u62df\u6444\u50cf\u5934\u5219\u4e0d\u63a8\u6d41", voiceLauncher.CameraVideoRequireVirtualCamera,
+                        value => voiceLauncher.SetCameraVideoRequireVirtualCamera(value));
+                }
+
+                if (!voiceLauncher.CameraVideoUseVirtualCamera)
+                {
+                    DrawToggle("\u6444\u50cf\u5934\u6d41\u53d1\u9001\u8ddf\u8e2a\u5305", voiceLauncher.CameraVideoSendFaceTrackingPackets,
+                        value => voiceLauncher.SetCameraVideoSendFaceTrackingPackets(value));
+                }
             }
         }
         if (!voiceLauncher.CameraVideoUseCameraHub &&
@@ -775,6 +788,13 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
     private bool IsVoiceSessionRunning()
     {
         return voiceLauncher != null && (voiceLauncher.IsBridgeRunning || voiceLauncher.IsRuntimeRunning);
+    }
+
+    private bool SceneCameraHubOwnsCamera()
+    {
+        return ResolveMenuRoute() == TransparentPetRoute.SceneHost &&
+            sceneFaceTracker != null &&
+            sceneFaceTracker.ExternalFrameServerEnabled;
     }
 
     private void StartVoiceFromMenu()
@@ -976,9 +996,13 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         }
         DrawToggle("\u542f\u7528\u8ddf\u8e2a", sceneFaceTracker.TrackingEnabled, value => sceneFaceTracker.SetTrackingEnabled(value));
         DrawToggle("\u5934\u90e8\u8ddf\u968f\u4eba\u8138", sceneFaceTracker.HeadFollowEnabled, value => sceneFaceTracker.SetHeadFollowEnabled(value));
-        DrawToggle("\u955c\u5934\u8f7b\u5fae\u8ddf\u968f", sceneFaceTracker.CameraParallaxEnabled, value => sceneFaceTracker.SetCameraParallaxEnabled(value));
+        DrawToggle("\u955c\u5934\u4f4d\u7f6e\u8ddf\u968f", sceneFaceTracker.CameraParallaxEnabled, value => sceneFaceTracker.SetCameraParallaxEnabled(value));
         DrawToggle("\u955c\u5934\u59ff\u6001\u8ddf\u968f", sceneFaceTracker.CameraOrbitEnabled, value => sceneFaceTracker.SetCameraOrbitEnabled(value));
-        DrawToggle("\u5168\u5c40\u8ddf\u8e2a", sceneFaceTracker.GlobalTrackingEnabled, value => sceneFaceTracker.SetGlobalTrackingEnabled(value));
+        if (placementController != null)
+        {
+            DrawToggle("\u955c\u5934\u9501\u5b9a\u4eba\u7269", placementController.CameraTargetLockedToPet,
+                value => placementController.SetCameraTargetLockedToPet(value));
+        }
         DrawToggle("\u6c34\u5e73\u955c\u50cf", sceneFaceTracker.MirrorHorizontal, value => sceneFaceTracker.SetMirrorHorizontal(value));
         DrawToggle("\u5782\u76f4\u955c\u50cf", sceneFaceTracker.MirrorVertical, value => sceneFaceTracker.SetMirrorVertical(value));
         DrawRadio("\u89c6\u7ebf\u8f74\u5fc3\uff1a\u4eba\u7269\u6a21\u578b", sceneFaceTracker.CameraSightMode == TransparentPetCameraSightMode.ModelAxis,
@@ -1052,19 +1076,19 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         DrawSlider("\u8fd1\u8fdc\u89c6\u5dee", sceneFaceTracker.CameraDepthShiftMeters, 0f, 0.2f,
             value => sceneFaceTracker.SetCameraDepthShiftMeters(value),
             Mathf.RoundToInt(sceneFaceTracker.CameraDepthShiftMeters * 1000f).ToString() + "mm");
-        DrawSlider("\u5168\u5c40\u5de6\u53f3\u8303\u56f4", sceneFaceTracker.GlobalTrackingLateralMeters, 0.1f, 3f,
+        DrawSlider("\u5de6\u53f3\u5e73\u79fb\u5f3a\u5ea6", sceneFaceTracker.GlobalTrackingLateralMeters, 0.05f, 1.2f,
             value => sceneFaceTracker.SetGlobalTrackingLateralMeters(value),
-            sceneFaceTracker.GlobalTrackingLateralMeters.ToString("0.0") + "m");
-        DrawSlider("\u5168\u5c40\u9ad8\u5ea6\u8303\u56f4", sceneFaceTracker.GlobalTrackingHeightMeters, 0.1f, 3f,
+            sceneFaceTracker.GlobalTrackingLateralMeters.ToString("0.00") + "m");
+        DrawSlider("\u4e0a\u4e0b\u5e73\u79fb\u5f3a\u5ea6", sceneFaceTracker.GlobalTrackingHeightMeters, 0.1f, 1.2f,
             value => sceneFaceTracker.SetGlobalTrackingHeightMeters(value),
-            sceneFaceTracker.GlobalTrackingHeightMeters.ToString("0.0") + "m");
-        DrawSlider("\u5168\u5c40\u8fd1\u8fdc\u8303\u56f4", sceneFaceTracker.GlobalTrackingDepthMeters, 0.1f, 3f,
+            sceneFaceTracker.GlobalTrackingHeightMeters.ToString("0.00") + "m");
+        DrawSlider("\u524d\u540e\u5e73\u79fb\u5f3a\u5ea6", sceneFaceTracker.GlobalTrackingDepthMeters, 0.1f, 1.2f,
             value => sceneFaceTracker.SetGlobalTrackingDepthMeters(value),
-            sceneFaceTracker.GlobalTrackingDepthMeters.ToString("0.0") + "m");
-        DrawSlider("\u955c\u5934\u5de6\u53f3\u65cb\u8f6c", sceneFaceTracker.CameraYawOrbitStrength, -1.5f, 1.5f,
+            sceneFaceTracker.GlobalTrackingDepthMeters.ToString("0.00") + "m");
+        DrawSlider("\u5de6\u53f3\u65cb\u8f6c\u5f3a\u5ea6", sceneFaceTracker.CameraYawOrbitStrength, 0f, 1.5f,
             value => sceneFaceTracker.SetCameraYawOrbitStrength(value),
             Mathf.RoundToInt(sceneFaceTracker.CameraYawOrbitStrength * 100f).ToString() + "%");
-        DrawSlider("\u955c\u5934\u4e0a\u4e0b\u65cb\u8f6c", sceneFaceTracker.CameraPitchOrbitStrength, -1.5f, 1.5f,
+        DrawSlider("\u4e0a\u4e0b\u65cb\u8f6c\u5f3a\u5ea6", sceneFaceTracker.CameraPitchOrbitStrength, 0f, 1.2f,
             value => sceneFaceTracker.SetCameraPitchOrbitStrength(value),
             Mathf.RoundToInt(sceneFaceTracker.CameraPitchOrbitStrength * 100f).ToString() + "%");
         DrawSlider("\u65cb\u8f6c\u5e73\u6ed1", sceneFaceTracker.CameraOrbitSmoothTime, 0.03f, 0.5f,
