@@ -47,6 +47,7 @@ def main() -> int:
     check_public_character_asset_policy(failures)
     check_face_tracking_static_assets(failures, warnings)
     check_unity_product_sources(failures)
+    check_workshop_mod_sources(failures)
     check_visible_release_artifacts(failures)
     check_local_config_drift(warnings)
 
@@ -348,6 +349,37 @@ def check_unity_product_sources(failures: list[Message]) -> None:
         for token, detail in required_tokens.items():
             if token not in text:
                 failures.append(Message(to_rel(path), detail))
+
+
+def check_workshop_mod_sources(failures: list[Message]) -> None:
+    manager = UNITY_PROJECT / "Assets" / "TransparentPet" / "Scripts" / "TransparentPetWorkshopManager.cs"
+    menu = UNITY_PROJECT / "Assets" / "TransparentPet" / "Scripts" / "TransparentPetContextMenu.cs"
+    builder = UNITY_PROJECT / "Assets" / "TransparentPet" / "Editor" / "TransparentPetSceneBuilder.cs"
+    workshop_doc = ROOT / "docs" / "WORKSHOP_PACKAGE_FORMAT.md"
+    agents = ROOT / "AGENTS.md"
+
+    required_files = (manager, menu, builder, workshop_doc, agents)
+    for path in required_files:
+        if not path.exists():
+            failures.append(Message(to_rel(path), "Workshop/Mods support file is missing"))
+            return
+
+    checks = (
+        (manager, "manifest.json", "Workshop manager does not scan manifest.json packages"),
+        (manager, "voicechatpet.Workshop.", "Workshop manager does not persist selections under voicechatpet.Workshop"),
+        (manager, "AssetBundle.LoadFromFile", "Workshop manager cannot hot-apply AssetBundle model packages"),
+        (manager, "headLookAt.Rebind", "Workshop manager does not refresh head look-at bones after a model swap"),
+        (manager, "FBX is creator-source input", "Workshop manager must not treat FBX as a normal runtime user format"),
+        (menu, "MenuView.Workshop", "context menu is missing the Workshop view"),
+        (menu, "OpenUserWorkshopFolder", "context menu is missing the open Mods folder action"),
+        (builder, "TransparentPetWorkshopManager workshopManager = root.AddComponent<TransparentPetWorkshopManager>()", "scene builder does not add the Workshop manager"),
+        (builder, "contextMenu.workshopManager = workshopManager", "scene builder does not bind Workshop manager to the context menu"),
+        (workshop_doc, "The current first pass does not load `.fbx` at runtime", "Workshop package doc must warn against runtime FBX loading"),
+        (agents, "Runtime Workshop items should be ready-to-scan packages", "agent guide must warn agents not to send users into manual FBX conversion"),
+    )
+    for path, token, detail in checks:
+        if token not in path.read_text(encoding="utf-8", errors="replace"):
+            failures.append(Message(to_rel(path), detail))
 
     build_script = ROOT / "scripts" / "build_unity_dual_product.ps1"
     if not build_script.exists():

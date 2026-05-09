@@ -92,11 +92,43 @@ unity/SilverWolfPet/Assets/StreamingAssets/GodotFinal/assets/converted/user_pet_
 
 Users can replace the placeholder with their own licensed character model. Keep real model licenses with the model owner; do not assume any bundled internal/test model is redistributable.
 
+## Steam Workshop / Mods
+
+The Unity products include a first-pass `创意工坊 / Mods` menu. It scans Workshop-style folders with a `manifest.json`, lists model/scene/action packages, remembers the user's selected package, and can hot-apply model packages distributed as Unity AssetBundles containing a prefab.
+
+Runtime package format:
+
+```text
+WorkshopItem/
+  manifest.json
+  preview.png
+  model/character.assetbundle
+```
+
+`manifest.json` example:
+
+```json
+{
+  "schema_version": 1,
+  "type": "model",
+  "name": "My Pet Model",
+  "entry": "model/character.assetbundle",
+  "asset": "assets/workshop/my_pet.prefab",
+  "thumbnail": "preview.png",
+  "format": "assetbundle"
+}
+```
+
+Packages are scanned from the user's app data `Workshop` folder, bundled `StreamingAssets/Workshop`, and any extra roots supplied by future Steamworks integration. `.glb`, `.gltf`, and `.vrm` packages are recognized and selectable, but the public Unity project does not yet include a runtime glTF/VRM importer. `.fbx` is treated as creator-source input, not a normal user runtime format.
+
+See `docs/WORKSHOP_PACKAGE_FORMAT.md` for the package contract agents and creator tools should follow.
+
 ## Current Notes
 
 - Face tracking defaults are tuned to reduce jitter and avoid snapping back too quickly.
 - Scene camera depth of field is enabled by default in generated desktop and scene builds.
 - Scene placement can keep the camera focus locked to the pet while the pet is moved.
+- Steam Workshop/Mods support is in the first runtime pass: package scanning, selection persistence, and AssetBundle model hot-swap are wired for both products.
 - Build outputs, Unity caches, local configs, and runtime logs are excluded from Git.
 - Agent-facing guardrails are in `AGENTS.md`; keep them current when release, config, or build behavior changes.
 

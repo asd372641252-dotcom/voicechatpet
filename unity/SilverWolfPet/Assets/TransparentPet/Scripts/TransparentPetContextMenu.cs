@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
     public TransparentPetHeadLookAt headLookAt;
     public TransparentPetSceneFaceTracker sceneFaceTracker;
     public TransparentPetPerformanceController performanceController;
+    public TransparentPetWorkshopManager workshopManager;
     public TransparentPetRoute route = TransparentPetRoute.DesktopTransparent;
     public bool deriveRouteFromWindow = true;
     public Vector2 panelSize = new Vector2(460f, 540f);
@@ -171,6 +173,9 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
                 case MenuView.FaceTracking:
                     DrawFaceTrackingSection();
                     break;
+                case MenuView.Workshop:
+                    DrawWorkshopSection();
+                    break;
                 default:
                     DrawMainSection();
                     break;
@@ -266,6 +271,25 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         if (actionController == null)
         {
             actionController = GetComponentInChildren<TransparentPetKawaiiActionController>();
+        }
+
+        if (workshopManager == null)
+        {
+            workshopManager = GetComponent<TransparentPetWorkshopManager>();
+        }
+
+        if (workshopManager == null)
+        {
+            workshopManager = GetComponentInChildren<TransparentPetWorkshopManager>();
+        }
+
+        if (workshopManager != null)
+        {
+            workshopManager.runtimeControls = runtimeControls;
+            workshopManager.actionController = actionController;
+            workshopManager.headLookAt = headLookAt;
+            workshopManager.windowController = windowController;
+            workshopManager.targetCamera = freeCamera != null && freeCamera.targetCamera != null ? freeCamera.targetCamera : Camera.main;
         }
 
         if (placementController == null)
@@ -369,6 +393,7 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
     private void DrawMainSection()
     {
         DrawButton("\ud83c\udfac \u6d4f\u89c8\u52a8\u4f5c", () => SetView(MenuView.ActionCategories));
+        DrawButton("\u521b\u610f\u5de5\u574a / Mods", () => SetView(MenuView.Workshop));
         DrawButton("\u4f4d\u7f6e\u8c03\u6574", () => SetView(MenuView.Placement));
         DrawButton("\ud83c\udfa4 \u8bed\u97f3\u63a7\u5236", () => SetView(MenuView.Voice));
         if (ResolveMenuRoute() == TransparentPetRoute.SceneHost)
@@ -444,6 +469,97 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         {
             DrawButton("\u6ca1\u6709\u5339\u914d\u52a8\u4f5c", null);
         }
+    }
+
+    private void DrawWorkshopSection()
+    {
+        DrawSection("\u521b\u610f\u5de5\u574a / Mods");
+        if (workshopManager == null)
+        {
+            DrawButton("Workshop \u7ba1\u7406\u5668\u672a\u7ed1\u5b9a", null);
+            return;
+        }
+
+        GUILayout.BeginHorizontal();
+        DrawButton("\u5237\u65b0", () => workshopManager.Refresh());
+        DrawButton("\u6253\u5f00 Mods \u76ee\u5f55", () => workshopManager.OpenUserWorkshopFolder());
+        GUILayout.EndHorizontal();
+        DrawStatusText(workshopManager.Status);
+
+        DrawWorkshopItemList("\u6a21\u578b", workshopManager.Models);
+        DrawWorkshopItemList("\u573a\u666f", workshopManager.Scenes);
+        DrawWorkshopItemList("\u52a8\u4f5c", workshopManager.Actions);
+    }
+
+    private void DrawWorkshopItemList(string title, IReadOnlyList<TransparentPetWorkshopManager.WorkshopItem> items)
+    {
+        DrawSection(title);
+        if (items == null || items.Count == 0)
+        {
+            DrawButton("\u672a\u627e\u5230" + title, null);
+            return;
+        }
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            DrawWorkshopItem(items[i]);
+        }
+    }
+
+    private void DrawWorkshopItem(TransparentPetWorkshopManager.WorkshopItem item)
+    {
+        if (item == null)
+        {
+            return;
+        }
+
+        bool selected = workshopManager != null && workshopManager.IsSelected(item);
+        string actionText = item.Type == TransparentPetWorkshopManager.WorkshopItemType.Model
+            ? item.CanApply ? "\u5e94\u7528" : "\u9009\u62e9"
+            : "\u9009\u62e9";
+        GUIStyle style = selected ? _activeButtonStyle : _buttonStyle;
+        string label = (selected ? "\u25cf " : "  ") + item.Name + "  [" + FormatWorkshopEntry(item) + "]  " + actionText;
+        if (GUILayout.Button(label, style, GUILayout.Height(ButtonHeight)))
+        {
+            ApplyWorkshopItem(item);
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.Status) && item.Status != "Ready")
+        {
+            DrawStatusText("  " + item.Status);
+        }
+    }
+
+    private void ApplyWorkshopItem(TransparentPetWorkshopManager.WorkshopItem item)
+    {
+        if (workshopManager == null || item == null)
+        {
+            return;
+        }
+
+        switch (item.Type)
+        {
+            case TransparentPetWorkshopManager.WorkshopItemType.Model:
+                workshopManager.ApplyModel(item.Id);
+                break;
+            case TransparentPetWorkshopManager.WorkshopItemType.Scene:
+                workshopManager.SelectScene(item.Id);
+                break;
+            case TransparentPetWorkshopManager.WorkshopItemType.Action:
+                workshopManager.SelectAction(item.Id);
+                break;
+        }
+    }
+
+    private static string FormatWorkshopEntry(TransparentPetWorkshopManager.WorkshopItem item)
+    {
+        if (item == null)
+        {
+            return string.Empty;
+        }
+
+        string format = string.IsNullOrWhiteSpace(item.Format) ? "package" : item.Format;
+        return item.Type + "/" + format;
     }
 
     private void DrawVoiceSection()
@@ -1236,6 +1352,8 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
                 return "\u63a8\u6d41\u8bbe\u7f6e";
             case MenuView.FaceTracking:
                 return "\u4eba\u8138\u8ddf\u8e2a";
+            case MenuView.Workshop:
+                return "\u521b\u610f\u5de5\u574a";
             default:
                 return "Kawaii";
         }
@@ -1571,6 +1689,7 @@ public sealed class TransparentPetContextMenu : MonoBehaviour
         Api,
         Prompts,
         StreamSettings,
-        FaceTracking
+        FaceTracking,
+        Workshop
     }
 }

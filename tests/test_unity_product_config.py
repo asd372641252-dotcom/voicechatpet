@@ -15,6 +15,8 @@ CONTEXT_MENU = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetContext
 PLACEMENT_CONTROLLER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetPlacementController.cs"
 FREE_CAMERA = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetFreeCamera.cs"
 FACE_TRACKER = UNITY_ROOT / "Assets/TransparentPet/Scripts/SceneHost/TransparentPetSceneFaceTracker.cs"
+HEAD_LOOK_AT = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetHeadLookAt.cs"
+WORKSHOP_MANAGER = UNITY_ROOT / "Assets/TransparentPet/Scripts/TransparentPetWorkshopManager.cs"
 FACE_TRACKING_PREFLIGHT = ROOT / "scripts/check_face_tracking_preflight.py"
 PRODUCT_PREFLIGHT = ROOT / "scripts/check_product_preflight.py"
 SCENE_BUILD_SCRIPT = ROOT / "scripts/build_unity_dual_product.ps1"
@@ -253,6 +255,43 @@ class UnityProductConfigTests(unittest.TestCase):
         for key in required:
             self.assertEqual("mouth", mouth_expressions[key]["exclusive_group"])
             self.assertTrue(mouth_expressions[key]["blend_shapes"])
+
+    def test_workshop_mods_runtime_scans_and_persists_packages(self):
+        manager = WORKSHOP_MANAGER.read_text(encoding="utf-8")
+        menu = CONTEXT_MENU.read_text(encoding="utf-8")
+        builder = SCENE_BUILDER.read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        workshop_doc = (ROOT / "docs/WORKSHOP_PACKAGE_FORMAT.md").read_text(encoding="utf-8")
+
+        self.assertIn("manifest.json", manager)
+        self.assertIn("persistentWorkshopFolderName = \"Workshop\"", manager)
+        self.assertIn("streamingWorkshopFolderName = \"Workshop\"", manager)
+        self.assertIn("voicechatpet.Workshop.", manager)
+        self.assertIn("SelectedModel.v1", manager)
+        self.assertIn("AssetBundle.LoadFromFile", manager)
+        self.assertIn("RebindModelRoot", manager)
+        self.assertIn("headLookAt.Rebind", manager)
+        self.assertIn("Runtime importer is not installed", manager)
+        self.assertIn("FBX is creator-source input", manager)
+
+        head_look_at = HEAD_LOOK_AT.read_text(encoding="utf-8")
+        self.assertIn("public void Rebind", head_look_at)
+        self.assertIn("_head = null", head_look_at)
+        self.assertIn("_neck = null", head_look_at)
+
+        self.assertIn("MenuView.Workshop", menu)
+        self.assertIn("DrawWorkshopSection", menu)
+        self.assertIn("OpenUserWorkshopFolder", menu)
+
+        self.assertIn("TransparentPetWorkshopManager workshopManager = root.AddComponent<TransparentPetWorkshopManager>()", builder)
+        self.assertIn("contextMenu.workshopManager = workshopManager", builder)
+
+        self.assertIn("Steam Workshop / Mods", readme)
+        self.assertIn("docs/WORKSHOP_PACKAGE_FORMAT.md", readme)
+        self.assertIn("FBX is creator-source input", agents)
+        self.assertIn("Runtime Workshop items should be ready-to-scan packages", agents)
+        self.assertIn("The current first pass does not load `.fbx` at runtime", workshop_doc)
 
 
 if __name__ == "__main__":

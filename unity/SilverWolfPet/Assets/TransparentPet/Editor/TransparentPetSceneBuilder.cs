@@ -274,6 +274,15 @@ public static class TransparentPetSceneBuilder
         placementController.placementSaveKey = "DesktopPet.Placement.v1";
         placementController.CaptureCurrentTransform();
 
+        TransparentPetWorkshopManager workshopManager = root.AddComponent<TransparentPetWorkshopManager>();
+        workshopManager.modelRoot = petBody.transform;
+        workshopManager.runtimeControls = runtimeControls;
+        workshopManager.actionController = actionController;
+        workshopManager.headLookAt = headLookAt;
+        workshopManager.skeletonHitMask = skeletonHitMask;
+        workshopManager.windowController = window;
+        workshopManager.targetCamera = camera;
+
         TransparentPetContextMenu contextMenu = root.AddComponent<TransparentPetContextMenu>();
         contextMenu.windowController = window;
         contextMenu.route = TransparentPetRoute.DesktopTransparent;
@@ -283,6 +292,7 @@ public static class TransparentPetSceneBuilder
         contextMenu.placementController = placementController;
         contextMenu.headLookAt = headLookAt;
         contextMenu.performanceController = performanceController;
+        contextMenu.workshopManager = workshopManager;
         contextMenu.panelSize = new Vector2(520f, 560f);
         freeCamera.contextMenu = contextMenu;
         performanceController.targetCameras = new[] { camera };
@@ -621,6 +631,15 @@ public static class TransparentPetSceneBuilder
         placementController.placementSaveKey = "ScenePet.Placement.v1";
         placementController.CaptureCurrentTransform();
 
+        TransparentPetWorkshopManager workshopManager = root.AddComponent<TransparentPetWorkshopManager>();
+        workshopManager.modelRoot = petBody.transform;
+        workshopManager.runtimeControls = runtimeControls;
+        workshopManager.actionController = actionController;
+        workshopManager.headLookAt = headLookAt;
+        workshopManager.skeletonHitMask = skeletonHitMask;
+        workshopManager.windowController = window;
+        workshopManager.targetCamera = camera;
+
         TransparentPetContextMenu contextMenu = root.AddComponent<TransparentPetContextMenu>();
         contextMenu.windowController = window;
         contextMenu.route = TransparentPetRoute.SceneHost;
@@ -631,6 +650,7 @@ public static class TransparentPetSceneBuilder
         contextMenu.headLookAt = headLookAt;
         contextMenu.sceneFaceTracker = sceneFaceTracker;
         contextMenu.performanceController = performanceController;
+        contextMenu.workshopManager = workshopManager;
         contextMenu.panelSize = new Vector2(520f, 560f);
         freeCamera.contextMenu = contextMenu;
         performanceController.targetCameras = new[] { camera };

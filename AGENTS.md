@@ -24,6 +24,10 @@ This repository is intended to be usable through a local agent by people who may
 - Do not "repair" the public placeholder by copying the Silver Wolf character model back from `D:\pet`, old build folders, Unity caches, release zips, or another branch.
 - Do not commit `silver_wolf_lv999` model files (`.fbx`, `.glb`, `.gltf`, `.vrm`, `.pmx`, `.pmd`) or their `.meta` files to public Git history. Internal/test packages are the only allowed place for that character model.
 - Do not delete public-cleared scene, texture, shader, or animation assets just because they were used with the internal model. The current asset policy excludes the restricted character model itself; other assets can remain when the maintainer has cleared them.
+- Do not tell normal Steam users to import, convert, or drag FBX files into Unity. FBX is creator-source input. Runtime Workshop items should be ready-to-scan packages with `manifest.json`.
+- Do not claim arbitrary FBX/GLB/VRM hot-loading works unless the Unity runtime importer is present and tested. The current public runtime can scan packages, remember selections, and hot-apply AssetBundle model prefabs.
+- Do not invent a different Workshop layout without updating `docs/WORKSHOP_PACKAGE_FORMAT.md`, README, tests, and the Unity scanner together.
+- Do not bury Workshop state in undocumented config files. Use the in-app `创意工坊 / Mods` menu and `voicechatpet.Workshop.*` PlayerPrefs keys.
 - Do not make a public release from a branch whose history ever contained the restricted model. Recreate a clean single-commit public branch/repository when in doubt.
 - Do not hardcode the maintainer's machine paths. Scripts should accept `-ProjectPath` or work from the repository layout.
 - Do not assume a missing local virtual environment means the repo is broken. `head_tracker/.venv/` is intentionally not committed.
@@ -98,6 +102,26 @@ unity/SilverWolfPet/Assets/StreamingAssets/GodotFinal/assets/converted/user_pet_
 ```
 
 Before saying "ready for GitHub", run the product preflight and also check tracked files for restricted model names.
+
+## Workshop / Mods Rules
+
+Workshop packages are for one-click user switching. Each package should be a folder with `manifest.json`, optional `preview.png`, and a runtime entry such as a model AssetBundle prefab:
+
+```text
+WorkshopItem/
+  manifest.json
+  preview.png
+  model/character.assetbundle
+```
+
+Use `docs/WORKSHOP_PACKAGE_FORMAT.md` as the source of truth. For now:
+
+- Model AssetBundles can be hot-applied by the Unity runtime.
+- `.glb`, `.gltf`, and `.vrm` packages can be scanned and selected, but need a runtime importer before hot-loading.
+- `.fbx` must stay on the creator-tool side. A future creator tool should convert FBX into a runtime package before upload to Steam Workshop.
+- Scene and action packages are scanned and selected now; actual hot-swap loaders should be added deliberately per format.
+
+When explaining this to a user, keep the user path simple: subscribe/download, open `创意工坊 / Mods`, click the item. Put conversion and packaging complexity in creator tooling or agent automation.
 
 ## Product Boundaries
 

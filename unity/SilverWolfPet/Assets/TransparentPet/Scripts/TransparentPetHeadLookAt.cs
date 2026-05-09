@@ -79,6 +79,25 @@ public sealed class TransparentPetHeadLookAt : MonoBehaviour
         return headLookAt;
     }
 
+    public void Rebind(Animator nextAnimator, Transform nextModelRoot, Camera nextCamera)
+    {
+        animator = nextAnimator;
+        modelRoot = nextModelRoot != null ? nextModelRoot : (animator != null ? animator.transform : transform);
+        if (nextCamera != null)
+        {
+            targetCamera = nextCamera;
+        }
+
+        _head = null;
+        _neck = null;
+        _lastIkFrame = -1;
+        _currentYaw = 0f;
+        _currentPitch = 0f;
+        _yawVelocity = 0f;
+        _pitchVelocity = 0f;
+        ResolveReferences();
+    }
+
     private void Awake()
     {
         ResolveReferences();

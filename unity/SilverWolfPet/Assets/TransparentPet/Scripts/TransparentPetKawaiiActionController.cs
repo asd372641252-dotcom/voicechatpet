@@ -220,6 +220,38 @@ public sealed class TransparentPetKawaiiActionController : MonoBehaviour
         return true;
     }
 
+    public void RebindModelRoot(Transform nextModelRoot)
+    {
+        RuntimeAnimatorController previousController = _animator != null ? _animator.runtimeAnimatorController : null;
+        string actionToReplay = string.IsNullOrWhiteSpace(_currentActionName) ? defaultActionName : _currentActionName;
+        bool shouldReplay = _playing || autoPlay;
+
+        modelRoot = nextModelRoot != null ? nextModelRoot : transform;
+        Animator nextAnimator = modelRoot != null ? modelRoot.GetComponentInChildren<Animator>(true) : null;
+        if (nextAnimator != null)
+        {
+            if (nextAnimator.runtimeAnimatorController == null && previousController != null)
+            {
+                nextAnimator.runtimeAnimatorController = previousController;
+            }
+
+            nextAnimator.applyRootMotion = false;
+        }
+
+        _animator = nextAnimator;
+        BuildTransformLookup();
+        CaptureModelRootRestTransform();
+        BuildAnimatorClipLookup();
+
+        _clip = null;
+        _playing = false;
+        _currentActionName = string.Empty;
+        if (shouldReplay)
+        {
+            PlayAction(actionToReplay);
+        }
+    }
+
     private bool TryPlayAnimatorAction(string actionName)
     {
         if (_animator == null)
