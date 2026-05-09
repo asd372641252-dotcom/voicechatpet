@@ -40,9 +40,9 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 {
     private const string CanonicalTrackerRootName = "TransparentPetIntegrationRoot";
     private const int ExternalTrackerPortBindAttempts = 8;
-    private const int CurrentSettingsVersion = 9;
+    private const int CurrentSettingsVersion = 10;
     private const int StableTrackingDefaultsSettingsVersion = 7;
-    private const int GlobalTrackingSensitivitySettingsVersion = 9;
+    private const int GlobalTrackingSensitivitySettingsVersion = 10;
     private const float StableNormalizedDeadZone = 0.07f;
     private const float StableNormalizedDepthDeadZone = 0.05f;
     private const float StableOffsetSmoothTime = 0.3f;
@@ -52,10 +52,13 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
     private const float StableCameraHeightFollowMeters = 0.55f;
     private const float StableCameraOrbitDeadZoneDegrees = 5f;
     private const float StableCameraOrbitSmoothTime = 0.32f;
-    private const float StableGlobalTrackingLateralMeters = 0.675f;
-    private const float StableGlobalTrackingHeightMeters = 0.9f;
-    private const float StableGlobalTrackingDepthMeters = 0.55f;
-    private const float GlobalTrackingSensitivityMigrationScale = 0.5f;
+    private const float StableGlobalTrackingLateralMeters = 0.50625f;
+    private const float StableGlobalTrackingHeightMeters = 0.45f;
+    private const float StableGlobalTrackingDepthMeters = 0.275f;
+    private const float GlobalTrackingV8LateralMigrationScale = 0.375f;
+    private const float GlobalTrackingV8HeightDepthMigrationScale = 0.25f;
+    private const float GlobalTrackingV9LateralMigrationScale = 0.75f;
+    private const float GlobalTrackingV9HeightDepthMigrationScale = 0.5f;
     private const float StableHeadYawPoseWeight = 0.22f;
     private const float StableHeadPitchPoseWeight = 0.18f;
     private static TransparentPetSceneFaceTracker _activeSceneTracker;
@@ -2375,9 +2378,15 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
             globalTrackingDepthMeters = settings.globalTrackingDepthMeters > 0f ? settings.globalTrackingDepthMeters : globalTrackingDepthMeters;
             if (settings.settingsVersion >= 8 && settings.settingsVersion < GlobalTrackingSensitivitySettingsVersion)
             {
-                globalTrackingLateralMeters *= GlobalTrackingSensitivityMigrationScale;
-                globalTrackingHeightMeters *= GlobalTrackingSensitivityMigrationScale;
-                globalTrackingDepthMeters *= GlobalTrackingSensitivityMigrationScale;
+                bool fromFirstGlobalTrackingTuning = settings.settingsVersion < 9;
+                globalTrackingLateralMeters *= fromFirstGlobalTrackingTuning
+                    ? GlobalTrackingV8LateralMigrationScale
+                    : GlobalTrackingV9LateralMigrationScale;
+                float heightDepthScale = fromFirstGlobalTrackingTuning
+                    ? GlobalTrackingV8HeightDepthMigrationScale
+                    : GlobalTrackingV9HeightDepthMigrationScale;
+                globalTrackingHeightMeters *= heightDepthScale;
+                globalTrackingDepthMeters *= heightDepthScale;
             }
             cameraYawOrbitStrength = settings.cameraYawOrbitStrength != 0f ? settings.cameraYawOrbitStrength : cameraYawOrbitStrength;
             cameraPitchOrbitStrength = settings.cameraPitchOrbitStrength != 0f ? settings.cameraPitchOrbitStrength : cameraPitchOrbitStrength;
