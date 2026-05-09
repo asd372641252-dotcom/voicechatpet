@@ -4518,7 +4518,7 @@ MonoBehaviour:
   normalizedDepthDeadZone: 0.05
   depthSmoothTime: 0.32
   cameraDepthShiftMeters: 0.06
-  cameraYawOrbitStrength: 1.15
+  cameraYawOrbitStrength: 1.35
   cameraPitchOrbitStrength: 0.35
   maxCameraYawOrbitDegrees: 45
   maxCameraPitchOrbitDegrees: 18
@@ -4534,7 +4534,7 @@ MonoBehaviour:
   headPitchStrengthDegrees: 8
   cameraTargetShiftMeters: 0.08
   cameraHeightFollowMeters: 0.55
-  globalTrackingLateralMeters: 0.4
+  globalTrackingLateralMeters: 0.25
   globalTrackingHeightMeters: 0.225
   globalTrackingDepthMeters: 0.1375
   globalTrackingOffsetSmoothTime: 0.2
