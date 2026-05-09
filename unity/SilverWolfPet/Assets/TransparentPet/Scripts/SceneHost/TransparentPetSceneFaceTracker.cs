@@ -2172,9 +2172,10 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
         Vector3 heightTargetOffset;
         if (globalTrackingEnabled)
         {
+            Vector3 targetOffset = BuildGlobalTrackingTargetOffset();
             cameraOffset = BuildGlobalTrackingCameraOffset();
-            heightTargetOffset = Vector3.zero;
-            freeCamera.ClearExternalTargetOffset();
+            heightTargetOffset = targetOffset;
+            freeCamera.SetExternalTargetOffset(targetOffset);
             freeCamera.SetExternalCameraOffset(cameraOffset);
 #if UNITY_EDITOR
             LogEditorCameraParallax(cameraOffset, heightTargetOffset);
@@ -2205,11 +2206,15 @@ public sealed class TransparentPetSceneFaceTracker : MonoBehaviour
 
     private Vector3 BuildGlobalTrackingCameraOffset()
     {
+        return targetCamera.transform.forward * (_smoothDepthOffset * globalTrackingDepthMeters);
+    }
+
+    private Vector3 BuildGlobalTrackingTargetOffset()
+    {
         Vector3 lateral = targetCamera.transform.right * (_smoothOffset.x * globalTrackingLateralMeters);
         Vector3 heightAxis = mirrorVertical ? -Vector3.up : Vector3.up;
         Vector3 height = heightAxis * (_smoothOffset.y * globalTrackingHeightMeters);
-        Vector3 depth = targetCamera.transform.forward * (_smoothDepthOffset * globalTrackingDepthMeters);
-        return lateral + height + depth;
+        return lateral + height;
     }
 
     private void ApplyCameraOrbit()
